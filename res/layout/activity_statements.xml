@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.fileonthespotclaim.StatementsActivity" >
+
+    <Button
+        android:id="@+id/stmt_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/next" />
+
+    <TextView
+        android:id="@+id/uploadStatement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/uploadStatement" />
+
+    <TextView
+        android:id="@+id/driver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/uploadStatement"
+        android:layout_alignStart="@+id/uploadStatement"
+        android:layout_below="@+id/uploadStatement"
+        android:layout_marginTop="35dp"
+        android:text="@string/driver" />
+
+    <TextView
+        android:id="@+id/passenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/driver"
+        android:layout_alignStart="@+id/driver"
+        android:layout_below="@+id/driver"
+        android:layout_marginTop="38dp"
+        android:text="@string/passenger" />
+
+    <TextView
+        android:id="@+id/thirdParty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passenger"
+        android:layout_alignStart="@+id/passenger"
+        android:layout_below="@+id/passenger"
+        android:layout_marginTop="46dp"
+        android:text="@string/thirdParty" />
+
+    <Button
+        android:id="@+id/driverStatement"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/driver"
+        android:layout_alignBottom="@+id/driver"
+        android:layout_alignEnd="@+id/stmt_next"
+        android:layout_alignRight="@+id/stmt_next"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="21dp"
+        android:text="@string/uploadVedio" />
+
+    <Button
+        android:id="@+id/passengerStatement"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/passenger"
+        android:layout_alignBottom="@+id/passenger"
+        android:layout_alignLeft="@+id/driverStatement"
+        android:layout_alignStart="@+id/driverStatement"
+        android:text="@string/uploadVedio" />
+
+    <Button
+        android:id="@+id/thirdPartyStatement"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/thirdParty"
+        android:layout_alignBottom="@+id/thirdParty"
+        android:layout_alignLeft="@+id/passengerStatement"
+        android:layout_alignStart="@+id/driverStatement"
+        android:text="@string/uploadVedio" />
+
+    <TextView
+        android:id="@+id/witness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/thirdParty"
+        android:layout_alignStart="@+id/thirdParty"
+        android:layout_below="@+id/thirdPartyStatement"
+        android:layout_marginTop="41dp"
+        android:text="@string/witness" />
+
+    <Button
+        android:id="@+id/witnessStatement"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/witness"
+        android:layout_alignBottom="@+id/witness"
+        android:layout_alignLeft="@+id/thirdPartyStatement"
+        android:layout_alignStart="@+id/driverStatement"
+        android:text="@string/uploadVedio" />
+
+</RelativeLayout>

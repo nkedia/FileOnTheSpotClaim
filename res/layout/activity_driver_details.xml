@@ -1,0 +1,244 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.fileonthespotclaim.DriverDetailsActivity" 
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<RelativeLayout 
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="520dp">
+
+    <Button
+        android:id="@+id/dd_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/next" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/relation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="14dp"
+        android:text="@string/relation" />
+
+    <TextView
+        android:id="@+id/driverAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relation"
+        android:layout_alignStart="@+id/relation"
+        android:layout_below="@+id/relation"
+        android:layout_marginTop="16dp"
+        android:text="@string/driverAddress" />
+
+    <TextView
+        android:id="@+id/contactNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/driverAddress"
+        android:layout_alignStart="@+id/driverAddress"
+        android:layout_below="@+id/driverAddress"
+        android:layout_marginTop="20dp"
+        android:text="@string/contactNumber" />
+
+    <TextView
+        android:id="@+id/dobLicense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/contactNumber"
+        android:layout_alignStart="@+id/contactNumber"
+        android:layout_below="@+id/contactNumber"
+        android:layout_marginTop="17dp"
+        android:text="@string/dobLicense" />
+
+    <TextView
+        android:id="@+id/expiryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/effectiveFrom"
+        android:layout_alignStart="@+id/effectiveFrom"
+        android:layout_below="@+id/effectiveFrom"
+        android:layout_marginTop="14dp"
+        android:text="@string/expiryDate" />
+
+    <TextView
+        android:id="@+id/vehicleClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/expiryDate"
+        android:layout_alignStart="@+id/expiryDate" 
+        android:layout_below="@+id/expiryDate"
+        android:layout_marginTop="16dp"
+        android:text="@string/vehicleClass" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_toRightOf="@+id/driverType"
+        android:layout_toEndOf="@+id/driverType"
+        android:ems="10" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/driverAddress"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignStart="@+id/editText1"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/driverAddress"
+        android:layout_toRightOf="@+id/driverType"
+        android:layout_toEndOf="@+id/driverType"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/contactNumber"
+        android:layout_alignBottom="@+id/contactNumber"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_alignTop="@+id/dobLicense"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText5"
+        android:layout_toRightOf="@+id/driverType"
+        android:layout_toEndOf="@+id/driverType"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/effectiveFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/issuingRTO"
+        android:layout_alignStart="@+id/issuingRTO"
+        android:layout_below="@+id/editText7"
+        android:layout_marginTop="16dp"
+        android:text="@string/effectiveFrom" />
+
+    <TextView
+        android:id="@+id/issuingRTO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dlNo"
+        android:layout_alignStart="@+id/dlNo"
+        android:layout_below="@+id/editText6"
+        android:layout_marginTop="14dp"
+        android:text="@string/issuingRTO" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/issuingRTO"
+        android:layout_toRightOf="@+id/driverType"
+        android:layout_toEndOf="@+id/driverType"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_below="@+id/editText7"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/expiryDate"
+        android:layout_alignBottom="@+id/expiryDate"
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/dlNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText6"
+        android:layout_alignLeft="@+id/dobLicense"
+        android:layout_alignStart="@+id/dobLicense"
+        android:text="@string/dlNo" />
+
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/vehicleClass"
+        android:layout_toRightOf="@+id/driverType"
+        android:layout_toEndOf="@+id/driverType"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/driverType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/vehicleClass"
+        android:layout_alignStart="@+id/vehicleClass"
+        android:layout_below="@+id/editText10"
+        android:layout_marginTop="17dp"
+        android:text="@string/driverType" />
+
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/driverType"
+        android:layout_alignBottom="@+id/driverType"
+        android:layout_alignLeft="@+id/editText10"
+        android:layout_alignStart="@+id/editText10"
+        android:ems="10" />
+
+	</RelativeLayout>
+
+</ScrollView>
