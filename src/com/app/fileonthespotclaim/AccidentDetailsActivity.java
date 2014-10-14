@@ -1,6 +1,8 @@
-package com.example.fileonthespotclaim;
+package com.app.fileonthespotclaim;
 
-import android.support.v7.app.ActionBarActivity;
+import com.example.fileonthespotclaim.R;
+
+import android.support.v7.app.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,21 +10,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class VehicleDetailsActivity extends ActionBarActivity {
+public class AccidentDetailsActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vehicle_details);
+		setContentView(R.layout.activity_accident_details);
 		
-		Button bt = (Button) findViewById(R.id.vd_next);
+		 Button bt = (Button) findViewById(R.id.ad_next);
 	        
-        Button.OnClickListener myListener = new Button.OnClickListener(){
+	        Button.OnClickListener myListener = new Button.OnClickListener(){
 	        		
 	        		public void onClick(View v) {
-	        			Intent myIntent = new Intent(VehicleDetailsActivity.this, AccidentDetailsActivity.class);
+	        			Intent myIntent = new Intent(AccidentDetailsActivity.this, StatementsActivity.class);
 	        			//myIntent.putExtra("key", value); //Optional parameters
-	        			VehicleDetailsActivity.this.startActivity(myIntent);
+	        			AccidentDetailsActivity.this.startActivity(myIntent);
 	        		}
 	        };
 	        
@@ -32,7 +34,7 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.vehicle_details, menu);
+		getMenuInflater().inflate(R.menu.accident_details, menu);
 		return true;
 	}
 

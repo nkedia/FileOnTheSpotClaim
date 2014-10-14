@@ -1,4 +1,6 @@
-package com.example.fileonthespotclaim;
+package com.app.fileonthespotclaim;
+
+import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;

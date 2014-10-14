@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.fileonthespotclaim.StatementsActivity" >
+    tools:context="com.app.fileonthespotclaim.StatementsActivity" >
 
     <Button
         android:id="@+id/stmt_next"

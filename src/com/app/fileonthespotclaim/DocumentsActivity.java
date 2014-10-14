@@ -1,6 +1,8 @@
-package com.example.fileonthespotclaim;
+package com.app.fileonthespotclaim;
 
 import java.io.File;
+
+import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
@@ -26,13 +28,15 @@ public class DocumentsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_documents);
-		Toast.makeText(DocumentsActivity.this, "Document details showing", Toast.LENGTH_LONG).show();
 		
 		 Button bt = (Button) findViewById(R.id.submit_next);
 	     Button.OnClickListener myListener = new Button.OnClickListener(){
 	        		
 	        		public void onClick(View v) {
 	        			Toast.makeText(DocumentsActivity.this, "This app works", Toast.LENGTH_LONG).show();
+	        			
+	        			Intent myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+	        			DocumentsActivity.this.startActivity(myIntent);
 	        		}
 	        };
 	     bt.setOnClickListener(myListener);
