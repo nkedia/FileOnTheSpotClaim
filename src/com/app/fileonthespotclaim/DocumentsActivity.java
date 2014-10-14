@@ -34,7 +34,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	        		
 	        		public void onClick(View v) {
 	        			Toast.makeText(DocumentsActivity.this, "This app works", Toast.LENGTH_LONG).show();
-	        			
+	        			//TODO call claims web service
 	        			Intent myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 	        			DocumentsActivity.this.startActivity(myIntent);
 	        		}
