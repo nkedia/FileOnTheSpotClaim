@@ -4,7 +4,9 @@ import java.io.File;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import com.claims.service.ClaimsService;
 import com.claims.service.ClaimsService_Service;
@@ -33,7 +35,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	private static final String NAMESPACE = "http://localhost:8080/ClaimsService/";
 	private static String URL="http://localhost:8080/ClaimsServiceProject/services/ClaimsService?WSDL"; 
 	private static final String METHOD_NAME = "fileNewClaim";
-	//private static final String SOAP_ACTION =  "http://hello_webservice/hello";
+	private static final String SOAP_ACTION =  "http://localhost:8080/ClaimsService/fileNewClaim/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,15 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 	        			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 	        			envelope.setOutputSoapObject(request);
+	        			HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+	        			try {
+	        			   androidHttpTransport.call(SOAP_ACTION, envelope);
+	        			   SoapPrimitive  resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
+	        			   Log.d("result", resultsRequestSOAP.toString());
+	        			  } catch (Exception e) {
+	        				  
+	        			   
+	        			  }
 	        			
 	        			ClaimsService_Service service1 = new ClaimsService_Service();
 	        			ClaimsService port1 = service1.getClaimsServiceSOAP();
@@ -63,7 +74,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	        };
 	     bt.setOnClickListener(myListener);
 
-	     Button bt2 = (Button) findViewById(R.id.carImage);
+	     Button bt2 = (Button) findViewById(R.id.clickImage);
 	     Button.OnClickListener myListener2 = new Button.OnClickListener(){
         		
         		public void onClick(View v) {
