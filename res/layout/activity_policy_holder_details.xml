@@ -194,7 +194,9 @@
         android:layout_alignStart="@+id/editText2"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:ems="10" />
+        android:ems="10"
+        android:text="84321"
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/editText5"
@@ -204,7 +206,9 @@
         android:layout_alignBottom="@+id/coverNoteNo"
         android:layout_alignLeft="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
-        android:ems="10" />
+        android:ems="10"
+        android:text="923874"
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/editText6"

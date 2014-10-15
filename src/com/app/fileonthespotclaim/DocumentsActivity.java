@@ -2,6 +2,12 @@ package com.app.fileonthespotclaim;
 
 import java.io.File;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+
+import com.claims.service.ClaimsService;
+import com.claims.service.ClaimsService_Service;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
@@ -23,6 +29,11 @@ public class DocumentsActivity extends ActionBarActivity {
 	public static int count=0;
 	Intent takePictureIntent;
 	File photoFile;
+	
+	private static final String NAMESPACE = "http://localhost:8080/ClaimsService/";
+	private static String URL="http://localhost:8080/ClaimsServiceProject/services/ClaimsService?WSDL"; 
+	private static final String METHOD_NAME = "fileNewClaim";
+	//private static final String SOAP_ACTION =  "http://hello_webservice/hello";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +46,17 @@ public class DocumentsActivity extends ActionBarActivity {
 	        		public void onClick(View v) {
 	        			Toast.makeText(DocumentsActivity.this, "This app works", Toast.LENGTH_LONG).show();
 	        			//TODO call claims web service
+	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
+	        			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+	        			envelope.setOutputSoapObject(request);
+	        			
+	        			ClaimsService_Service service1 = new ClaimsService_Service();
+	        			ClaimsService port1 = service1.getClaimsServiceSOAP();
+	        			javax.xml.ws.Holder<String> claimID = null;
+	        			javax.xml.ws.Holder<Boolean> result = null;
+	        			port1.fileNewClaim(null, null, null, null, claimID, result);
+	        			System.out.println("result" + result.value);
+	        			System.out.println("claimID" + claimID.value);
 	        			Intent myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 	        			DocumentsActivity.this.startActivity(myIntent);
 	        		}
