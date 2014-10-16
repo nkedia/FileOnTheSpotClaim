@@ -10,11 +10,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.claims.service.PeriodOfInsuranceType;
-import com.claims.service.PhoneType;
-import com.claims.service.PolicyHolderDetailsType;
-import com.example.fileonthespotclaim.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -23,6 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.app.service.entity.PeriodOfInsuranceType;
+import com.app.service.entity.PhoneType;
+import com.app.service.entity.PolicyHolderDetailsType;
+
+import com.example.fileonthespotclaim.R;
 
 public class PolicyHolderDetailsActivity extends ActionBarActivity {
 	
@@ -64,7 +65,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(PolicyHolderDetailsActivity.this, VehicleDetailsActivity.class);
 	        			PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(); 
-	        			//myIntent.putExtra("policyDetails", policyHolderDetails);//Optional parameters
+	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
 	        			PolicyHolderDetailsActivity.this.startActivity(myIntent);
 	        		}
 

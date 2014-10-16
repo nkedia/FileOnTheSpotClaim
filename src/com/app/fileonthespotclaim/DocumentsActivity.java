@@ -1,22 +1,17 @@
 package com.app.fileonthespotclaim;
 
 import java.io.File;
+import java.util.concurrent.ExecutionException;
 
-import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
-import com.claims.service.ClaimsService;
-import com.claims.service.ClaimsService_Service;
-import com.example.fileonthespotclaim.R;
-
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.app.service.ClaimsServiceTask;
+import com.app.service.entity.AccidentDetailsType;
+import com.app.service.entity.DriverDetailsType;
+import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.service.entity.VehicleDetailsType;
+import com.example.fileonthespotclaim.R;
 
 public class DocumentsActivity extends ActionBarActivity {
 	
@@ -33,10 +35,8 @@ public class DocumentsActivity extends ActionBarActivity {
 	File photoFile;
 	
 	private static final String NAMESPACE = "http://localhost:8080/ClaimsService/";
-	private static String URL="http://localhost:8080/ClaimsServiceProject/services/ClaimsService?WSDL"; 
 	private static final String METHOD_NAME = "fileNewClaim";
-	private static final String SOAP_ACTION =  "http://localhost:8080/ClaimsService/fileNewClaim/";
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,28 +47,51 @@ public class DocumentsActivity extends ActionBarActivity {
 	        		
 	        		public void onClick(View v) {
 	        			Toast.makeText(DocumentsActivity.this, "This app works", Toast.LENGTH_LONG).show();
-	        			//TODO call claims web service
-	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
-	        			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-	        			envelope.setOutputSoapObject(request);
-	        			HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
-	        			try {
-	        			   androidHttpTransport.call(SOAP_ACTION, envelope);
-	        			   SoapPrimitive  resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
-	        			   Log.d("result", resultsRequestSOAP.toString());
-	        			  } catch (Exception e) {
-	        				  
-	        			   
-	        			  }
-	        			
-	        			ClaimsService_Service service1 = new ClaimsService_Service();
-	        			ClaimsService port1 = service1.getClaimsServiceSOAP();
-	        			javax.xml.ws.Holder<String> claimID = null;
-	        			javax.xml.ws.Holder<Boolean> result = null;
-	        			port1.fileNewClaim(null, null, null, null, claimID, result);
-	        			System.out.println("result" + result.value);
-	        			System.out.println("claimID" + claimID.value);
 	        			Intent myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+	        			
+	        			//Bundle extras = myIntent.getExtras();
+	        			PolicyHolderDetailsType phd = (PolicyHolderDetailsType) myIntent.getSerializableExtra("policyHolderDetails");
+	        			VehicleDetailsType vd = (VehicleDetailsType) myIntent.getSerializableExtra("vehicleDetails");
+	        			AccidentDetailsType ad = (AccidentDetailsType) myIntent.getSerializableExtra("accidentDetails");
+	        			DriverDetailsType dd = (DriverDetailsType) myIntent.getSerializableExtra("driverDetails");
+	        			
+	        			//Log.d("dd", dd.toString());
+	        			
+	        			//TODO call claims web service
+	        			PropertyInfo policyHolderDetails = new PropertyInfo();
+	        			policyHolderDetails.name = "policyHolderDetails";
+	        			policyHolderDetails.type = PolicyHolderDetailsType.class;
+	        			policyHolderDetails.setValue(phd);
+	        			
+	        			PropertyInfo vehicleDetails = new PropertyInfo();
+	        			vehicleDetails.name="vehicleDetails";
+	        			vehicleDetails.type= VehicleDetailsType.class;
+	        			vehicleDetails.setValue(vd);
+	        			
+	        			PropertyInfo accidentDetails = new PropertyInfo();
+	        			accidentDetails.name = "accidentDetails";
+	        			accidentDetails.type = AccidentDetailsType.class;
+	        			accidentDetails.setValue(ad);
+	        			
+	        			PropertyInfo driverDetails = new PropertyInfo();
+	        			driverDetails.name = "driverDetails";
+	        			driverDetails.type = DriverDetailsType.class;
+	        			driverDetails.setValue(dd);
+	        			
+	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
+	        			request.addProperty(policyHolderDetails);
+	        			request.addProperty(vehicleDetails);
+	        			request.addProperty(accidentDetails);
+	        			request.addProperty(driverDetails);
+	        			
+	        			try {
+							SoapPrimitive result = new ClaimsServiceTask().execute(request).get();
+							Log.d("result", result.toString());
+						} catch (InterruptedException | ExecutionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	        			
 	        			DocumentsActivity.this.startActivity(myIntent);
 	        		}
 	        };

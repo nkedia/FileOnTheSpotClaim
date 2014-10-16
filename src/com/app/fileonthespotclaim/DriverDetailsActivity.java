@@ -9,20 +9,21 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.claims.service.ClassType;
-import com.claims.service.DriverDetailsType;
-import com.claims.service.LicenseType;
-import com.claims.service.Type;
-import com.example.fileonthespotclaim.R;
-
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.app.service.entity.ClassType;
+import com.app.service.entity.DriverDetailsType;
+import com.app.service.entity.LicenseType;
+import com.app.service.entity.Type;
+
+import com.example.fileonthespotclaim.R;
 
 public class DriverDetailsActivity extends ActionBarActivity {
 
@@ -62,7 +63,8 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(DriverDetailsActivity.this, DocumentsActivity.class);
 	        			DriverDetailsType driverDetails = getDriverDetails();
-	        			//myIntent.putExtra("key", value); //Optional parameters
+	        			//myIntent.putExtras(myIntent.getExtras());
+	        			myIntent.putExtra("driverDetails", driverDetails);
 	        			DriverDetailsActivity.this.startActivity(myIntent);
 	        		}
 	        };

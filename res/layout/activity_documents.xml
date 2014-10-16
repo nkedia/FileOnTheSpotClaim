@@ -93,7 +93,8 @@
       android:id="@+id/clickImage"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_above="@+id/submit_next"
+      android:layout_alignBaseline="@+id/carImage"
+      android:layout_alignBottom="@+id/carImage"
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
       android:text="@string/attachImage" />

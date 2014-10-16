@@ -9,7 +9,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.claims.service.AccidentDetailsType;
+import com.app.service.entity.AccidentDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.*;
@@ -54,7 +54,8 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(AccidentDetailsActivity.this, StatementsActivity.class);
 	        			AccidentDetailsType accidentDetails = getAccidentDetails();
-	        			//myIntent.putExtra("key", value); //Optional parameters
+	        			//myIntent.putExtras(myIntent.getExtras());
+	        			myIntent.putExtra("accidentDetails", accidentDetails); 
 	        			AccidentDetailsActivity.this.startActivity(myIntent);
 	        		}
 	        };

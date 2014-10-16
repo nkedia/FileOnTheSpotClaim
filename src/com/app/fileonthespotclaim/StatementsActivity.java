@@ -27,6 +27,7 @@ public class StatementsActivity extends ActionBarActivity {
 	     Button.OnClickListener myListener = new Button.OnClickListener(){
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(StatementsActivity.this, DriverDetailsActivity.class);
+	        			//myIntent.putExtras(myIntent.getExtras());
 	        			//myIntent.putExtra("key", value); //Optional parameters
 	        			StatementsActivity.this.startActivity(myIntent);
 	        		}
