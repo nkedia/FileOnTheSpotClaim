@@ -1,21 +1,56 @@
 
 package com.app.service.entity;
 
-import java.io.Serializable;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class DriverDetailsType implements Serializable{
 
-	private static final long serialVersionUID = 1889973629264102886L;
+public class DriverDetailsType implements Parcelable{
+
 	protected String name;
     protected String relationWithInsured;
     protected String address;
     protected String contactNo;
-    protected XMLGregorianCalendar dob;
-    protected LicenseType license;
+    protected String dob;
+    protected String licenseNo;
+    protected String issuingRTO;
+    protected String effectiveFrom;
+    protected String expiryDate;
+    protected String clazz;
+    protected String type;
 
-    public String getName() {
+    public DriverDetailsType() {
+    	name = "";
+    	relationWithInsured = "";
+    	address = "";
+    	contactNo = "";
+    	dob = "";
+    	licenseNo = "";
+    	issuingRTO = "";
+    	effectiveFrom = "";
+    	expiryDate = "";
+    	clazz = "";
+    	type = "";
+    	
+	}
+
+    public DriverDetailsType(Parcel source) {
+    	setName(source.readString());
+    	setRelationWithInsured(source.readString());
+    	setAddress(source.readString());
+    	setContactNo(source.readString());
+    	setDOB(source.readString());
+    	setLicenseNo(source.readString());
+    	setIssuingRTO(source.readString());
+    	setEffectiveFrom(source.readString());
+    	setExpiryDate(source.readString());
+    	setClazz(source.readString());
+    	setType(source.readString());
+
+    }
+
+	public String getName() {
         return name;
     }
 
@@ -47,20 +82,96 @@ public class DriverDetailsType implements Serializable{
         this.contactNo = value;
     }
 
-    public XMLGregorianCalendar getDOB() {
+    public String getDOB() {
         return dob;
     }
 
-    public void setDOB(XMLGregorianCalendar value) {
+    public void setDOB(String value) {
         this.dob = value;
     }
 
-    public LicenseType getLicense() {
-        return license;
+    public String getLicenseNo() {
+        return licenseNo;
     }
 
-    public void setLicense(LicenseType value) {
-        this.license = value;
+    public void setLicenseNo(String value) {
+        this.licenseNo = value;
     }
+
+    public String getIssuingRTO() {
+        return issuingRTO;
+    }
+
+    public void setIssuingRTO(String value) {
+        this.issuingRTO = value;
+    }
+
+    public String getEffectiveFrom() {
+        return effectiveFrom;
+    }
+
+    public void setEffectiveFrom(String value) {
+        this.effectiveFrom = value;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String value) {
+        this.expiryDate = value;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String value) {
+        this.clazz = value;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String value) {
+        this.type = value;
+    }
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(getName());
+		dest.writeString(getRelationWithInsured());
+		dest.writeString(getAddress());
+		dest.writeString(getContactNo());
+		dest.writeString(getDOB());
+		dest.writeString(getLicenseNo());
+		dest.writeString(getIssuingRTO());
+		dest.writeString(getEffectiveFrom());
+		dest.writeString(getExpiryDate());
+		dest.writeString(getClazz());
+		dest.writeString(getType());;		
+	}
+	
+	public static final Parcelable.Creator<DriverDetailsType> CREATOR = new Creator<DriverDetailsType>() {
+
+		@Override
+		public DriverDetailsType createFromParcel(Parcel source) {
+			return new DriverDetailsType(source);
+		}
+
+		@Override
+		public DriverDetailsType[] newArray(int size) {
+			return new DriverDetailsType[size];
+		}
+	
+	};
+
 
 }

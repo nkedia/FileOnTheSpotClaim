@@ -49,16 +49,15 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			Toast.makeText(DocumentsActivity.this, "This app works", Toast.LENGTH_LONG).show();
 	        			Intent myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 	        			
-	        			//Bundle extras = myIntent.getExtras();
-	        			PolicyHolderDetailsType phd = (PolicyHolderDetailsType) myIntent.getSerializableExtra("policyHolderDetails");
-	        			VehicleDetailsType vd = (VehicleDetailsType) myIntent.getSerializableExtra("vehicleDetails");
-	        			AccidentDetailsType ad = (AccidentDetailsType) myIntent.getSerializableExtra("accidentDetails");
-	        			DriverDetailsType dd = (DriverDetailsType) myIntent.getSerializableExtra("driverDetails");
+	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
+	        			VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+	        			AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
+	        			DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
 	        			
 	        			//Log.d("dd", dd.toString());
 	        			
 	        			//TODO call claims web service
-	        			PropertyInfo policyHolderDetails = new PropertyInfo();
+	        			/*PropertyInfo policyHolderDetails = new PropertyInfo();
 	        			policyHolderDetails.name = "policyHolderDetails";
 	        			policyHolderDetails.type = PolicyHolderDetailsType.class;
 	        			policyHolderDetails.setValue(phd);
@@ -78,15 +77,15 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			driverDetails.type = DriverDetailsType.class;
 	        			driverDetails.setValue(dd);
 	        			
-	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
+	        			
 	        			request.addProperty(policyHolderDetails);
 	        			request.addProperty(vehicleDetails);
 	        			request.addProperty(accidentDetails);
-	        			request.addProperty(driverDetails);
-	        			
+	        			request.addProperty(driverDetails);*/
+	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 	        			try {
 							SoapPrimitive result = new ClaimsServiceTask().execute(request).get();
-							Log.d("result", result.toString());
+							//Log.d("result", result.toString());
 						} catch (InterruptedException | ExecutionException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

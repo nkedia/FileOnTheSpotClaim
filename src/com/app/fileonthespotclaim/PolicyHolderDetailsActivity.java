@@ -1,15 +1,5 @@
 package com.app.fileonthespotclaim;
 
-//import android.support.v7.app.ActionBarActivity;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -19,10 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.app.service.entity.PeriodOfInsuranceType;
-import com.app.service.entity.PhoneType;
 import com.app.service.entity.PolicyHolderDetailsType;
-
 import com.example.fileonthespotclaim.R;
 
 public class PolicyHolderDetailsActivity extends ActionBarActivity {
@@ -77,8 +64,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 
 	protected PolicyHolderDetailsType getPolicyHolderDetails() {
 		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
-		try {
-			SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
+			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
 
 			Date fromDate = sf.parse(from.getText().toString());
 			GregorianCalendar cal1 = new GregorianCalendar();
@@ -96,29 +82,21 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 			GregorianCalendar cal3 = new GregorianCalendar();
 			cal3.setTime(dobDate);
 			XMLGregorianCalendar gc3 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal3);
+			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal3);*/
 
-			policyHolderDetails.setPolicyNo(policyNo.getText().toString());
-			policyHolderDetails.setCoverNoteNo(coverNoteNo.getText().toString());
-			PeriodOfInsuranceType period = new PeriodOfInsuranceType();
-			period.setFrom(gc1);
-			period.setTo(gc2);
-			policyHolderDetails.setPeriodOfInsurance(period);
-			policyHolderDetails.setNameOfInsured(name.getText().toString());
-			policyHolderDetails.setDobOfInsured(gc3);
-			policyHolderDetails.setAddressOfInsured(address.getText().toString());
-			policyHolderDetails.setPinOfInsured(pin.getText().toString());
-			PhoneType phone = new PhoneType();
-			phone.setMobile(mobile.getText().toString());
-			phone.setResidence(residence.getText().toString());
-			phone.setOffice(office.getText().toString());
-			policyHolderDetails.setPhoneOfInsured(phone);
-			policyHolderDetails.setEmailOfInsured(email.getText().toString());
-			
-		} catch (ParseException | DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		policyHolderDetails.setPolicyNo(policyNo.getText().toString());
+		policyHolderDetails.setCoverNoteNo(coverNoteNo.getText().toString());
+		policyHolderDetails.setFromDate(from.getText().toString());
+		policyHolderDetails.setToDate(to.getText().toString());
+		policyHolderDetails.setNameOfInsured(name.getText().toString());
+		policyHolderDetails.setDobOfInsured(dob.getText().toString());
+		policyHolderDetails.setAddressOfInsured(address.getText().toString());
+		policyHolderDetails.setPinOfInsured(pin.getText().toString());
+		policyHolderDetails.setOffice(office.getText().toString());
+		policyHolderDetails.setOffice(residence.getText().toString());
+		policyHolderDetails.setOffice(mobile.getText().toString());
+		policyHolderDetails.setEmailOfInsured(email.getText().toString());
+		
 		return policyHolderDetails;
 	}
 

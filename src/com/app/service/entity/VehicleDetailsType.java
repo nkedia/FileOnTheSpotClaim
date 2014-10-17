@@ -1,23 +1,44 @@
 
 package com.app.service.entity;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 
-public class VehicleDetailsType implements Serializable{
+public class VehicleDetailsType implements Parcelable{
 
-	private static final long serialVersionUID = -2580177642041199018L;
 	protected String regdNo;
     protected String make;
-    protected XMLGregorianCalendar dateOfFirstRegistration;
+    protected String dateOfFirstRegistration;
     protected String chassisNo;
     protected String engineNo;
-    protected XMLGregorianCalendar dateOfTransfer;
+    protected String dateOfTransfer;
     protected String typeOfFuel;
     protected String color;
 
-    public String getRegdNo() {
+    public VehicleDetailsType() {
+    	regdNo = "";
+    	make = "";
+    	dateOfFirstRegistration = "";
+    	chassisNo = "";
+    	engineNo = "";
+    	dateOfTransfer = "";
+    	typeOfFuel = "";
+    	color = "";
+    }
+    
+    public VehicleDetailsType(Parcel source) {
+    	setRegdNo(source.readString());
+    	setMake(source.readString());
+    	setDateOfFirstRegistration(source.readString());
+    	setChassisNo(source.readString());
+    	setEngineNo(source.readString());
+    	setDateOfTransfer(source.readString());
+    	setTypeOfFuel(source.readString());
+    	setColor(source.readString());
+	}
+
+	public String getRegdNo() {
         return regdNo;
     }
 
@@ -33,11 +54,11 @@ public class VehicleDetailsType implements Serializable{
         this.make = value;
     }
 
-    public XMLGregorianCalendar getDateOfFirstRegistration() {
+    public String getDateOfFirstRegistration() {
         return dateOfFirstRegistration;
     }
 
-    public void setDateOfFirstRegistration(XMLGregorianCalendar value) {
+    public void setDateOfFirstRegistration(String value) {
         this.dateOfFirstRegistration = value;
     }
 
@@ -57,11 +78,11 @@ public class VehicleDetailsType implements Serializable{
         this.engineNo = value;
     }
 
-    public XMLGregorianCalendar getDateOfTransfer() {
+    public String getDateOfTransfer() {
         return dateOfTransfer;
     }
 
-    public void setDateOfTransfer(XMLGregorianCalendar value) {
+    public void setDateOfTransfer(String value) {
         this.dateOfTransfer = value;
     }
 
@@ -80,5 +101,37 @@ public class VehicleDetailsType implements Serializable{
     public void setColor(String value) {
         this.color = value;
     }
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(getChassisNo());
+		dest.writeString(getColor());
+		dest.writeString(getDateOfFirstRegistration());
+		dest.writeString(getDateOfTransfer());
+		dest.writeString(getEngineNo());
+		dest.writeString(getMake());
+		dest.writeString(getRegdNo());
+		dest.writeString(getTypeOfFuel());
+	}
+	
+	public static final Parcelable.Creator<VehicleDetailsType> CREATOR = new Creator<VehicleDetailsType>() {
+
+		@Override
+		public VehicleDetailsType createFromParcel(Parcel source) {
+			return new VehicleDetailsType(source);
+		}
+
+		@Override
+		public VehicleDetailsType[] newArray(int size) {
+			return new VehicleDetailsType[size];
+		}
+	
+	};
+
 
 }

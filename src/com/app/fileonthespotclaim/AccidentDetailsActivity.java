@@ -1,26 +1,18 @@
 package com.app.fileonthespotclaim;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import com.app.service.entity.AccidentDetailsType;
-import com.example.fileonthespotclaim.R;
-
-import android.support.v7.app.*;
-import android.text.format.Time;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.app.service.entity.AccidentDetailsType;
+import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.service.entity.VehicleDetailsType;
+import com.example.fileonthespotclaim.R;
 
 public class AccidentDetailsActivity extends ActionBarActivity {
 
@@ -54,7 +46,10 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(AccidentDetailsActivity.this, StatementsActivity.class);
 	        			AccidentDetailsType accidentDetails = getAccidentDetails();
-	        			//myIntent.putExtras(myIntent.getExtras());
+	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
+	        			VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
 	        			myIntent.putExtra("accidentDetails", accidentDetails); 
 	        			AccidentDetailsActivity.this.startActivity(myIntent);
 	        		}
@@ -65,8 +60,7 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 
 	protected AccidentDetailsType getAccidentDetails() {
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
-		try{
-			SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
+			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
 
 			//TODO add current date in screen
 			Date fromDate = sf.parse(date.getText().toString());
@@ -80,21 +74,17 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 			GregorianCalendar cal2 = new GregorianCalendar();
 			cal2.setTime(fromDate);
 			XMLGregorianCalendar gc2 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);
+			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);*/
 			
-			accidentDetails.setDateOfAccident(gc1);
-			accidentDetails.setTime(gc2);
-			accidentDetails.setSpeed(speed.getText().toString());
-			accidentDetails.setPlace(place.getText().toString());
-			accidentDetails.setNoOfPeopleTravelling(peopleNo.getText().toString());
-			accidentDetails.setPoliceStationName(policeStationName.getText().toString());
-			accidentDetails.setFIRNo(firNo.getText().toString());
-			accidentDetails.setMileage(mileage.getText().toString());
-			
-		} catch (ParseException | DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		accidentDetails.setDateOfAccident(date.getText().toString());
+		accidentDetails.setTime(this.time.getText().toString());
+		accidentDetails.setSpeed(speed.getText().toString());
+		accidentDetails.setPlace(place.getText().toString());
+		accidentDetails.setNoOfPeopleTravelling(peopleNo.getText().toString());
+		accidentDetails.setPoliceStationName(policeStationName.getText().toString());
+		accidentDetails.setFIRNo(firNo.getText().toString());
+		accidentDetails.setMileage(mileage.getText().toString());
+		
 		return accidentDetails;
 	}
 

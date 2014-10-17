@@ -2,18 +2,17 @@
 <resources>
 
     <string name="app_name">File On The Spot Claim</string>
-	<string name="title_activity_policy_holder_details">Policy Holder Details</string>
+    <string name="title_activity_policy_holder_details">Policy Holder Details</string>
     <string name="title_activity_vehicle_details">Vehicle Details</string>
     <string name="title_activity_accident_details">Accident Details</string>
     <string name="title_activity_statements">Statements</string>
     <string name="title_activity_driver_details">Driver Details</string>
     <string name="title_activity_documents">Documents</string>
     <string name="action_settings">Settings</string>
-    
     <string name="hello_world">Hello world!</string>
     <string name="exist_claim">Existing Claims</string>
     <string name="next">NEXT</string>
-     <string name="submit">SUBMIT</string>
+    <string name="submit">SUBMIT</string>
     <string name="policyNo">Policy No.</string>
     <string name="coverNoteNo">Cover Note No.</string>
     <string name="period">Period of Insurance:</string>
@@ -28,7 +27,6 @@
     <string name="mobile">Mobile:</string>
     <string name="pin">Pin:</string>
     <string name="email">Email:</string>
-    
     <string name="regdNo">Regd. No.:</string>
     <string name="make">Make:</string>
     <string name="dateOfFirstReg">Date of 1st Registration:</string>
@@ -37,7 +35,6 @@
     <string name="dateOfTx">Date of Transfer(if applicable):</string>
     <string name="typeOfFuel">Type of Fuel:</string>
     <string name="colour">Colour of Vehicle:</string>
-
     <string name="date">Date:</string>
     <string name="time">Time:</string>
     <string name="speed">Speed:</string>
@@ -47,26 +44,23 @@
     <string name="policeStationName">Name of Police Station:</string>
     <string name="firNo">Gen. Diary/Crime No/FIR No.:</string>
     <string name="mileage">Mileage:</string>
-    
     <string name="uploadStatement">Upload your statements here:</string>
     <string name="driver">Driver:</string>
     <string name="passenger">Passenger:</string>
     <string name="thirdParty">Third Party:</string>
     <string name="witness">Witness:</string>
-	<string name="uploadVedio">Upload Vedio</string>
-    
+    <string name="uploadVedio">Upload Vedio</string>
     <string name="name">Name:</string>
     <string name="relation">Relation with Insured:</string>
     <string name="driverAddress">Address:</string>
     <string name="contactNumber">Contact Number:</string>
     <string name="dobLicense">Date of Birth as shown on the License:</string>
     <string name="dlNo">Driving License No.:</string>
-	<string name="issuingRTO">Issuing RTO:</string>
+    <string name="issuingRTO">Issuing RTO:</string>
     <string name="effectiveFrom">License Effective From:</string>
     <string name="expiryDate">License Expiry Date:</string>
     <string name="vehicleClass">Class(MCycle/LMV/HGV/Transport/Non-Transport):</string>
     <string name="driverType">Type(Permanent/Learners):</string>
-    
     <string name="attachDocuments">Attach your documents here:</string>
     <string name="insuranceCopy">Insurance Copy:</string>
     <string name="rc">RC Copy:</string>
@@ -75,6 +69,6 @@
     <string name="bills">Garage Bills:</string>
     <string name="fir">FIR Copy:</string>
     <string name="attachImage">Attach Image</string>
-    
+    <string name="title_activity_existing_claims">Existing Claims</string>
 
 </resources>

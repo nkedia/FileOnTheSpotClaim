@@ -1,14 +1,5 @@
 package com.app.fileonthespotclaim;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,11 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.app.service.entity.ClassType;
+import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
-import com.app.service.entity.LicenseType;
-import com.app.service.entity.Type;
-
+import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 public class DriverDetailsActivity extends ActionBarActivity {
@@ -63,7 +53,12 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(DriverDetailsActivity.this, DocumentsActivity.class);
 	        			DriverDetailsType driverDetails = getDriverDetails();
-	        			//myIntent.putExtras(myIntent.getExtras());
+	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
+	        			VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+	        			AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
+	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
+	        			myIntent.putExtra("accidentDetails", accidentDetails);
 	        			myIntent.putExtra("driverDetails", driverDetails);
 	        			DriverDetailsActivity.this.startActivity(myIntent);
 	        		}
@@ -74,8 +69,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
-		try {
-			SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
+			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
 	
 			Date dobDate = sf.parse(dob.getText().toString());
 			GregorianCalendar cal1 = new GregorianCalendar();
@@ -93,26 +87,20 @@ public class DriverDetailsActivity extends ActionBarActivity {
 			GregorianCalendar cal3 = new GregorianCalendar();
 			cal3.setTime(expiryDatedt);
 			XMLGregorianCalendar gc3 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal3);
+			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal3);*/
 			
-			driverDetails.setName(name.getText().toString());
-			driverDetails.setRelationWithInsured(relation.getText().toString());
-			driverDetails.setAddress(address.getText().toString());
-			driverDetails.setContactNo(number.getText().toString());
-			driverDetails.setDOB(gc1);
-			LicenseType license = new LicenseType();
-			license.setLicenseNo(licenseNo.getText().toString());
-			license.setIssuingRTO(issuingRTO.getText().toString());
-			license.setEffectiveFrom(gc2);
-			license.setExpiryDate(gc3);
-			license.setClazz(ClassType.valueOf(vehicleClass.getText().toString()));
-			license.setType(Type.valueOf(vehicleType.getText().toString()));
-			driverDetails.setLicense(license);
+		driverDetails.setName(name.getText().toString());
+		driverDetails.setRelationWithInsured(relation.getText().toString());
+		driverDetails.setAddress(address.getText().toString());
+		driverDetails.setContactNo(number.getText().toString());
+		driverDetails.setDOB(dob.getText().toString());
+		driverDetails.setLicenseNo(licenseNo.getText().toString());
+		driverDetails.setIssuingRTO(issuingRTO.getText().toString());
+		driverDetails.setEffectiveFrom(effectiveFrom.getText().toString());
+		driverDetails.setExpiryDate(expiryDate.getText().toString());
+		driverDetails.setClazz(vehicleClass.getText().toString());
+		driverDetails.setType(vehicleType.getText().toString());
 			
-		} catch (ParseException | DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 		return driverDetails;
 	}
 

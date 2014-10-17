@@ -1,5 +1,8 @@
 package com.app.fileonthespotclaim;
 
+import com.app.service.entity.AccidentDetailsType;
+import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
@@ -27,8 +30,12 @@ public class StatementsActivity extends ActionBarActivity {
 	     Button.OnClickListener myListener = new Button.OnClickListener(){
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(StatementsActivity.this, DriverDetailsActivity.class);
-	        			//myIntent.putExtras(myIntent.getExtras());
-	        			//myIntent.putExtra("key", value); //Optional parameters
+	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
+	        			VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+	        			AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
+	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
+	        			myIntent.putExtra("accidentDetails", accidentDetails);
 	        			StatementsActivity.this.startActivity(myIntent);
 	        		}
 	     };

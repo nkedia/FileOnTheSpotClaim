@@ -9,12 +9,14 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.app.service.entity.PolicyHolderDetailsType;
 import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,9 +54,14 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 	        		
 	        		public void onClick(View v) {
 	        			Intent myIntent = new Intent(VehicleDetailsActivity.this, AccidentDetailsActivity.class);
+	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
 	        			VehicleDetailsType vehicleDetails = getVehicleDetails();
-	        			//myIntent.putExtras(myIntent.getExtras());
+	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
 	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
+	        			Log.d("phd", policyHolderDetails.toString());
+	        			Log.d("phd", policyHolderDetails.getCoverNoteNo());
+	        			Log.d("phd", policyHolderDetails.getPolicyNo());
+	        			
 	        			VehicleDetailsActivity.this.startActivity(myIntent);
 	        		}
 	        };
@@ -64,8 +71,7 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 
 	protected VehicleDetailsType getVehicleDetails() {
 		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
-		try {
-			SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
+			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
 			
 			Date fromDate = sf.parse(regDate.getText().toString());
 			GregorianCalendar cal1 = new GregorianCalendar();
@@ -77,20 +83,17 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 			GregorianCalendar cal2 = new GregorianCalendar();
 			cal2.setTime(toDate);
 			XMLGregorianCalendar gc2 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);
+			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);*/
 			
-			vehicleDetails.setRegdNo(regdNo.getText().toString());
-			vehicleDetails.setMake(make.getText().toString());
-			vehicleDetails.setDateOfFirstRegistration(gc1);
-			vehicleDetails.setChassisNo(chassisNo.getText().toString());
-			vehicleDetails.setEngineNo(engineNo.getText().toString());
-			vehicleDetails.setDateOfTransfer(gc2);
-			vehicleDetails.setTypeOfFuel(fuelType.getText().toString());
-			vehicleDetails.setColor(color.getText().toString());
-		} catch (ParseException | DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		vehicleDetails.setRegdNo(regdNo.getText().toString());
+		vehicleDetails.setMake(make.getText().toString());
+		vehicleDetails.setDateOfFirstRegistration(regDate.getText().toString());
+		vehicleDetails.setChassisNo(chassisNo.getText().toString());
+		vehicleDetails.setEngineNo(engineNo.getText().toString());
+		vehicleDetails.setDateOfTransfer(transferDtae.getText().toString());
+		vehicleDetails.setTypeOfFuel(fuelType.getText().toString());
+		vehicleDetails.setColor(color.getText().toString());
+
 		return vehicleDetails;
 	}
 
