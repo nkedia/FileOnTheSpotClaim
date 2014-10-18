@@ -100,6 +100,6 @@
       android:layout_alignRight="@+id/submit_next"
       android:background="@android:color/transparent"
       android:drawableLeft="@drawable/camera1"
-      android:drawableStart="@drawable/camera1"/>
+      android:drawableStart="@drawable/camera1" />
   
 </RelativeLayout>

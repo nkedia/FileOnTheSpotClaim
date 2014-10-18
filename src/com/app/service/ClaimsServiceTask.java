@@ -11,8 +11,8 @@ import android.util.Log;
 
 public class ClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimitive>{
 
-	private static final String SOAP_ACTION =  "http://192.168.1.9:8080/ClaimsService/fileNewClaim/";
-	private static String URL="http://192.168.1.9:8080/ClaimsServiceProject/ClaimsService?wsdl";
+	private static final String SOAP_ACTION =  "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsService/fileNewClaim/";
+	private static String URL="http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	
 	@Override
 	protected SoapPrimitive doInBackground(SoapObject... params) {
