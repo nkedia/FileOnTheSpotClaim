@@ -91,15 +91,15 @@
 
   <Button
       android:id="@+id/clickImage"
-       style="?android:attr/buttonStyleSmall"
+      style="?android:attr/buttonStyleSmall"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignBaseline="@+id/carImage"
       android:layout_alignBottom="@+id/carImage"
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
-      android:text="@string/attachImage" 
       android:background="@android:color/transparent"
-      android:drawableStart="@drawable/camera.png"/>
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1"/>
   
 </RelativeLayout>

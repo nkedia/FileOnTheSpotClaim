@@ -948,6 +948,11 @@ containing a value of this type.
          */
         public static final int abc_search_view_text_min_width=0x7f08000c;
         /**  Default screen margins, per the Android Design guidelines. 
+
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
          */
         public static final int activity_horizontal_margin=0x7f080015;
         public static final int activity_vertical_margin=0x7f080016;
@@ -1072,7 +1077,9 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int camera=0x7f020057;
+        public static final int camera1=0x7f020058;
+        public static final int ic_launcher=0x7f020059;
     }
     public static final class id {
         public static final int ScrollView01=0x7f050058;
@@ -1279,10 +1286,11 @@ containing a value of this type.
         public static final int accident_details=0x7f0c0000;
         public static final int documents=0x7f0c0001;
         public static final int driver_details=0x7f0c0002;
-        public static final int main=0x7f0c0003;
-        public static final int policy_holder_details=0x7f0c0004;
-        public static final int statements=0x7f0c0005;
-        public static final int vehicle_details=0x7f0c0006;
+        public static final int existing_claims=0x7f0c0003;
+        public static final int main=0x7f0c0004;
+        public static final int policy_holder_details=0x7f0c0005;
+        public static final int statements=0x7f0c0006;
+        public static final int vehicle_details=0x7f0c0007;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1384,6 +1392,7 @@ containing a value of this type.
         public static final int title_activity_accident_details=0x7f0a0010;
         public static final int title_activity_documents=0x7f0a0013;
         public static final int title_activity_driver_details=0x7f0a0012;
+        public static final int title_activity_existing_claims=0x7f0a0051;
         public static final int title_activity_policy_holder_details=0x7f0a000e;
         public static final int title_activity_statements=0x7f0a0011;
         public static final int title_activity_vehicle_details=0x7f0a000f;
