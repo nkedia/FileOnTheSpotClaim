@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class ClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimitive>{
 
-	private static final String SOAP_ACTION =  "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsService/fileNewClaim/";
+	private static final String SOAP_ACTION =  "fileNewClaim";
 	private static String URL="http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	
 	@Override
@@ -20,11 +20,13 @@ public class ClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimitive
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		envelope.setOutputSoapObject(params[0]);
 		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+		androidHttpTransport.debug = true;
+		androidHttpTransport.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
 		SoapPrimitive resultsRequestSOAP = null;
 		try {
 		   androidHttpTransport.call(SOAP_ACTION, envelope);
 		   resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
-		   Log.d("result", resultsRequestSOAP.toString());
+		   Log.d("result", resultsRequestSOAP.toString());;
 		  } catch (Exception e) {
 			e.printStackTrace();  
 		   

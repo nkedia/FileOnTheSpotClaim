@@ -34,7 +34,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	Intent takePictureIntent;
 	File photoFile;
 	
-	private static final String NAMESPACE = "http://localhost:8080/ClaimsService/";
+	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "fileNewClaim";
 	
 	@Override
