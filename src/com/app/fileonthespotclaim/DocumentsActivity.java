@@ -87,7 +87,6 @@ public class DocumentsActivity extends ActionBarActivity {
 							SoapPrimitive result = new ClaimsServiceTask().execute(request).get();
 							//Log.d("result", result.toString());
 						} catch (InterruptedException | ExecutionException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 	        			

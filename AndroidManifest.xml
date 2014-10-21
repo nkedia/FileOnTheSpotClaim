@@ -58,6 +58,10 @@
             android:name=".ExistingClaimsActivity"
             android:label="@string/title_activity_existing_claims" >
         </activity>
+        <activity
+            android:name=".GetExistingClaims"
+            android:label="@string/title_activity_get_existing_claims" >
+        </activity>
     </application>
 
 </manifest>
