@@ -69,7 +69,6 @@
     <string name="bills">Garage Bills:</string>
     <string name="fir">FIR Copy:</string>
     <string name="attachImage">Attach Image</string>
-    <string name="title_activity_existing_claims">Existing Claims</string>
     <string name="title_activity_get_existing_claims">Existing Claims</string>
 
 </resources>

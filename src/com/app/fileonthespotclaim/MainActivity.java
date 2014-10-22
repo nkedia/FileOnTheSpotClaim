@@ -35,6 +35,17 @@ public class MainActivity extends ActionBarActivity {
         
         nc.setOnClickListener(myListener);
         
+        Button.OnClickListener myListener2 = new Button.OnClickListener(){
+    		
+    		public void onClick(View v) {
+    			Intent myIntent = new Intent(MainActivity.this, GetExistingClaimsActivity.class);
+    			//myIntent.putExtra("key", value); //Optional parameters
+    			MainActivity.this.startActivity(myIntent);
+    		}
+    };
+    
+    ec.setOnClickListener(myListener2);
+        
     }
 
 
