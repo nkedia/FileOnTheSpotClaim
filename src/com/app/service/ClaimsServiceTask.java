@@ -6,6 +6,9 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.app.fileonthespotclaim.DocumentsActivity;
+import com.app.service.entity.PolicyHolderDetailsType;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -18,6 +21,7 @@ public class ClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimitive
 	protected SoapPrimitive doInBackground(SoapObject... params) {
 		
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.addMapping(DocumentsActivity.NAMESPACE, "policyHolderDetails", PolicyHolderDetailsType.class);
 		envelope.setOutputSoapObject(params[0]);
 		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 		androidHttpTransport.debug = true;

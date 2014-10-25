@@ -34,7 +34,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	Intent takePictureIntent;
 	File photoFile;
 	
-	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
+	public static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "fileNewClaim";
 	
 	@Override
@@ -57,12 +57,12 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			//Log.d("dd", dd.toString());
 	        			
 	        			//TODO call claims web service
-	        			/*PropertyInfo policyHolderDetails = new PropertyInfo();
-	        			policyHolderDetails.name = "policyHolderDetails";
-	        			policyHolderDetails.type = PolicyHolderDetailsType.class;
-	        			policyHolderDetails.setValue(phd);
+	        			PropertyInfo policyHolderDetailsProp = new PropertyInfo();
+	        			policyHolderDetailsProp.name = "policyHolderDetails";
+	        			policyHolderDetailsProp.type = PolicyHolderDetailsType.class;
+	        			policyHolderDetailsProp.setValue(policyHolderDetails);
 	        			
-	        			PropertyInfo vehicleDetails = new PropertyInfo();
+	        			/*PropertyInfo vehicleDetails = new PropertyInfo();
 	        			vehicleDetails.name="vehicleDetails";
 	        			vehicleDetails.type= VehicleDetailsType.class;
 	        			vehicleDetails.setValue(vd);
@@ -83,6 +83,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			request.addProperty(accidentDetails);
 	        			request.addProperty(driverDetails);*/
 	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
+	        			request.addProperty(policyHolderDetailsProp);
 	        			try {
 							SoapPrimitive result = new ClaimsServiceTask().execute(request).get();
 							//Log.d("result", result.toString());

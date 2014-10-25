@@ -2,10 +2,15 @@
 package com.app.service.entity;
 
 
+import java.util.Hashtable;
+
+import org.ksoap2.serialization.KvmSerializable;
+import org.ksoap2.serialization.PropertyInfo;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class PolicyHolderDetailsType implements Parcelable{
+public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 
 	protected String policyNo;
     protected String coverNoteNo;
@@ -187,5 +192,91 @@ public class PolicyHolderDetailsType implements Parcelable{
 		}
 	
 	};
+
+	@Override
+	public Object getProperty(int index) {
+		switch(index) {
+		case 0: return policyNo;
+		case 1: return coverNoteNo;
+		case 2: return nameOfInsured;
+		case 3: return dobOfInsured;
+		case 4: return addressOfInsured;
+		case 5: return pinOfInsured;
+		case 6: return emailOfInsured;
+		default: throw new IllegalArgumentException("");
+		}
+	}
+
+	@Override
+	public int getPropertyCount() {
+		return 7;
+	}
+
+	@Override
+	public void getPropertyInfo(int index, Hashtable table, PropertyInfo info) {
+		switch(index) {
+		case 0:
+			info.setName("PolicyNo");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 1:
+			info.setName("coverNoteNo");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 2:
+			info.setName("NameOfInsured");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 3:
+			info.setName("dobOfInsured");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 4:
+			info.setName("addressOfInsured");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 5:
+			info.setName("pinOfInsured");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 6:
+			info.setName("emailOfInsured");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+		
+	}
+
+	@Override
+	public void setProperty(int index, Object value) {
+		switch(index) {
+		case 0:
+			this.setPolicyNo(value.toString());
+			break;
+		case 1:
+			this.setCoverNoteNo(value.toString());
+			break;
+		case 2:
+			this.setNameOfInsured(value.toString());
+			break;
+		case 3:
+			this.setDobOfInsured(value.toString());
+			break;
+		case 4:
+			this.setAddressOfInsured(value.toString());
+			break;
+		case 5:
+			this.setPinOfInsured(value.toString());
+			break;
+		case 6:
+			this.setEmailOfInsured(value.toString());
+			break;
+		default:
+			throw new IllegalArgumentException();
+		
+	}
+	}
 
 }
