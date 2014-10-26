@@ -1,10 +1,15 @@
 
 package com.app.service.entity;
 
+import java.util.Hashtable;
+
+import org.ksoap2.serialization.KvmSerializable;
+import org.ksoap2.serialization.PropertyInfo;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class AccidentDetailsType implements Parcelable{
+public class AccidentDetailsType implements Parcelable, KvmSerializable{
 
 	protected String dateOfAccident;
     protected String time;
@@ -132,5 +137,98 @@ public class AccidentDetailsType implements Parcelable{
 		}
 	
 	};
+
+	@Override
+	public Object getProperty(int index) {
+		switch(index) {
+		case 0: return dateOfAccident;
+		case 1: return time;
+		case 2: return speed;
+		case 3: return place;
+		case 4: return noOfPeopleTravelling;
+		case 5: return policeStationName;
+		case 6: return firNo;
+		case 7: return mileage;
+		default: throw new IllegalArgumentException("");
+		}
+	}
+
+	@Override
+	public int getPropertyCount() {
+		return 8;
+	}
+
+	@Override
+	public void getPropertyInfo(int index, Hashtable table, PropertyInfo info) {
+		switch(index) {
+		case 0:
+			info.setName("dateOfAccident");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 1:
+			info.setName("time");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 2:
+			info.setName("speed");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 3:
+			info.setName("place");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 4:
+			info.setName("noOfPeopleTravelling");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 5:
+			info.setName("policeStationName");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 6:
+			info.setName("FIRNo");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 7:
+			info.setName("Mileage");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}		
+	}
+
+	@Override
+	public void setProperty(int index, Object value) {
+		switch(index) {
+		case 0:
+			this.setDateOfAccident(value.toString());
+			break;
+		case 1:
+			this.setTime(value.toString());
+			break;
+		case 2:
+			this.setSpeed(value.toString());
+			break;
+		case 3:
+			this.setPlace(value.toString());
+			break;
+		case 4:
+			this.setNoOfPeopleTravelling(value.toString());
+			break;
+		case 5:
+			this.setPoliceStationName(value.toString());
+			break;
+		case 6:
+			this.setFIRNo(value.toString());
+			break;
+		case 7:
+			this.setMileage(value.toString());
+			break;
+		default:
+			throw new IllegalArgumentException();
+		
+	}		
+	}
 
 }

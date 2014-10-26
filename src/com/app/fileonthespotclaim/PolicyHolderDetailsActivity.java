@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.app.service.entity.PeriodOfInsuranceType;
+import com.app.service.entity.PhoneType;
 import com.app.service.entity.PolicyHolderDetailsType;
 import com.example.fileonthespotclaim.R;
 
@@ -86,15 +88,14 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 
 		policyHolderDetails.setPolicyNo(policyNo.getText().toString());
 		policyHolderDetails.setCoverNoteNo(coverNoteNo.getText().toString());
-		policyHolderDetails.setFromDate(from.getText().toString());
-		policyHolderDetails.setToDate(to.getText().toString());
+		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType(from.getText().toString(), to.getText().toString());
+		policyHolderDetails.setPeriodOfInsurance(periodOfInsurance);
 		policyHolderDetails.setNameOfInsured(name.getText().toString());
 		policyHolderDetails.setDobOfInsured(dob.getText().toString());
 		policyHolderDetails.setAddressOfInsured(address.getText().toString());
 		policyHolderDetails.setPinOfInsured(pin.getText().toString());
-		policyHolderDetails.setOffice(office.getText().toString());
-		policyHolderDetails.setOffice(residence.getText().toString());
-		policyHolderDetails.setOffice(mobile.getText().toString());
+		PhoneType phoneType = new PhoneType(office.getText().toString(), residence.getText().toString(), mobile.getText().toString());
+		policyHolderDetails.setPhoneType(phoneType);
 		policyHolderDetails.setEmailOfInsured(email.getText().toString());
 		
 		return policyHolderDetails;

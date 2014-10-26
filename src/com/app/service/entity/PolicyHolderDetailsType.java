@@ -14,29 +14,25 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 
 	protected String policyNo;
     protected String coverNoteNo;
-    protected String fromDate;
-    protected String toDate;
+    protected PeriodOfInsuranceType periodOfInsurance;
     protected String nameOfInsured;
     protected String dobOfInsured;
     protected String addressOfInsured;
     protected String pinOfInsured;
-    protected String office;
-    protected String residence;
-    protected String mobile;
+    protected PhoneType phoneType;
     protected String emailOfInsured;
 
     public PolicyHolderDetailsType(Parcel source) {
 		setPolicyNo(source.readString());
 		setCoverNoteNo(source.readString());
-		setFromDate(source.readString());
-		setToDate(source.readString());
+		String from = source.readString();
+		String to = source.readString();
+		setPeriodOfInsurance(new PeriodOfInsuranceType(from, to));
 		setNameOfInsured(source.readString());
 		setDobOfInsured(source.readString());
 		setAddressOfInsured(source.readString());
 		setPinOfInsured(source.readString());
-		setOffice(source.readString());
-		setResidence(source.readString());
-		setMobile(source.readString());
+		setPhoneType(new PhoneType(source.readString(), source.readString(), source.readString()));
 		setEmailOfInsured(source.readString());
 		
 	}
@@ -44,15 +40,12 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 	public PolicyHolderDetailsType() {
 		policyNo = "";
 		coverNoteNo = "";
-		fromDate = "";
-		toDate = "";
+		periodOfInsurance = new PeriodOfInsuranceType();
 		nameOfInsured = "";
 		dobOfInsured = "";
 		addressOfInsured = "";
 		pinOfInsured = "";
-		office = "";
-		residence = "";
-		mobile = "";
+		phoneType = new PhoneType();
 		emailOfInsured = "";
 	}
 
@@ -73,7 +66,15 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
     }
 
 
-    public String getNameOfInsured() {
+    public PeriodOfInsuranceType getPeriodOfInsurance() {
+		return periodOfInsurance;
+	}
+
+	public void setPeriodOfInsurance(PeriodOfInsuranceType periodOfInsurance) {
+		this.periodOfInsurance = periodOfInsurance;
+	}
+
+	public String getNameOfInsured() {
         return nameOfInsured;
     }
 
@@ -99,7 +100,15 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
     }
 
 
-    public String getEmailOfInsured() {
+    public PhoneType getPhoneType() {
+		return phoneType;
+	}
+
+	public void setPhoneType(PhoneType phoneType) {
+		this.phoneType = phoneType;
+	}
+
+	public String getEmailOfInsured() {
         return emailOfInsured;
     }
 
@@ -107,54 +116,12 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
         this.emailOfInsured = value;
     }
     
-    
-
-	public String getFromDate() {
-		return fromDate;
-	}
-
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
-
-	public String getToDate() {
-		return toDate;
-	}
-
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
-	}
-
 	public String getDobOfInsured() {
 		return dobOfInsured;
 	}
 
 	public void setDobOfInsured(String dobOfInsured) {
 		this.dobOfInsured = dobOfInsured;
-	}
-
-	public String getOffice() {
-		return office;
-	}
-
-	public void setOffice(String office) {
-		this.office = office;
-	}
-
-	public String getResidence() {
-		return residence;
-	}
-
-	public void setResidence(String residence) {
-		this.residence = residence;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
 	}
 
 	@Override
@@ -166,15 +133,15 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(getPolicyNo());
 		dest.writeString(getCoverNoteNo());
-		dest.writeString(getFromDate());
-		dest.writeString(getToDate());
+		dest.writeString(periodOfInsurance.getFrom());
+		dest.writeString(periodOfInsurance.getTo());
 		dest.writeString(getNameOfInsured());
 		dest.writeString(getDobOfInsured());
 		dest.writeString(getAddressOfInsured());
 		dest.writeString(getPinOfInsured());
-		dest.writeString(getOffice());
-		dest.writeString(getResidence());
-		dest.writeString(getMobile());
+		dest.writeString(phoneType.getOffice());
+		dest.writeString(phoneType.getResidence());
+		dest.writeString(phoneType.getMobile());
 		dest.writeString(getEmailOfInsured());
 		
 	}
@@ -198,18 +165,20 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 		switch(index) {
 		case 0: return policyNo;
 		case 1: return coverNoteNo;
-		case 2: return nameOfInsured;
-		case 3: return dobOfInsured;
-		case 4: return addressOfInsured;
-		case 5: return pinOfInsured;
-		case 6: return emailOfInsured;
+		case 2: return periodOfInsurance;
+		case 3: return nameOfInsured;
+		case 4: return dobOfInsured;
+		case 5: return addressOfInsured;
+		case 6: return pinOfInsured;
+		case 7: return phoneType;
+		case 8 : return emailOfInsured;
 		default: throw new IllegalArgumentException("");
 		}
 	}
 
 	@Override
 	public int getPropertyCount() {
-		return 7;
+		return 9;
 	}
 
 	@Override
@@ -224,22 +193,30 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 			info.setType(PropertyInfo.STRING_CLASS);
 			break;
 		case 2:
+			info.setName("periodOfInsurance");
+			info.setType(PropertyInfo.OBJECT_CLASS);
+			break;
+		case 3:
 			info.setName("NameOfInsured");
 			info.setType(PropertyInfo.STRING_CLASS);
 			break;
-		case 3:
+		case 4:
 			info.setName("dobOfInsured");
 			info.setType(PropertyInfo.STRING_CLASS);
 			break;
-		case 4:
+		case 5:
 			info.setName("addressOfInsured");
 			info.setType(PropertyInfo.STRING_CLASS);
 			break;
-		case 5:
+		case 6:
 			info.setName("pinOfInsured");
 			info.setType(PropertyInfo.STRING_CLASS);
 			break;
-		case 6:
+		case 7:
+			info.setName("phoneOfInsured");
+			info.setType(PropertyInfo.OBJECT_CLASS);
+			break;
+		case 8:
 			info.setName("emailOfInsured");
 			info.setType(PropertyInfo.STRING_CLASS);
 			break;
@@ -259,18 +236,24 @@ public class PolicyHolderDetailsType implements Parcelable,KvmSerializable{
 			this.setCoverNoteNo(value.toString());
 			break;
 		case 2:
-			this.setNameOfInsured(value.toString());
+			this.setPeriodOfInsurance((PeriodOfInsuranceType)value);
 			break;
 		case 3:
-			this.setDobOfInsured(value.toString());
+			this.setNameOfInsured(value.toString());
 			break;
 		case 4:
-			this.setAddressOfInsured(value.toString());
+			this.setDobOfInsured(value.toString());
 			break;
 		case 5:
-			this.setPinOfInsured(value.toString());
+			this.setAddressOfInsured(value.toString());
 			break;
 		case 6:
+			this.setPinOfInsured(value.toString());
+			break;
+		case 7:
+			this.setPhoneType((PhoneType)value);
+			break;
+		case 8:
 			this.setEmailOfInsured(value.toString());
 			break;
 		default:

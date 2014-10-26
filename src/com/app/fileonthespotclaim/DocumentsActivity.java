@@ -54,39 +54,34 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
 	        			DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
 	        			
-	        			//Log.d("dd", dd.toString());
-	        			
 	        			//TODO call claims web service
 	        			PropertyInfo policyHolderDetailsProp = new PropertyInfo();
 	        			policyHolderDetailsProp.name = "policyHolderDetails";
 	        			policyHolderDetailsProp.type = PolicyHolderDetailsType.class;
 	        			policyHolderDetailsProp.setValue(policyHolderDetails);
 	        			
-	        			/*PropertyInfo vehicleDetails = new PropertyInfo();
-	        			vehicleDetails.name="vehicleDetails";
-	        			vehicleDetails.type= VehicleDetailsType.class;
-	        			vehicleDetails.setValue(vd);
+	        			PropertyInfo vehicleDetailsProp = new PropertyInfo();
+	        			vehicleDetailsProp.name="vehicleDetails";
+	        			vehicleDetailsProp.type= VehicleDetailsType.class;
+	        			vehicleDetailsProp.setValue(vehicleDetails);
 	        			
-	        			PropertyInfo accidentDetails = new PropertyInfo();
-	        			accidentDetails.name = "accidentDetails";
-	        			accidentDetails.type = AccidentDetailsType.class;
-	        			accidentDetails.setValue(ad);
+	        			PropertyInfo accidentDetailsProp = new PropertyInfo();
+	        			accidentDetailsProp.name = "accidentDetails";
+	        			accidentDetailsProp.type = AccidentDetailsType.class;
+	        			accidentDetailsProp.setValue(accidentDetails);
 	        			
-	        			PropertyInfo driverDetails = new PropertyInfo();
-	        			driverDetails.name = "driverDetails";
-	        			driverDetails.type = DriverDetailsType.class;
-	        			driverDetails.setValue(dd);
+	        			PropertyInfo driverDetailsProp = new PropertyInfo();
+	        			driverDetailsProp.name = "driverDetails";
+	        			driverDetailsProp.type = DriverDetailsType.class;
+	        			driverDetailsProp.setValue(driverDetails);
 	        			
-	        			
-	        			request.addProperty(policyHolderDetails);
-	        			request.addProperty(vehicleDetails);
-	        			request.addProperty(accidentDetails);
-	        			request.addProperty(driverDetails);*/
 	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 	        			request.addProperty(policyHolderDetailsProp);
+	        			request.addProperty(vehicleDetailsProp);
+	        			request.addProperty(accidentDetailsProp);
+	        			request.addProperty(driverDetailsProp);
 	        			try {
 							SoapPrimitive result = new ClaimsServiceTask().execute(request).get();
-							//Log.d("result", result.toString());
 						} catch (InterruptedException | ExecutionException e) {
 							e.printStackTrace();
 						}

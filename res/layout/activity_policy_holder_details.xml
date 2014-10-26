@@ -168,7 +168,9 @@
         android:layout_alignRight="@+id/phd_next"
         android:layout_centerVertical="true"
         android:ems="10"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress" 
+        android:text="Flat 504, My Home Jewel, Madinaguda, Hyderabad"
+        android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText2"
@@ -179,10 +181,9 @@
         android:layout_toEndOf="@+id/name"
         android:layout_toRightOf="@+id/name"
         android:ems="10"
-        android:inputType="textPersonName" >
-
-        <requestFocus />
-    </EditText>
+        android:inputType="textPersonName" 
+		android:text="Natasha Kedia"
+        android:textSize="10dp" /> 
 
     <EditText
         android:id="@+id/editText4"
@@ -229,7 +230,9 @@
         android:layout_alignBottom="@+id/to"
         android:layout_alignLeft="@+id/editText6"
         android:layout_alignStart="@+id/editText6"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="2015-07-08"
+        android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText8"
@@ -238,7 +241,9 @@
         android:layout_above="@+id/address"
         android:layout_alignLeft="@+id/editText7"
         android:layout_alignStart="@+id/editText3"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="1984-07-08"
+        android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText9"
@@ -248,7 +253,9 @@
         android:layout_alignBottom="@+id/pin"
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="500049"
+        android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText10"
@@ -279,7 +286,9 @@
         android:layout_alignLeft="@+id/editText11"
         android:layout_alignStart="@+id/editText11"
         android:ems="10"
-        android:inputType="phone" />
+        android:inputType="phone" 
+        android:text="8008288109"
+        android:textSize="10dp" />
 
     <Button
         android:id="@+id/phd_next"
@@ -300,7 +309,9 @@
         android:layout_alignStart="@+id/editText11"
         android:layout_alignTop="@+id/mobile"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress" 
+        android:text="natasha@gmail.com"
+        android:textSize="10dp" />
 
     
 

@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
+import com.app.service.entity.LicenseType;
 import com.app.service.entity.PolicyHolderDetailsType;
 import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
@@ -94,12 +95,10 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		driverDetails.setAddress(address.getText().toString());
 		driverDetails.setContactNo(number.getText().toString());
 		driverDetails.setDOB(dob.getText().toString());
-		driverDetails.setLicenseNo(licenseNo.getText().toString());
-		driverDetails.setIssuingRTO(issuingRTO.getText().toString());
-		driverDetails.setEffectiveFrom(effectiveFrom.getText().toString());
-		driverDetails.setExpiryDate(expiryDate.getText().toString());
-		driverDetails.setClazz(vehicleClass.getText().toString());
-		driverDetails.setType(vehicleType.getText().toString());
+		LicenseType licenseType = new LicenseType(licenseNo.getText().toString(), issuingRTO.getText().toString(),
+				effectiveFrom.getText().toString(), expiryDate.getText().toString(), 
+				vehicleClass.getText().toString(), licenseNo.getText().toString());
+		driverDetails.setLicenseType(licenseType);
 			
 		return driverDetails;
 	}

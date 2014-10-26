@@ -35,6 +35,10 @@ public class ClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimitive
 			e.printStackTrace();  
 		   
 		  }
+		finally{
+			Log.d("request dump", androidHttpTransport.requestDump, null);
+			Log.d("response dump", androidHttpTransport.responseDump, null);
+		}
 		return resultsRequestSOAP;
 	}
 	

@@ -1,11 +1,16 @@
 
 package com.app.service.entity;
 
+import java.util.Hashtable;
+
+import org.ksoap2.serialization.KvmSerializable;
+import org.ksoap2.serialization.PropertyInfo;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 
-public class VehicleDetailsType implements Parcelable{
+public class VehicleDetailsType implements Parcelable, KvmSerializable{
 
 	protected String regdNo;
     protected String make;
@@ -109,14 +114,14 @@ public class VehicleDetailsType implements Parcelable{
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(getChassisNo());
-		dest.writeString(getColor());
-		dest.writeString(getDateOfFirstRegistration());
-		dest.writeString(getDateOfTransfer());
-		dest.writeString(getEngineNo());
-		dest.writeString(getMake());
 		dest.writeString(getRegdNo());
+		dest.writeString(getMake());
+		dest.writeString(getDateOfFirstRegistration());
+		dest.writeString(getChassisNo());
+		dest.writeString(getEngineNo());
+		dest.writeString(getDateOfTransfer());
 		dest.writeString(getTypeOfFuel());
+		dest.writeString(getColor());
 	}
 	
 	public static final Parcelable.Creator<VehicleDetailsType> CREATOR = new Creator<VehicleDetailsType>() {
@@ -132,6 +137,99 @@ public class VehicleDetailsType implements Parcelable{
 		}
 	
 	};
+
+	@Override
+	public Object getProperty(int index) {
+		switch(index) {
+		case 0: return regdNo;
+		case 1: return make;
+		case 2: return dateOfFirstRegistration;
+		case 3: return chassisNo;
+		case 4: return engineNo;
+		case 5: return dateOfTransfer;
+		case 6: return typeOfFuel;
+		case 7: return color;
+		default: throw new IllegalArgumentException("");
+		}
+	}
+
+	@Override
+	public int getPropertyCount() {
+		return 8;
+	}
+
+	@Override
+	public void getPropertyInfo(int index, Hashtable table, PropertyInfo info){
+		switch(index) {
+		case 0:
+			info.setName("regdNo");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 1:
+			info.setName("make");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 2:
+			info.setName("dateOfFirstRegistration");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 3:
+			info.setName("chassisNo");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 4:
+			info.setName("engineNo");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 5:
+			info.setName("dateOfTransfer");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 6:
+			info.setName("typeOfFuel");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		case 7:
+			info.setName("color");
+			info.setType(PropertyInfo.STRING_CLASS);
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public void setProperty(int index, Object value) {
+		switch(index) {
+		case 0:
+			this.setRegdNo(value.toString());
+			break;
+		case 1:
+			this.setMake(value.toString());
+			break;
+		case 2:
+			this.setDateOfFirstRegistration(value.toString());
+			break;
+		case 3:
+			this.setChassisNo(value.toString());
+			break;
+		case 4:
+			this.setEngineNo(value.toString());
+			break;
+		case 5:
+			this.setDateOfTransfer(value.toString());
+			break;
+		case 6:
+			this.setTypeOfFuel(value.toString());
+			break;
+		case 7:
+			this.setColor(value.toString());
+			break;
+		default:
+			throw new IllegalArgumentException();
+		
+	}
+	}
 
 
 }
