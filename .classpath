@@ -7,5 +7,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="/Users/vikask/Desktop/software/ksoap2-android-assembly-2.4-jar-with-dependencies.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/android-support-v7-appcompat"/>
+	<classpathentry kind="lib" path="/Users/vikask/Desktop/software/aws-android-sdk-2.1.1/lib/release/aws-android-sdk-2.1.1-s3.jar"/>
+	<classpathentry kind="lib" path="/Users/vikask/Desktop/software/aws-android-sdk-2.1.1/lib/release/aws-android-sdk-2.1.1-core.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
