@@ -98,7 +98,9 @@
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/firNo"
         android:layout_toEndOf="@+id/firNo"
-        android:ems="10" >
+        android:ems="10" 
+        android:text="2014-10-10"
+        android:textSize="10dp">
     </EditText>
 
     <EditText
@@ -109,7 +111,9 @@
         android:layout_alignBottom="@+id/time"
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignStart="@+id/editText1"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="09:10:00"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText3"
@@ -118,7 +122,9 @@
         android:layout_alignBottom="@+id/speed"
         android:layout_toRightOf="@+id/firNo"
         android:layout_toEndOf="@+id/firNo"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="40"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText4"
@@ -127,7 +133,9 @@
         android:layout_alignLeft="@+id/editText3"
         android:layout_alignStart="@+id/editText3"
         android:layout_alignTop="@+id/exactPlace"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="Madinaguda"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText7"
@@ -138,7 +146,9 @@
         android:layout_alignRight="@+id/editText6"
         android:layout_alignStart="@+id/editText6"
         android:layout_alignEnd="@+id/editText6"
-        android:ems="10" />
+        android:ems="10"
+        android:text="PS Name"
+        android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText8"
@@ -147,7 +157,9 @@
         android:layout_above="@+id/mileage"
         android:layout_alignLeft="@+id/editText7"
         android:layout_alignStart="@+id/editText7"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="FIR123"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText9"
@@ -157,7 +169,9 @@
         android:layout_alignBottom="@+id/mileage"
         android:layout_toRightOf="@+id/firNo"
         android:layout_toEndOf="@+id/firNo"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="10"
+        android:textSize="10dp"/>
 
     <TextView
         android:id="@+id/noOfPeople"
@@ -185,7 +199,9 @@
         android:layout_alignBottom="@+id/noOfPeople"
         android:layout_alignLeft="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
-        android:ems="10" >
+        android:ems="10" 
+        android:text="4"
+        android:textSize="10dp">
     </EditText>
 
     <EditText
@@ -195,6 +211,8 @@
         android:layout_above="@+id/policeStationName"
         android:layout_alignLeft="@+id/editText5"
         android:layout_alignStart="@+id/editText5"
-        android:ems="10" />
+        android:ems="10" 
+        android:text="Nearest PS"
+        android:textSize="10dp"/>
     
 </RelativeLayout>

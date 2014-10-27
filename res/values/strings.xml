@@ -70,5 +70,16 @@
     <string name="fir">FIR Copy:</string>
     <string name="attachImage">Attach Image</string>
     <string name="title_activity_get_existing_claims">Existing Claims</string>
-
+	
+    <string-array name="vehicleclass_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+    
 </resources>

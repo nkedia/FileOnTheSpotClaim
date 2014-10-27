@@ -1,13 +1,18 @@
 package com.app.fileonthespotclaim;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
@@ -30,43 +35,61 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	EditText expiryDate;
 	EditText vehicleClass;
 	EditText vehicleType;
+	Spinner spinner;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_driver_details);
-		
-		 bt = (Button) findViewById(R.id.dd_next);
-	     name = (EditText) findViewById(R.id.editText1);
-	     relation = (EditText) findViewById(R.id.editText2);
-	     address = (EditText) findViewById(R.id.editText3);
-	     number = (EditText) findViewById(R.id.editText4);
-	     dob = (EditText) findViewById(R.id.editText5);
-	     licenseNo = (EditText) findViewById(R.id.editText6);
-	     issuingRTO = (EditText) findViewById(R.id.editText7);
-	     effectiveFrom = (EditText) findViewById(R.id.editText8);
-	     expiryDate = (EditText) findViewById(R.id.editText9);
-	     vehicleClass = (EditText) findViewById(R.id.editText10);
-	     vehicleType = (EditText) findViewById(R.id.editText11);
-	     
-	        Button.OnClickListener myListener = new Button.OnClickListener(){
-	        		
-	        		public void onClick(View v) {
-	        			Intent myIntent = new Intent(DriverDetailsActivity.this, DocumentsActivity.class);
-	        			DriverDetailsType driverDetails = getDriverDetails();
-	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
-	        			VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
-	        			AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
-	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
-	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
-	        			myIntent.putExtra("accidentDetails", accidentDetails);
-	        			myIntent.putExtra("driverDetails", driverDetails);
-	        			DriverDetailsActivity.this.startActivity(myIntent);
-	        		}
-	        };
-	        
-	        bt.setOnClickListener(myListener);
+
+		bt = (Button) findViewById(R.id.dd_next);
+		name = (EditText) findViewById(R.id.editText1);
+		relation = (EditText) findViewById(R.id.editText2);
+		address = (EditText) findViewById(R.id.editText3);
+		number = (EditText) findViewById(R.id.editText4);
+		dob = (EditText) findViewById(R.id.editText5);
+		licenseNo = (EditText) findViewById(R.id.editText6);
+		issuingRTO = (EditText) findViewById(R.id.editText7);
+		effectiveFrom = (EditText) findViewById(R.id.editText8);
+		expiryDate = (EditText) findViewById(R.id.editText9);
+		vehicleClass = (EditText) findViewById(R.id.editText10);
+		vehicleType = (EditText) findViewById(R.id.editText11);
+		spinner = (Spinner) findViewById(R.id.vehicleClassSpinner);
+
+		List<String> list = new ArrayList<String>();
+        list.add("MCycle");
+        list.add("LMV");
+        list.add("HGV");
+        list.add("Transport");
+        list.add("Non-Transport");
+        
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+        (this, android.R.layout.simple_spinner_item, list);
+         
+        dataAdapter.setDropDownViewResource
+        (android.R.layout.simple_spinner_dropdown_item);
+         
+        spinner.setAdapter(dataAdapter);
+
+		Button.OnClickListener myListener = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent myIntent = new Intent(DriverDetailsActivity.this, DocumentsActivity.class);
+				DriverDetailsType driverDetails = getDriverDetails();
+				PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
+				VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+				AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
+				myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+				myIntent.putExtra("vehicleDetails", vehicleDetails);
+				myIntent.putExtra("accidentDetails", accidentDetails);
+				myIntent.putExtra("driverDetails", driverDetails);
+				DriverDetailsActivity.this.startActivity(myIntent);
+			}
+		};
+
+		bt.setOnClickListener(myListener);
 	}
+	
 
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
@@ -97,7 +120,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		driverDetails.setDOB(dob.getText().toString());
 		LicenseType licenseType = new LicenseType(licenseNo.getText().toString(), issuingRTO.getText().toString(),
 				effectiveFrom.getText().toString(), expiryDate.getText().toString(), 
-				vehicleClass.getText().toString(), licenseNo.getText().toString());
+				vehicleClass.getText().toString(), vehicleType.getText().toString());
 		driverDetails.setLicenseType(licenseType);
 			
 		return driverDetails;

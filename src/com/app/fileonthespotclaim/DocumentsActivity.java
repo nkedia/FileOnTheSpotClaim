@@ -7,6 +7,7 @@ import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -18,9 +19,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.app.service.ClaimsServiceTask;
+import com.app.service.S3UploadTask;
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
 import com.app.service.entity.PolicyHolderDetailsType;
@@ -33,6 +36,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	public static int count=0;
 	Intent takePictureIntent;
 	File photoFile;
+	private Button bt;
 	
 	public static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "fileNewClaim";
@@ -42,7 +46,7 @@ public class DocumentsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_documents);
 		
-		 Button bt = (Button) findViewById(R.id.submit_next);
+		 bt = (Button) findViewById(R.id.submit_next);
 	     Button.OnClickListener myListener = new Button.OnClickListener(){
 	        		
 	        		public void onClick(View v) {
@@ -76,16 +80,33 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			driverDetailsProp.setValue(driverDetails);
 	        			
 	        			SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
+	        			SoapPrimitive result = null;
 	        			request.addProperty(policyHolderDetailsProp);
 	        			request.addProperty(vehicleDetailsProp);
 	        			request.addProperty(accidentDetailsProp);
 	        			request.addProperty(driverDetailsProp);
 	        			try {
-							SoapPrimitive result = new ClaimsServiceTask().execute(request).get();
+							result = new ClaimsServiceTask().execute(request).get();
 						} catch (InterruptedException | ExecutionException e) {
 							e.printStackTrace();
 						}
-	        			
+	        			if(result != null) {
+	        				String claimId = result.toString();
+	        				Log.d("result is not null:  ", claimId);
+	        				Context context = DocumentsActivity.this.getApplicationContext();
+	        				Log.d("context : ", context.toString());
+	        				String params = null;
+							String param1 = null;
+							try {
+							File myFile = new File("/sdcard/myfile.txt");
+							myFile.createNewFile();
+							File myFile2 = new File("/sdcard/myfile2.txt");
+							myFile2.createNewFile();
+							new S3UploadTask(context, claimId).execute("/sdcard/myfile.txt", "/sdcard/myfile2.txt");
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+	        			}
 	        			DocumentsActivity.this.startActivity(myIntent);
 	        		}
 	        };

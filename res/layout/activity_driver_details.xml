@@ -102,7 +102,9 @@
         android:layout_alignBottom="@+id/name"
         android:layout_toRightOf="@+id/driverType"
         android:layout_toEndOf="@+id/driverType"
-        android:ems="10" >
+        android:ems="10" 
+         android:text="Natasha Kedia"
+        android:textSize="10dp">
     </EditText>
 
     <EditText
@@ -112,7 +114,9 @@
         android:layout_above="@+id/driverAddress"
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignStart="@+id/editText1"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="self"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText3"
@@ -121,7 +125,9 @@
         android:layout_alignBottom="@+id/driverAddress"
         android:layout_toRightOf="@+id/driverType"
         android:layout_toEndOf="@+id/driverType"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="Agate 104"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText4"
@@ -133,7 +139,9 @@
         android:layout_alignRight="@+id/editText3"
         android:layout_alignStart="@+id/editText3"
         android:layout_alignEnd="@+id/editText3"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="8008288109"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText5"
@@ -142,7 +150,9 @@
         android:layout_alignLeft="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
         android:layout_alignTop="@+id/dobLicense"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="1985-10-10"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText6"
@@ -151,7 +161,9 @@
         android:layout_below="@+id/editText5"
         android:layout_toRightOf="@+id/driverType"
         android:layout_toEndOf="@+id/driverType"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="Lic123"
+        android:textSize="10dp"/>
 
     <TextView
         android:id="@+id/effectiveFrom"
@@ -180,7 +192,9 @@
         android:layout_alignBottom="@+id/issuingRTO"
         android:layout_toRightOf="@+id/driverType"
         android:layout_toEndOf="@+id/driverType"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="RTO"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText8"
@@ -189,7 +203,9 @@
         android:layout_alignLeft="@+id/editText7"
         android:layout_alignStart="@+id/editText7"
         android:layout_below="@+id/editText7"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="2000-10-10"
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText9"
@@ -199,7 +215,9 @@
         android:layout_alignBottom="@+id/expiryDate"
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="2020-10-10"
+        android:textSize="10dp"/>
 
     <TextView
         android:id="@+id/dlNo"
@@ -217,7 +235,9 @@
         android:layout_alignTop="@+id/vehicleClass"
         android:layout_toRightOf="@+id/driverType"
         android:layout_toEndOf="@+id/driverType"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="LMV"
+        android:textSize="10dp"/>
 
     <TextView
         android:id="@+id/driverType"
@@ -237,7 +257,16 @@
         android:layout_alignBottom="@+id/driverType"
         android:layout_alignLeft="@+id/editText10"
         android:layout_alignStart="@+id/editText10"
-        android:ems="10" />
+        android:ems="10" 
+         android:text="Permanent"
+        android:textSize="10dp"/>
+
+    <Spinner
+        android:id="@+id/vehicleClassSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText11" />
 
 	</RelativeLayout>
 
