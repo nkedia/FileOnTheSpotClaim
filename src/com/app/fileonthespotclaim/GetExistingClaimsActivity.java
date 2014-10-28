@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.app.service.ExistingClaimsServiceTask;
 import com.app.service.NewClaimsServiceTask;
+import com.app.service.entity.ClaimsType;
 import com.app.service.entity.DriverDetailsType;
 import com.app.service.entity.PolicyHolderDetailsType;
 import com.example.fileonthespotclaim.R;
@@ -48,7 +49,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		policyId.setValue("84321");
 		
 		SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
-		SoapObject result = null;
+		List<SoapObject> result = null;
 		request.addProperty(policyId);
 		try {
 			result = new ExistingClaimsServiceTask(METHOD_NAME, URL).execute(request).get();
@@ -56,8 +57,18 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 			e.printStackTrace();
 		}
 		
-		//Log.d("result for getExisiting claims", result.toString());
-
+		/*ClaimsType[] claimsTypes = new ClaimsType[result.getPropertyCount()];
+		for(int i=0 ; i<claimsTypes.length; i++) {
+			SoapObject obj = (SoapObject) result.getProperty(i);
+            ClaimsType claim = new ClaimsType();
+            claim.setClaimId(obj.getProperty(0).toString());
+            claim.setClaimStatus(obj.getProperty(1).toString());
+            claimsTypes[i] = claim;
+		}*/
+		
+		Log.d("result for getExisiting claims", result.toString());
+		System.out.println(result);
+		
 		existingClaimsTable = (TableLayout) findViewById(R.id.existingClaimsTable);
 		existingClaimsTable.setStretchAllColumns(true);	
 		existingClaimsTable.bringToFront();
