@@ -6,9 +6,12 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +36,10 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	EditText issuingRTO;
 	EditText effectiveFrom;
 	EditText expiryDate;
-	EditText vehicleClass;
-	EditText vehicleType;
-	Spinner spinner;
+	Spinner vehicleClassSpinner;
+	Spinner vehicleTypeSpinner;
+	String vehicleClass;
+	String vehicleType;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,25 +56,25 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		issuingRTO = (EditText) findViewById(R.id.editText7);
 		effectiveFrom = (EditText) findViewById(R.id.editText8);
 		expiryDate = (EditText) findViewById(R.id.editText9);
-		vehicleClass = (EditText) findViewById(R.id.editText10);
-		vehicleType = (EditText) findViewById(R.id.editText11);
-		spinner = (Spinner) findViewById(R.id.vehicleClassSpinner);
-
-		List<String> list = new ArrayList<String>();
-        list.add("MCycle");
-        list.add("LMV");
-        list.add("HGV");
-        list.add("Transport");
-        list.add("Non-Transport");
+		vehicleClassSpinner = (Spinner) findViewById(R.id.vehicleClassSpinner);
+		vehicleTypeSpinner = (Spinner) findViewById(R.id.vehicleTypeSpinner);
+		
+        vehicleClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                vehicleClass = parent.getItemAtPosition(pos).toString();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
         
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
-        (this, android.R.layout.simple_spinner_item, list);
-         
-        dataAdapter.setDropDownViewResource
-        (android.R.layout.simple_spinner_dropdown_item);
-         
-        spinner.setAdapter(dataAdapter);
-
+        vehicleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                vehicleType = parent.getItemAtPosition(pos).toString();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -90,28 +94,9 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		bt.setOnClickListener(myListener);
 	}
 	
-
+	
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
-			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
-	
-			Date dobDate = sf.parse(dob.getText().toString());
-			GregorianCalendar cal1 = new GregorianCalendar();
-			cal1.setTime(dobDate);
-			XMLGregorianCalendar gc1 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal1);
-			
-			Date effectiveFromDate = sf.parse(effectiveFrom.getText().toString()); 
-			GregorianCalendar cal2 = new GregorianCalendar();
-			cal2.setTime(effectiveFromDate);
-			XMLGregorianCalendar gc2 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);
-			
-			Date expiryDatedt = sf.parse(expiryDate.getText().toString()); 
-			GregorianCalendar cal3 = new GregorianCalendar();
-			cal3.setTime(expiryDatedt);
-			XMLGregorianCalendar gc3 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal3);*/
 			
 		driverDetails.setName(name.getText().toString());
 		driverDetails.setRelationWithInsured(relation.getText().toString());
@@ -120,7 +105,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		driverDetails.setDOB(dob.getText().toString());
 		LicenseType licenseType = new LicenseType(licenseNo.getText().toString(), issuingRTO.getText().toString(),
 				effectiveFrom.getText().toString(), expiryDate.getText().toString(), 
-				vehicleClass.getText().toString(), vehicleType.getText().toString());
+				vehicleClass, vehicleType);
 		driverDetails.setLicenseType(licenseType);
 			
 		return driverDetails;

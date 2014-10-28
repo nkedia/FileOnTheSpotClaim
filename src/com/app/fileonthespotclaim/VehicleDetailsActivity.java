@@ -71,20 +71,6 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 
 	protected VehicleDetailsType getVehicleDetails() {
 		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
-			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
-			
-			Date fromDate = sf.parse(regDate.getText().toString());
-			GregorianCalendar cal1 = new GregorianCalendar();
-			cal1.setTime(fromDate);
-			XMLGregorianCalendar gc1 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal1);
-			
-			Date toDate = sf.parse(transferDtae.getText().toString()); 
-			GregorianCalendar cal2 = new GregorianCalendar();
-			cal2.setTime(toDate);
-			XMLGregorianCalendar gc2 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);*/
-			
 		vehicleDetails.setRegdNo(regdNo.getText().toString());
 		vehicleDetails.setMake(make.getText().toString());
 		vehicleDetails.setDateOfFirstRegistration(regDate.getText().toString());

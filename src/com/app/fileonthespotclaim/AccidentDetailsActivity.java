@@ -60,22 +60,8 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 
 	protected AccidentDetailsType getAccidentDetails() {
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
-			/*SimpleDateFormat sf = new SimpleDateFormat("mm/dd/yyyy");
-
 			//TODO add current date in screen
-			Date fromDate = sf.parse(date.getText().toString());
-			GregorianCalendar cal1 = new GregorianCalendar();
-			cal1.setTime(fromDate);
-			XMLGregorianCalendar gc1 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal1);
-			
 			//TODO add current  time
-			Time time = new Time();
-			GregorianCalendar cal2 = new GregorianCalendar();
-			cal2.setTime(fromDate);
-			XMLGregorianCalendar gc2 =
-			     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2);*/
-			
 		accidentDetails.setDateOfAccident(date.getText().toString());
 		accidentDetails.setTime(this.time.getText().toString());
 		accidentDetails.setSpeed(speed.getText().toString());

@@ -1,40 +1,94 @@
 package com.app.fileonthespotclaim;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import org.ksoap2.serialization.PropertyInfo;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import com.app.service.ExistingClaimsServiceTask;
+import com.app.service.NewClaimsServiceTask;
+import com.app.service.entity.DriverDetailsType;
 import com.app.service.entity.PolicyHolderDetailsType;
 import com.example.fileonthespotclaim.R;
 
 public class GetExistingClaimsActivity extends ActionBarActivity {
 	
-	// Button bt;
-	 
+	Button bt;
+	TableLayout existingClaimsTable;
+	
+	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
+	private static final String METHOD_NAME = "getExistingClaims";
+	private static final String URL = "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_get_existing_claims);
 		
-		/*// Button bt = (Button) findViewById(R.id.phd_next);
-	        
-	        Button.OnClickListener myListener = new Button.OnClickListener(){
-	        		
-	        		public void onClick(View v) {
-//	        			Intent myIntent = new Intent(GetExistingClaimsActivity.this, VehicleDetailsActivity.class);
-	//        			GetExistingClaimsActivity.this.startActivity(myIntent);
-	        		}
+		PropertyInfo policyId = new PropertyInfo();
+		policyId.name = "policyId";
+		policyId.type = String.class;
+		policyId.setValue("84321");
+		
+		SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
+		SoapObject result = null;
+		request.addProperty(policyId);
+		try {
+			result = new ExistingClaimsServiceTask(METHOD_NAME, URL).execute(request).get();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+		//Log.d("result for getExisiting claims", result.toString());
 
-	        };
-	        
-	        bt.setOnClickListener(myListener);*/
-	        
+		existingClaimsTable = (TableLayout) findViewById(R.id.existingClaimsTable);
+		existingClaimsTable.setStretchAllColumns(true);	
+		existingClaimsTable.bringToFront();
+		List<String> list = new ArrayList<>();
+		list.add("abc");
+		list.add("abcd");
+		list.add("abce");
+		list.add("abcf");
+		list.add("abcg");
+		
+		for(String s : list) {
+			TableRow tr =  new TableRow(this);
+	        TextView c1 = new TextView(this);
+	        c1.setText(s);
+	        tr.addView(c1);
+	        existingClaimsTable.addView(tr);
+		}
+		
+			
+		Button bt = (Button) findViewById(R.id.back);
+		Button.OnClickListener myListener = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent myIntent = new Intent(GetExistingClaimsActivity.this, MainActivity.class);
+				GetExistingClaimsActivity.this.startActivity(myIntent);
+			}
+
+		};
+
+		bt.setOnClickListener(myListener);
+
 	}
 
 

@@ -54,13 +54,13 @@
     <string name="relation">Relation with Insured:</string>
     <string name="driverAddress">Address:</string>
     <string name="contactNumber">Contact Number:</string>
-    <string name="dobLicense">Date of Birth as shown on the License:</string>
+    <string name="dobLicense">Date of Birth:</string>
     <string name="dlNo">Driving License No.:</string>
     <string name="issuingRTO">Issuing RTO:</string>
     <string name="effectiveFrom">License Effective From:</string>
     <string name="expiryDate">License Expiry Date:</string>
-    <string name="vehicleClass">Class(MCycle/LMV/HGV/Transport/Non-Transport):</string>
-    <string name="driverType">Type(Permanent/Learners):</string>
+    <string name="vehicleClass">Class:</string>
+    <string name="driverType">Type:</string>
     <string name="attachDocuments">Attach your documents here:</string>
     <string name="insuranceCopy">Insurance Copy:</string>
     <string name="rc">RC Copy:</string>
@@ -70,16 +70,20 @@
     <string name="fir">FIR Copy:</string>
     <string name="attachImage">Attach Image</string>
     <string name="title_activity_get_existing_claims">Existing Claims</string>
-	
-    <string-array name="vehicleclass_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string name="back">Back</string>
+    <string name="classPrompt">Choose Class</string>
+    <string name="typePrompt">Choose Type</string>
+    <string-array name="classArray">
+        <item>MCycle</item>
+        <item>LMV</item>
+        <item>HGV</item>
+        <item>Transport</item>
+        <item>Non-Transport</item>
     </string-array>
+    <string-array name="typeArray">
+        <item>Permanent</item>
+        <item>Learners</item>
+    </string-array>
+    
     
 </resources>

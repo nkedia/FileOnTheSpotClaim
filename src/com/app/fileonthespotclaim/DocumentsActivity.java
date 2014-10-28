@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.app.service.ClaimsServiceTask;
+import com.app.service.NewClaimsServiceTask;
 import com.app.service.S3UploadTask;
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
@@ -38,8 +38,9 @@ public class DocumentsActivity extends ActionBarActivity {
 	File photoFile;
 	private Button bt;
 	
-	public static final String NAMESPACE = "localhost:8080/ClaimsService/";
+	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "fileNewClaim";
+	private static final String URL = "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			request.addProperty(accidentDetailsProp);
 	        			request.addProperty(driverDetailsProp);
 	        			try {
-							result = new ClaimsServiceTask().execute(request).get();
+							result = new NewClaimsServiceTask(METHOD_NAME, URL).execute(request).get();
 						} catch (InterruptedException | ExecutionException e) {
 							e.printStackTrace();
 						}
