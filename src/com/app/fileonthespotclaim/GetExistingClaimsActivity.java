@@ -35,7 +35,6 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "getExistingClaims";
-	private static final String URL = "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +51,16 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		List<SoapObject> result = null;
 		request.addProperty(policyId);
 		try {
-			result = new ExistingClaimsServiceTask(METHOD_NAME, URL).execute(request).get();
+			result = new ExistingClaimsServiceTask().execute(request).get();
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
 		
-		/*ClaimsType[] claimsTypes = new ClaimsType[result.getPropertyCount()];
+		PolicyHolderDetailsType policyHolderDetailsType = (PolicyHolderDetailsType) result.get(0).getProperty("policyHolderDetails");
+		
+		
+		/*for()
+		
 		for(int i=0 ; i<claimsTypes.length; i++) {
 			SoapObject obj = (SoapObject) result.getProperty(i);
             ClaimsType claim = new ClaimsType();

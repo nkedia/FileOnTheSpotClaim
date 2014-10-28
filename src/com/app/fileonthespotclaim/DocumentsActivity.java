@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.app.service.NewClaimsServiceTask;
@@ -40,7 +39,6 @@ public class DocumentsActivity extends ActionBarActivity {
 	
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "fileNewClaim";
-	private static final String URL = "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +85,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	        			request.addProperty(accidentDetailsProp);
 	        			request.addProperty(driverDetailsProp);
 	        			try {
-							result = new NewClaimsServiceTask(METHOD_NAME, URL).execute(request).get();
+							result = new NewClaimsServiceTask().execute(request).get();
 						} catch (InterruptedException | ExecutionException e) {
 							e.printStackTrace();
 						}

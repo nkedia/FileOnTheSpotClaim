@@ -5,35 +5,15 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class NewClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimitive>{
 
-	private String soapAction =  "";
-	private String URL = "";
+	private static final String SOAP_ACTION =  "fileNewClaim";
+	private static final String URL = "http://ec2-54-165-60-108.compute-1.amazonaws.com/ClaimsServiceProject/ClaimsService?wsdl";
 	
-	public NewClaimsServiceTask(String soapAction, String URL) {
-		this.soapAction = soapAction;
-		this.URL = URL;
-	}
-	
-	public String getSoapAction() {
-		return soapAction;
-	}
-
-	public void setSoapAction(String soapAction) {
-		this.soapAction = soapAction;
-	}
-
-	public String getURL() {
-		return URL;
-	}
-
-	public void setURL(String uRL) {
-		URL = uRL;
-	}
-
 	@Override
 	protected SoapPrimitive doInBackground(SoapObject... params) {
 		
@@ -44,7 +24,7 @@ public class NewClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimit
 		androidHttpTransport.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
 		SoapPrimitive resultsRequestSOAP = null;
 		try {
-		   androidHttpTransport.call(this.soapAction, envelope);
+		   androidHttpTransport.call(SOAP_ACTION, envelope);
 		   resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
 		   Log.d("result", resultsRequestSOAP.toString());;
 		  } catch (Exception e) {
