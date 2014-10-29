@@ -1,6 +1,7 @@
 package com.app.fileonthespotclaim;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -34,6 +35,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_policy_holder_details);
+		//getWindow().getDecorView().setBackgroundColor(Color.CYAN);
 		
 		 Button bt = (Button) findViewById(R.id.phd_next);
 		 policyNo = (EditText) findViewById(R.id.editText4);

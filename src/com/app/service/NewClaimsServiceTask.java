@@ -1,5 +1,7 @@
 package com.app.service;
 
+import java.util.List;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
@@ -22,11 +24,11 @@ public class NewClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimit
 		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 		androidHttpTransport.debug = true;
 		androidHttpTransport.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
-		SoapPrimitive resultsRequestSOAP = null;
+		SoapPrimitive response = null;
 		try {
 		   androidHttpTransport.call(SOAP_ACTION, envelope);
-		   resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
-		   Log.d("result", resultsRequestSOAP.toString());;
+		   response = (SoapPrimitive) ((List) envelope.getResponse()).get(0);
+		   Log.d("result", response.toString());;
 		  } catch (Exception e) {
 			e.printStackTrace();  
 		   
@@ -35,7 +37,7 @@ public class NewClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimit
 			Log.d("request dump", androidHttpTransport.requestDump, null);
 			Log.d("response dump", androidHttpTransport.responseDump, null);
 		}
-		return resultsRequestSOAP;
+		return response;
 	}
 	
 

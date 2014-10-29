@@ -8,8 +8,6 @@ import com.amazonaws.mobileconnectors.s3.transfermanager.Upload;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.Bucket;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -46,16 +44,14 @@ public class S3UploadTask extends AsyncTask<String, Void, Boolean>{
 		 mClient.setRegion(region);
 		 TransferManager transferManager = new TransferManager(cognitoProvider);
 		 Log.d("TransferManager", transferManager.toString());
-		 Bucket b = mClient.createBucket(claimId);
-		 Log.d("Bucket", b.toString());
 		 try {
 			 for(String path : params) {
 				 File file = new File(path);
 				 String[] filePath = path.split("/");
-				 String fileName = filePath[filePath.length-1];
+				 String fileName = "claimid" + claimId + "/" + filePath[filePath.length-1];
 				 Log.d("path", path);
 				 Upload upload = transferManager.upload(
-					        claimId,
+					        "claim-data",
 					        fileName,
 					        file);
 				 upload.waitForCompletion();

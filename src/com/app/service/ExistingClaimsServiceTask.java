@@ -7,9 +7,6 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import com.app.service.entity.ClaimsType;
-import com.app.service.entity.PolicyHolderDetailsType;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,8 +20,6 @@ public class ExistingClaimsServiceTask  extends AsyncTask<SoapObject, Void, List
 	protected List<SoapObject> doInBackground(SoapObject... params) {
 		
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		envelope.addMapping(NAMESPACE, "claims", ClaimsType.class);
-		envelope.addMapping(NAMESPACE, "policyHolderDetails", PolicyHolderDetailsType.class);
 		envelope.dotNet = false;
 		envelope.setOutputSoapObject(params[0]);
 		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
