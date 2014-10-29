@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -106,8 +107,8 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		
 		for(ClaimsType claim : claimsList) {
 			TableRow tr2 =  new TableRow(this);
-			//make this hyperlink
-	        TextView c21 = new TextView(this);
+	        
+			TextView c21 = new TextView(this);
 	        c21.setText(claim.getClaimId());
 	        tr2.addView(c21);
 	        TextView c22 = new TextView(this);
@@ -119,6 +120,28 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	        TextView c24 = new TextView(this);
 	        c24.setText(claim.getDateOfSettlement());
 	        tr2.addView(c24);
+	        
+	        tr2.setClickable(true);
+	        tr2.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+	        tr2.setOnClickListener(new OnClickListener() {
+	            public void onClick(View v) {
+	                v.setBackgroundColor(Color.GRAY);
+	                System.out.println("Row clicked: " + v.getId());
+
+	               //get the data you need
+	               TableRow tablerow = (TableRow)v.getParent();
+	               TextView sample = (TextView) tablerow.getChildAt(2);
+	               String result=sample.getText().toString();
+	            }
+	        });
+	        
 	        existingClaimsTable.addView(tr2);
 		}
 		
