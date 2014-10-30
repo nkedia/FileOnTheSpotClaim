@@ -63,12 +63,34 @@
             android:id="@+id/policyNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/coverNoteNo"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/coverNoteNo"
-            android:layout_marginTop="17dp"
+             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
             android:ems="10"
             android:text="@string/policyNo" />
+        
+        <TextView
+            android:id="@+id/coverNoteNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/period"
+            android:layout_alignStart="@+id/period"
+            android:layout_below="@+id/policyNo"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:text="@string/coverNoteNo" />
+        
+        <TextView
+            android:id="@+id/period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/coverNoteNo"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:text="@string/period" />
 
         <TextView
             android:id="@+id/dob"
@@ -124,29 +146,9 @@
             android:ems="10"
             android:text="@string/mobile" />
 
-        <TextView
-            android:id="@+id/coverNoteNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/period"
-            android:layout_alignStart="@+id/period"
-            android:layout_below="@+id/policyNo"
-            android:layout_marginTop="9dp"
-            android:ems="10"
-            android:text="@string/coverNoteNo" />
+        
 
-        <TextView
-            android:id="@+id/period"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/coverNoteNo"
-            android:layout_marginLeft="27dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginTop="11dp"
-            android:ems="10"
-            android:text="@string/period" />
+        
 
         <TextView
             android:id="@+id/email"
