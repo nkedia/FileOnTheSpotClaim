@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:text="@string/next" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_alignLeft="@+id/driver"
         android:layout_alignStart="@+id/driver"
         android:layout_below="@+id/driver"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="35dp"
         android:text="@string/passenger" />
 
     <TextView
@@ -56,8 +56,18 @@
         android:layout_alignLeft="@+id/passenger"
         android:layout_alignStart="@+id/passenger"
         android:layout_below="@+id/passenger"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="35dp"
         android:text="@string/thirdParty" />
+
+    <TextView
+        android:id="@+id/witness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/thirdParty"
+        android:layout_alignStart="@+id/thirdParty"
+        android:layout_below="@+id/thirdPartyStatement"
+        android:layout_marginTop="35dp"
+        android:text="@string/witness" />
 
     <Button
         android:id="@+id/driverStatement"
@@ -68,9 +78,9 @@
         android:layout_alignBottom="@+id/driver"
         android:layout_alignEnd="@+id/stmt_next"
         android:layout_alignRight="@+id/stmt_next"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="21dp"
-        android:text="@string/uploadVedio" />
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/camera1"
+        android:drawableStart="@drawable/camera1" />
 
     <Button
         android:id="@+id/passengerStatement"
@@ -79,9 +89,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/passenger"
         android:layout_alignBottom="@+id/passenger"
-        android:layout_alignLeft="@+id/driverStatement"
-        android:layout_alignStart="@+id/driverStatement"
-        android:text="@string/uploadVedio" />
+        android:layout_alignEnd="@+id/stmt_next"
+        android:layout_alignRight="@+id/stmt_next"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/camera1"
+        android:drawableStart="@drawable/camera1" />
 
     <Button
         android:id="@+id/thirdPartyStatement"
@@ -90,19 +102,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/thirdParty"
         android:layout_alignBottom="@+id/thirdParty"
-        android:layout_alignLeft="@+id/passengerStatement"
-        android:layout_alignStart="@+id/driverStatement"
-        android:text="@string/uploadVedio" />
-
-    <TextView
-        android:id="@+id/witness"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/thirdParty"
-        android:layout_alignStart="@+id/thirdParty"
-        android:layout_below="@+id/thirdPartyStatement"
-        android:layout_marginTop="41dp"
-        android:text="@string/witness" />
+        android:layout_alignEnd="@+id/stmt_next"
+        android:layout_alignRight="@+id/stmt_next"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/camera1"
+        android:drawableStart="@drawable/camera1" />
 
     <Button
         android:id="@+id/witnessStatement"
@@ -111,8 +115,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/witness"
         android:layout_alignBottom="@+id/witness"
-        android:layout_alignLeft="@+id/thirdPartyStatement"
-        android:layout_alignStart="@+id/driverStatement"
-        android:text="@string/uploadVedio" />
+        android:layout_alignEnd="@+id/stmt_next"
+        android:layout_alignRight="@+id/stmt_next"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/camera1"
+        android:drawableStart="@drawable/camera1" />
 
 </RelativeLayout>

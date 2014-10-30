@@ -38,7 +38,7 @@
     <string name="date">Date:</string>
     <string name="time">Time:</string>
     <string name="speed">Speed:</string>
-    <string name="exactPlace">Exact place where accident occurred:</string>
+    <string name="exactPlace">Exact place of accident:</string>
     <string name="noOfPeople">"No. of people travelling:"</string>
     <string name="policeStation">Nearest Police Station:</string>
     <string name="policeStationName">Name of Police Station:</string>
@@ -74,6 +74,7 @@
     <string name="cancel">Cancel</string>
     <string name="classPrompt">Choose Class</string>
     <string name="typePrompt">Choose Type</string>
+
     <string-array name="classArray">
         <item>MCycle</item>
         <item>LMV</item>
@@ -85,6 +86,5 @@
         <item>Permanent</item>
         <item>Learners</item>
     </string-array>
-    
-    
+
 </resources>
