@@ -99,7 +99,6 @@
         android:layout_toRightOf="@+id/firNo"
         android:layout_toEndOf="@+id/firNo"
         android:ems="10" 
-        android:text="2014-10-10"
         android:textSize="10dp">
     </EditText>
 
@@ -112,7 +111,6 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignStart="@+id/editText1"
         android:ems="10" 
-         android:text="09:10:00"
         android:textSize="10dp"/>
 
     <EditText
@@ -200,7 +198,7 @@
         android:layout_alignLeft="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
         android:ems="10" 
-        android:text="4"
+        android:text="1"
         android:textSize="10dp">
     </EditText>
 

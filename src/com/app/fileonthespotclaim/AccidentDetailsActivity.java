@@ -1,8 +1,15 @@
 package com.app.fileonthespotclaim;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +40,11 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 		
 		 bt = (Button) findViewById(R.id.ad_next);
 		 date = (EditText) findViewById(R.id.editText1);
+		 String currDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		 date.setText(currDate);
 	     time = (EditText) findViewById(R.id.editText2);
+	     String currTime = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime());
+	     time.setText(currTime);
 	     speed = (EditText) findViewById(R.id.editText3);
 	     place = (EditText) findViewById(R.id.editText4);
 	     peopleNo = (EditText) findViewById(R.id.editText5);
@@ -60,10 +71,8 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 
 	protected AccidentDetailsType getAccidentDetails() {
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
-			//TODO add current date in screen
-			//TODO add current  time
 		accidentDetails.setDateOfAccident(date.getText().toString());
-		accidentDetails.setTime(this.time.getText().toString());
+		accidentDetails.setTime(time.getText().toString());
 		accidentDetails.setSpeed(speed.getText().toString());
 		accidentDetails.setPlace(place.getText().toString());
 		accidentDetails.setNoOfPeopleTravelling(peopleNo.getText().toString());

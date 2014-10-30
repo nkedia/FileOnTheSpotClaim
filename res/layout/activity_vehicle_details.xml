@@ -188,10 +188,9 @@
        android:id="@+id/vd_next"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignEnd="@+id/editText8"
        android:layout_alignParentBottom="true"
-       android:layout_alignRight="@+id/editText8"
-       android:layout_marginBottom="17dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
        android:text="@string/next" />
 
 </RelativeLayout>

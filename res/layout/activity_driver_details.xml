@@ -173,35 +173,19 @@
         android:id="@+id/vehicleClassSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/driverType"
+        android:layout_above="@+id/vehicleTypeSpinner"
         android:layout_alignLeft="@+id/vehicleTypeSpinner"
-        android:layout_below="@+id/editText9"        android:entries="@array/classArray"
+        android:layout_below="@+id/editText9"
+        android:entries="@array/classArray"
         android:prompt="@string/classPrompt" />
 
     <Spinner
         android:id="@+id/vehicleTypeSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/driverType"
         android:layout_alignTop="@+id/driverType"
         android:layout_toRightOf="@+id/editText9"
         android:entries="@array/typeArray" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/name"
-        android:layout_alignBottom="@+id/name"
-        android:layout_alignLeft="@+id/vehicleClassSpinner"
-        android:layout_toEndOf="@+id/driverType"
-        android:layout_toRightOf="@+id/driverType"
-        android:ems="10"
-        android:text="Natasha Kedia"
-        android:textSize="10dp" >
-
-        <requestFocus />
-    </EditText>
 
     <EditText
         android:id="@+id/editText3"
@@ -226,26 +210,13 @@
         android:textSize="10dp" />
 
     <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/issuingRTO"
-        android:layout_alignBottom="@+id/issuingRTO"
-        android:layout_alignRight="@+id/dd_next"
-        android:layout_toEndOf="@+id/driverType"
-        android:layout_toRightOf="@+id/driverType"
-        android:ems="10"
-        android:text="RTO"
-        android:textSize="10dp" />
-
-    <EditText
         android:id="@+id/editText8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/editText7"
         android:layout_alignStart="@+id/editText7"
-        android:layout_alignLeft="@+id/editText7"
         android:layout_alignTop="@+id/effectiveFrom"
+        android:layout_toRightOf="@+id/relation"
         android:ems="10"
         android:text="2000-10-10"
         android:textSize="10dp" />
@@ -260,6 +231,29 @@
         android:layout_toRightOf="@+id/issuingRTO"
         android:ems="10"
         android:text="2020-10-10"
+        android:textSize="10dp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignLeft="@+id/vehicleClassSpinner"
+        android:layout_toEndOf="@+id/driverType"
+        android:ems="10"
+        android:text="Natasha Kedia"
+        android:textSize="10dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dd_next"
+        android:layout_alignTop="@+id/issuingRTO"
+        android:layout_toEndOf="@+id/editText6"
+        android:ems="10"
+        android:text="RTO"
         android:textSize="10dp" />
     
 </RelativeLayout>

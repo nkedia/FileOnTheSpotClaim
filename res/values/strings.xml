@@ -71,6 +71,7 @@
     <string name="attachImage">Attach Image</string>
     <string name="title_activity_get_existing_claims">Existing Claims</string>
     <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
     <string name="classPrompt">Choose Class</string>
     <string name="typePrompt">Choose Type</string>
     <string-array name="classArray">

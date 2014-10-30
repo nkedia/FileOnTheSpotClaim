@@ -16,57 +16,57 @@ public class MainActivity extends ActionBarActivity {
 
 	Button nc;
 	Button ec;
-	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
-        
-        nc = (Button) findViewById(R.id.btn_nc);
-        ec = (Button) findViewById(R.id.btn_ec);
-        
-        Button.OnClickListener myListener = new Button.OnClickListener(){
-        		
-        		public void onClick(View v) {
-        			Intent myIntent = new Intent(MainActivity.this, PolicyHolderDetailsActivity.class);
-        			//myIntent.putExtra("key", value); //Optional parameters
-        			MainActivity.this.startActivity(myIntent);
-        		}
-        };
-        
-        nc.setOnClickListener(myListener);
-        
-        Button.OnClickListener myListener2 = new Button.OnClickListener(){
-    		
-    		public void onClick(View v) {
-    			Intent myIntent = new Intent(MainActivity.this, GetExistingClaimsActivity.class);
-    			//myIntent.putExtra("key", value); //Optional parameters
-    			MainActivity.this.startActivity(myIntent);
-    		}
-    };
-    
-    ec.setOnClickListener(myListener2);
-        
-    }
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		//getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
+
+		nc = (Button) findViewById(R.id.btn_nc);
+		ec = (Button) findViewById(R.id.btn_ec);
+
+		Button.OnClickListener myListener = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent myIntent = new Intent(MainActivity.this, PolicyHolderDetailsActivity.class);
+				//myIntent.putExtra("key", value); //Optional parameters
+				MainActivity.this.startActivity(myIntent);
+			}
+		};
+
+		nc.setOnClickListener(myListener);
+
+		Button.OnClickListener myListener2 = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent myIntent = new Intent(MainActivity.this, GetExistingClaimsActivity.class);
+				//myIntent.putExtra("key", value); //Optional parameters
+				MainActivity.this.startActivity(myIntent);
+			}
+		};
+
+		ec.setOnClickListener(myListener2);
+
+	}
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

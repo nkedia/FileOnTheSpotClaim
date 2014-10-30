@@ -22,15 +22,14 @@
         android:layout_marginTop="26dp" >
 
     </TableLayout>
-
+    
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="17dp"
-        android:layout_marginRight="20dp"
+        android:layout_alignParentEnd="true"
         android:text="@string/back" />
 
     

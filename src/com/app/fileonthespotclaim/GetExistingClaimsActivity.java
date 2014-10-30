@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutionException;
 
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,15 +14,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.service.ExistingClaimsServiceTask;
-import com.app.service.NewClaimsServiceTask;
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.ClaimsType;
 import com.app.service.entity.DriverDetailsType;
@@ -38,6 +36,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	
 	Button bt;
 	TableLayout existingClaimsTable;
+	private String rowClickedClaimId = "";
 	
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "getExistingClaims";
@@ -92,61 +91,57 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		TableRow tr1 =  new TableRow(this);
         TextView c1 = new TextView(this);
         c1.setText("ID    ");
+        c1.setPadding(5, 0, 0, 0);
         tr1.addView(c1);
         TextView c2 = new TextView(this);
         c2.setText("Status");
+        c2.setPadding(5, 0, 0, 0);
         tr1.addView(c2);
         TextView c3 = new TextView(this);
         c3.setText("Amount");
+        c3.setPadding(5, 0, 0, 0);
         tr1.addView(c3);
         TextView c4 = new TextView(this);
         c4.setText("Date");
+        c4.setPadding(5, 0, 0, 0);
         tr1.addView(c4);
         existingClaimsTable.addView(tr1);
-		
 		
 		for(ClaimsType claim : claimsList) {
 			TableRow tr2 =  new TableRow(this);
 	        
 			TextView c21 = new TextView(this);
 	        c21.setText(claim.getClaimId());
+	        c21.setPadding(5, 0, 0, 0);
 	        tr2.addView(c21);
 	        TextView c22 = new TextView(this);
 	        c22.setText(claim.getClaimStatus());
+	        c22.setPadding(5, 0, 0, 0);
 	        tr2.addView(c22);
 	        TextView c23 = new TextView(this);
 	        c23.setText(claim.getAmountSettled());
+	        c23.setPadding(5, 0, 0, 0);
 	        tr2.addView(c23);
 	        TextView c24 = new TextView(this);
 	        c24.setText(claim.getDateOfSettlement());
+	        c24.setPadding(5, 0, 0, 0);
 	        tr2.addView(c24);
 	        
 	        tr2.setClickable(true);
 	        tr2.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-	        tr2.setOnClickListener(new OnClickListener() {
 	            public void onClick(View v) {
-	                v.setBackgroundColor(Color.GRAY);
-	                System.out.println("Row clicked: " + v.getId());
-
 	               //get the data you need
-	               TableRow tablerow = (TableRow)v.getParent();
-	               TextView sample = (TextView) tablerow.getChildAt(2);
-	               String result=sample.getText().toString();
+	               TableRow tablerow = (TableRow)v;
+	               TextView tv1 = (TextView) tablerow.getChildAt(0);
+	               rowClickedClaimId = tv1.getText().toString();
+	               Toast.makeText(GetExistingClaimsActivity.this, "RowCLickedClaimID : " + rowClickedClaimId, Toast.LENGTH_LONG).show();
+	               //TODO start new activity
 	            }
 	        });
-	        
 	        existingClaimsTable.addView(tr2);
-		}
-		
-			
-		Button bt = (Button) findViewById(R.id.back);
+	    }
+	       
+		bt = (Button) findViewById(R.id.back);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
