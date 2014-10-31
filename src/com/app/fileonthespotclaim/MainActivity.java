@@ -1,5 +1,9 @@
 package com.app.fileonthespotclaim;
 
+import com.app.service.entity.AccidentDetailsType;
+import com.app.service.entity.DriverDetailsType;
+import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
@@ -30,7 +34,15 @@ public class MainActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent myIntent = new Intent(MainActivity.this, PolicyHolderDetailsActivity.class);
-				//myIntent.putExtra("key", value); //Optional parameters
+				PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails();
+				VehicleDetailsType vehicleDetails = getVehicleDetails();
+				AccidentDetailsType accidentDetails = getAccidentDetails();
+				DriverDetailsType driverDetails = getDriverDetails();
+				myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+				myIntent.putExtra("vehicleDetails", vehicleDetails);
+				myIntent.putExtra("accidentDetails", accidentDetails);
+				myIntent.putExtra("driverDetails", driverDetails);
+				//myIntent.putExtra("fileNewClaim", true);
 				MainActivity.this.startActivity(myIntent);
 			}
 		};
@@ -49,6 +61,35 @@ public class MainActivity extends ActionBarActivity {
 		ec.setOnClickListener(myListener2);
 
 	}
+	
+
+
+	protected DriverDetailsType getDriverDetails() {
+		DriverDetailsType driverDetails = new DriverDetailsType();
+		return driverDetails;
+	}
+
+
+
+	protected AccidentDetailsType getAccidentDetails() {
+		AccidentDetailsType accidentDetails = new AccidentDetailsType();
+		return accidentDetails;
+	}
+
+
+
+	protected VehicleDetailsType getVehicleDetails() {
+		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
+		return vehicleDetails;
+	}
+
+
+
+	protected PolicyHolderDetailsType getPolicyHolderDetails() {
+		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
+		return policyHolderDetails;
+	}
+
 
 
 	@Override
