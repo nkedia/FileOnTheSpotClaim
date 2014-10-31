@@ -1,27 +1,18 @@
 package com.app.fileonthespotclaim;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import com.app.service.entity.PolicyHolderDetailsType;
-import com.app.service.entity.VehicleDetailsType;
-import com.example.fileonthespotclaim.R;
-
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.service.entity.VehicleDetailsType;
+import com.example.fileonthespotclaim.R;
 
 public class VehicleDetailsActivity extends ActionBarActivity {
 	
@@ -34,6 +25,7 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 	EditText transferDtae;
 	EditText fuelType;
 	EditText color;
+	Boolean getExistingClaims = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +41,51 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 		transferDtae = (EditText) findViewById(R.id.editText6);
 		fuelType = (EditText) findViewById(R.id.editText7);
 		color = (EditText) findViewById(R.id.editText8);
+		
+
+		VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		setVehicleDetails(vehicleDetails, getExistingClaims);
 	        
         Button.OnClickListener myListener = new Button.OnClickListener(){
 	        		
 	        		public void onClick(View v) {
-	        			Intent myIntent = new Intent(VehicleDetailsActivity.this, AccidentDetailsActivity.class);
-	        			PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
 	        			VehicleDetailsType vehicleDetails = getVehicleDetails();
-	        			myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+	        			Intent myIntent = new Intent(VehicleDetailsActivity.this, AccidentDetailsActivity.class);
+	        			myIntent.putExtra("policyHolderDetails", getIntent().getParcelableExtra("policyHolderDetails"));
 	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
-	        			Log.d("phd", policyHolderDetails.toString());
-	        			Log.d("phd", policyHolderDetails.getCoverNoteNo());
-	        			Log.d("phd", policyHolderDetails.getPolicyNo());
-	        			
+	        			myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
+	    				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
+	    				myIntent.putExtra("getExistingClaims", getExistingClaims);
 	        			VehicleDetailsActivity.this.startActivity(myIntent);
 	        		}
 	        };
 	        
 	        bt.setOnClickListener(myListener);
+	}
+
+	private void setVehicleDetails(VehicleDetailsType vehicleDetails,
+			Boolean getExistingClaims) {
+		regdNo.setText(vehicleDetails.getRegdNo());
+		make.setText(vehicleDetails.getMake());
+		regDate.setText(vehicleDetails.getDateOfFirstRegistration());
+		chassisNo.setText(vehicleDetails.getChassisNo());
+		engineNo.setText(vehicleDetails.getEngineNo());
+		transferDtae.setText(vehicleDetails.getDateOfTransfer());
+		fuelType.setText(vehicleDetails.getTypeOfFuel());
+		color.setText(vehicleDetails.getColor());
+		
+		if(getExistingClaims) {
+			regdNo.setEnabled(false);
+			make.setEnabled(false);
+			regDate.setEnabled(false);
+			chassisNo.setEnabled(false);
+			engineNo.setEnabled(false);
+			transferDtae.setEnabled(false);
+			fuelType.setEnabled(false);
+			color.setEnabled(false);
+		}
+		
 	}
 
 	protected VehicleDetailsType getVehicleDetails() {

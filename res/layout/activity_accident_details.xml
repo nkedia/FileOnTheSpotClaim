@@ -67,13 +67,24 @@
         android:layout_below="@+id/exactPlace"
         android:layout_marginTop="20dp"
         android:text="@string/noOfPeople" />
+    
+    <TextView
+        android:id="@+id/mileage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_alignLeft="@+id/noOfPeople"
+        android:layout_alignStart="@+id/noOfPeople"
+        android:layout_below="@+id/noOfPeople"
+        android:layout_marginTop="20dp"
+        android:text="@string/mileage" />
 
     <TextView
         android:id="@+id/policeStation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/noOfPeople"
-        android:layout_alignStart="@+id/noOfPeople"
+        android:layout_alignLeft="@+id/mileage"
+        android:layout_alignStart="@+id/mileage"
+        android:layout_below="@+id/mileage"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:text="@string/policeStation" />
@@ -89,22 +100,12 @@
         android:text="@string/policeStationName" />
 
     <TextView
-        android:id="@+id/mileage"
+        android:id="@+id/firNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/policeStationName"
         android:layout_alignStart="@+id/policeStationName"
         android:layout_below="@+id/policeStationName"
-        android:layout_marginTop="20dp"
-        android:text="@string/mileage" />
-
-    <TextView
-        android:id="@+id/firNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mileage"
-        android:layout_alignStart="@+id/mileage"
-        android:layout_below="@+id/mileage"
         android:layout_marginTop="20dp"
         android:text="@string/firNo" />
 
@@ -141,7 +142,6 @@
         android:layout_toEndOf="@+id/firNo"
         android:layout_toRightOf="@+id/firNo"
         android:ems="10"
-        android:text="40"
         android:textSize="10dp" />
 
     <EditText
@@ -153,7 +153,6 @@
         android:layout_toEndOf="@+id/firNo"
         android:layout_toRightOf="@+id/firNo"
         android:ems="10"
-        android:text="10"
         android:textSize="10dp" />
 
     <EditText
@@ -164,10 +163,9 @@
         android:layout_alignLeft="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
         android:ems="10"
-        android:text="1"
         android:textSize="10dp" >
     </EditText>
-
+<!-- TODO add map to nearest police station -->
     <EditText
         android:id="@+id/editText6"
         android:layout_width="wrap_content"
@@ -176,7 +174,6 @@
         android:layout_alignLeft="@+id/editText5"
         android:layout_alignStart="@+id/editText5"
         android:ems="10"
-        android:text="Nearest PS"
         android:textSize="10dp" />
 
     <EditText
@@ -187,7 +184,6 @@
         android:layout_alignLeft="@+id/editText3"
         android:layout_alignStart="@+id/editText3"
         android:ems="10"
-        android:text="Madinaguda"
         android:textSize="10dp" >
 
         <requestFocus />
@@ -202,7 +198,6 @@
         android:layout_alignLeft="@+id/editText9"
         android:layout_alignStart="@+id/editText7"
         android:ems="10"
-        android:text="FIR123"
         android:textSize="10dp" />
 
     <EditText
@@ -215,7 +210,6 @@
         android:layout_alignLeft="@+id/editText9"
         android:layout_alignRight="@+id/editText6"
         android:ems="10"
-        android:text="PS Name"
         android:textSize="10dp" />
 
 </RelativeLayout>

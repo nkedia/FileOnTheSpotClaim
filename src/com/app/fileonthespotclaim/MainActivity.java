@@ -1,14 +1,20 @@
 package com.app.fileonthespotclaim;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
+import com.app.service.entity.LicenseType;
+import com.app.service.entity.PeriodOfInsuranceType;
+import com.app.service.entity.PhoneType;
 import com.app.service.entity.PolicyHolderDetailsType;
 import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent myIntent = new Intent(MainActivity.this, GetExistingClaimsActivity.class);
-				//myIntent.putExtra("key", value); //Optional parameters
 				MainActivity.this.startActivity(myIntent);
 			}
 		};
@@ -66,6 +71,19 @@ public class MainActivity extends ActionBarActivity {
 
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
+		driverDetails.setName("Natasha Kedia");
+		driverDetails.setRelationWithInsured("self");
+		driverDetails.setDOB("1984-08-07");
+		driverDetails.setAddress("Agate 104");
+		driverDetails.setContactNo("8008288109");
+		LicenseType licenseType = new LicenseType();
+		licenseType.setLicenseNo("LicenseNo123");
+		licenseType.setEffectiveFrom("2000-01-01");
+		licenseType.setExpiryDate("2020-12-31");
+		licenseType.setIssuingRTO("RTO");
+		licenseType.setType("Permanent");
+		licenseType.setClazz("HGV");
+		driverDetails.setLicenseType(licenseType);
 		return driverDetails;
 	}
 
@@ -73,6 +91,18 @@ public class MainActivity extends ActionBarActivity {
 
 	protected AccidentDetailsType getAccidentDetails() {
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
+		String currDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		String currTime = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime());
+		accidentDetails.setDateOfAccident(currDate);
+		accidentDetails.setTime(currTime);
+		accidentDetails.setSpeed("60");
+		accidentDetails.setNoOfPeopleTravelling("1");
+		//TODO set current location
+		//TODO set nearest policestation name
+		accidentDetails.setPlace("");
+		accidentDetails.setPoliceStationName("");
+		accidentDetails.setMileage("15");
+		accidentDetails.setFIRNo("");
 		return accidentDetails;
 	}
 
@@ -80,6 +110,14 @@ public class MainActivity extends ActionBarActivity {
 
 	protected VehicleDetailsType getVehicleDetails() {
 		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
+		vehicleDetails.setRegdNo("Regd123");
+		vehicleDetails.setMake("Make123");
+		vehicleDetails.setDateOfFirstRegistration("2010-10-10");
+		vehicleDetails.setChassisNo("ChassisNo123");
+		vehicleDetails.setEngineNo("EngineNo123");
+		vehicleDetails.setDateOfTransfer("2012-10-10");
+		vehicleDetails.setTypeOfFuel("fueltype123");
+		vehicleDetails.setColor("color123");
 		return vehicleDetails;
 	}
 
@@ -87,6 +125,22 @@ public class MainActivity extends ActionBarActivity {
 
 	protected PolicyHolderDetailsType getPolicyHolderDetails() {
 		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
+		policyHolderDetails.setPolicyNo("policyno8431");
+		policyHolderDetails.setCoverNoteNo("covernote123");
+		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType();
+		periodOfInsurance.setFrom("2013-12-10");
+		periodOfInsurance.setTo("2014-12-10");
+		policyHolderDetails.setPeriodOfInsurance(periodOfInsurance );
+		policyHolderDetails.setNameOfInsured("Natasha Kedia");
+		policyHolderDetails.setDobOfInsured("1984-08-07");
+		policyHolderDetails.setAddressOfInsured("Agate 104");
+		policyHolderDetails.setPinOfInsured("500049");
+		PhoneType phoneType = new PhoneType();
+		phoneType.setOffice("");
+		phoneType.setMobile("8008288109");
+		phoneType.setResidence("");
+		policyHolderDetails.setPhoneType(phoneType);
+		policyHolderDetails.setEmailOfInsured("natasha@gmail.com");
 		return policyHolderDetails;
 	}
 

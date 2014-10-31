@@ -37,10 +37,11 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	Button bt;
 	TableLayout existingClaimsTable;
 	private String rowClickedClaimId = "";
-	
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "getExistingClaims";
-	 
+	public List<ClaimsType> claimsList = new ArrayList<ClaimsType>();
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -61,8 +62,6 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
-		
-		List<ClaimsType> claimsList = new ArrayList<ClaimsType>();
 		
 		for(SoapObject soapObj : result) {
 			Log.d("soapObj", soapObj.toString());
@@ -135,7 +134,18 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	               TextView tv1 = (TextView) tablerow.getChildAt(0);
 	               rowClickedClaimId = tv1.getText().toString();
 	               Toast.makeText(GetExistingClaimsActivity.this, "RowCLickedClaimID : " + rowClickedClaimId, Toast.LENGTH_LONG).show();
-	               //TODO start new activity
+	               //Start Update Activity
+	               for(ClaimsType claim : claimsList) {
+	            	   if (claim.getClaimId().equals(rowClickedClaimId)) {
+	            		   Intent myIntent = new Intent(GetExistingClaimsActivity.this, PolicyHolderDetailsActivity.class);
+	            		   myIntent.putExtra("policyHolderDetails", claim.getPolicyHolderDetails());
+	            		   myIntent.putExtra("vehicleDetails", claim.getVehicleDetails());
+	       				   myIntent.putExtra("accidentDetails", claim.getAccidentDetails());
+	       				   myIntent.putExtra("driverDetails", claim.getDriverDetails());
+	            		   myIntent.putExtra("getExistingClaims", true);
+	            		   GetExistingClaimsActivity.this.startActivity(myIntent);
+	            	   }
+	               }
 	            }
 	        });
 	        existingClaimsTable.addView(tr2);

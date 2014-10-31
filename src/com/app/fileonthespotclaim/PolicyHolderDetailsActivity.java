@@ -29,7 +29,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 	EditText residence;
 	EditText mobile;
 	EditText email;
-
+	Boolean getExistingClaims = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,14 +50,19 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 		email = (EditText) findViewById(R.id.editText13);
 		
 		PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
-		setPolicyHolderDetails(policyHolderDetails);
+		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		setPolicyHolderDetails(policyHolderDetails, getExistingClaims);
 
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
-				Intent myIntent = new Intent(PolicyHolderDetailsActivity.this, VehicleDetailsActivity.class);
 				PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails();
+				Intent myIntent = new Intent(PolicyHolderDetailsActivity.this, VehicleDetailsActivity.class);
 				myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
+				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
+				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
+				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				PolicyHolderDetailsActivity.this.startActivity(myIntent);
 			}
 
@@ -67,7 +72,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 
 	}
 
-	private void setPolicyHolderDetails(PolicyHolderDetailsType policyHolderDetails) {
+	private void setPolicyHolderDetails(PolicyHolderDetailsType policyHolderDetails, Boolean getExistingClaims) {
 		policyNo.setText(policyHolderDetails.getPolicyNo());
 		coverNoteNo.setText(policyHolderDetails.getCoverNoteNo());
 		from.setText(policyHolderDetails.getPeriodOfInsurance().getFrom());
@@ -79,6 +84,22 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 		office.setText(policyHolderDetails.getPhoneType().getOffice());
 		residence.setText(policyHolderDetails.getPhoneType().getResidence());
 		mobile.setText(policyHolderDetails.getPhoneType().getMobile());
+		
+		if (getExistingClaims) {
+			policyNo.setEnabled(false);
+			coverNoteNo.setEnabled(false);
+			from.setEnabled(false);
+			to.setEnabled(false);
+			name.setEnabled(false);
+			dob.setEnabled(false);
+			address.setEnabled(false);
+			pin.setEnabled(false);
+			office.setEnabled(false);
+			residence.setEnabled(false);
+			mobile.setEnabled(false);
+			email.setEnabled(false);
+
+		}
 	}
 
 	protected PolicyHolderDetailsType getPolicyHolderDetails() {

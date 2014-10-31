@@ -40,6 +40,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	Spinner vehicleTypeSpinner;
 	String vehicleClass;
 	String vehicleType;
+	Boolean getExistingClaims = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,18 +76,20 @@ public class DriverDetailsActivity extends ActionBarActivity {
             }
         });
         
+        DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
+		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		setDriverDetails(driverDetails, getExistingClaims);
+		
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
 				Intent myIntent = new Intent(DriverDetailsActivity.this, DocumentsActivity.class);
 				DriverDetailsType driverDetails = getDriverDetails();
-				PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
-				VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
-				AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
-				myIntent.putExtra("policyHolderDetails", policyHolderDetails);
-				myIntent.putExtra("vehicleDetails", vehicleDetails);
-				myIntent.putExtra("accidentDetails", accidentDetails);
+				myIntent.putExtra("policyHolderDetails", getIntent().getParcelableExtra("policyHolderDetails"));
+				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
+				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 				myIntent.putExtra("driverDetails", driverDetails);
+				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				DriverDetailsActivity.this.startActivity(myIntent);
 			}
 		};
@@ -95,6 +98,37 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	}
 	
 	
+	private void setDriverDetails(DriverDetailsType driverDetails,
+			Boolean getExistingClaims) {
+		name.setText(driverDetails.getName());
+		relation.setText(driverDetails.getRelationWithInsured());
+		address.setText(driverDetails.getAddress());
+		number.setText(driverDetails.getContactNo());
+		dob.setText(driverDetails.getDOB());
+		licenseNo.setText(driverDetails.getLicenseType().getLicenseNo());
+		issuingRTO.setText(driverDetails.getLicenseType().getIssuingRTO());
+		effectiveFrom.setText(driverDetails.getLicenseType().getEffectiveFrom());
+		expiryDate.setText(driverDetails.getLicenseType().getExpiryDate());
+		// TODO  set vehicle type and vehicleClass as per driverdetails
+		
+		if(getExistingClaims) {
+			name.setEnabled(false);
+			relation.setEnabled(false);
+			address.setEnabled(false);
+			number.setEnabled(false);
+			dob.setEnabled(false);
+			licenseNo.setEnabled(false);
+			issuingRTO.setEnabled(false);
+			effectiveFrom.setEnabled(false);
+			expiryDate.setEnabled(false);
+			vehicleClassSpinner.setEnabled(false);
+			vehicleTypeSpinner.setEnabled(false);
+			
+		}
+		
+	}
+
+
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
 			
