@@ -44,7 +44,7 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 		
 
 		VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
-		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		setVehicleDetails(vehicleDetails, getExistingClaims);
 	        
         Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -56,6 +56,8 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 	        			myIntent.putExtra("vehicleDetails", vehicleDetails);
 	        			myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 	    				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
+	    				if(getExistingClaims)
+	    					myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 	    				myIntent.putExtra("getExistingClaims", getExistingClaims);
 	        			VehicleDetailsActivity.this.startActivity(myIntent);
 	        		}

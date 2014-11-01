@@ -50,7 +50,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 		email = (EditText) findViewById(R.id.editText13);
 		
 		PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
-		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		setPolicyHolderDetails(policyHolderDetails, getExistingClaims);
 
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -62,6 +62,8 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
 				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
+				if(getExistingClaims)
+					myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				PolicyHolderDetailsActivity.this.startActivity(myIntent);
 			}

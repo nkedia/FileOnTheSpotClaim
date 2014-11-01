@@ -57,8 +57,9 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		List<SoapObject> result = null;
 		request.addProperty(policyId);
 		try {
+			String soapAction = "getExistingClaims";
 			//call getExistingClaims web service
-			result = new ExistingClaimsServiceTask().execute(request).get();
+			result = new ExistingClaimsServiceTask(soapAction ).execute(request).get();
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
@@ -142,6 +143,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	            		   myIntent.putExtra("vehicleDetails", claim.getVehicleDetails());
 	       				   myIntent.putExtra("accidentDetails", claim.getAccidentDetails());
 	       				   myIntent.putExtra("driverDetails", claim.getDriverDetails());
+	       				   myIntent.putExtra("claimId", claim.getClaimId());
 	            		   myIntent.putExtra("getExistingClaims", true);
 	            		   GetExistingClaimsActivity.this.startActivity(myIntent);
 	            	   }

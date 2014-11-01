@@ -23,7 +23,7 @@ public class StatementsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statements);
-		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		
 		Button bt = (Button) findViewById(R.id.stmt_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -33,6 +33,8 @@ public class StatementsActivity extends ActionBarActivity {
 				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
 				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
+				if(getExistingClaims)
+    				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				StatementsActivity.this.startActivity(myIntent);
 			}

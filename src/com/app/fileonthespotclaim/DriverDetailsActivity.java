@@ -1,27 +1,18 @@
 package com.app.fileonthespotclaim;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
 import com.app.service.entity.LicenseType;
-import com.app.service.entity.PolicyHolderDetailsType;
-import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 public class DriverDetailsActivity extends ActionBarActivity {
@@ -77,7 +68,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
         });
         
         DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
-		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		setDriverDetails(driverDetails, getExistingClaims);
 		
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -89,6 +80,8 @@ public class DriverDetailsActivity extends ActionBarActivity {
 				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
 				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 				myIntent.putExtra("driverDetails", driverDetails);
+				if(getExistingClaims)
+    				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				DriverDetailsActivity.this.startActivity(myIntent);
 			}

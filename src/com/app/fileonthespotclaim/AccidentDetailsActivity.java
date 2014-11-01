@@ -46,7 +46,7 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 		//TODO set map to nearest police station for edittext6
 		
 		AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
-		getExistingClaims = (Boolean) getIntent().getBooleanExtra("getExistingClaims", false);
+		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		setAccidentDetails(accidentDetails, getExistingClaims);
 
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -58,6 +58,8 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
 				myIntent.putExtra("accidentDetails", accidentDetails); 
 				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
+				if(getExistingClaims)
+    				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				AccidentDetailsActivity.this.startActivity(myIntent);
 			}

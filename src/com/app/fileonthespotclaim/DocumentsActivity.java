@@ -2,6 +2,7 @@ package com.app.fileonthespotclaim;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.ksoap2.serialization.PropertyInfo;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.app.service.ExistingClaimsServiceTask;
 import com.app.service.NewClaimsServiceTask;
 import com.app.service.S3UploadTask;
 import com.app.service.entity.AccidentDetailsType;
@@ -41,74 +43,62 @@ public class DocumentsActivity extends ActionBarActivity {
 	private Button bt3;
 
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
-	private static final String METHOD_NAME = "fileNewClaim";
+	private static final String METHOD_NAME1 = "fileNewClaim";
+	private static final String METHOD_NAME2 = "updateExistingClaims";
 	private SoapPrimitive result = null;
 	private Intent myIntent;
+	public Boolean getExistingClaims = false;
+	public String claimId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_documents);
 
+		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
+		claimId = getIntent().getStringExtra("claimId");
 		//submit File new Claim
 		bt = (Button) findViewById(R.id.submit_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
-				if(result == null) {
-					Toast.makeText(DocumentsActivity.this, "This app works", Toast.LENGTH_LONG).show();
+				if(getExistingClaims) {
 					myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
-
-					PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
-					VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
-					AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
-					DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
-
-					PropertyInfo policyHolderDetailsProp = new PropertyInfo();
-					policyHolderDetailsProp.name = "policyHolderDetails";
-					policyHolderDetailsProp.type = PolicyHolderDetailsType.class;
-					policyHolderDetailsProp.setValue(policyHolderDetails);
-
-					PropertyInfo vehicleDetailsProp = new PropertyInfo();
-					vehicleDetailsProp.name="vehicleDetails";
-					vehicleDetailsProp.type= VehicleDetailsType.class;
-					vehicleDetailsProp.setValue(vehicleDetails);
-
-					PropertyInfo accidentDetailsProp = new PropertyInfo();
-					accidentDetailsProp.name = "accidentDetails";
-					accidentDetailsProp.type = AccidentDetailsType.class;
-					accidentDetailsProp.setValue(accidentDetails);
-
-					PropertyInfo driverDetailsProp = new PropertyInfo();
-					driverDetailsProp.name = "driverDetails";
-					driverDetailsProp.type = DriverDetailsType.class;
-					driverDetailsProp.setValue(driverDetails);
-
-					SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
-
-					request.addProperty(policyHolderDetailsProp);
-					request.addProperty(vehicleDetailsProp);
-					request.addProperty(accidentDetailsProp);
-					request.addProperty(driverDetailsProp);
+					SoapObject request = getRequestObject();
+					//TODO Calling updateExistingClaim web service
 					try {
-						// Calling fileNewClaim web service
-						result = new NewClaimsServiceTask().execute(request).get();
+						result = (SoapPrimitive)((List) new ExistingClaimsServiceTask("updateExistingClaims").execute(request).get()).get(0);
 					} catch (InterruptedException | ExecutionException e) {
 						e.printStackTrace();
 					}
-					if(photoFile != null) {
-						uploadFiles(result);
-					} else {
-						Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
-					}
+				//TODO upload garage bill document and videos to s3 
+					Toast.makeText(DocumentsActivity.this, "Update Existing Claim Successful", Toast.LENGTH_LONG).show();
+					DocumentsActivity.this.startActivity(myIntent);
 				} else {
-					if(photoFile != null) {
-						uploadFiles(result);
+					if(result == null) {
+						myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+						SoapObject request = getRequestObject();
+						try {
+							// Calling fileNewClaim web service
+							result = new NewClaimsServiceTask().execute(request).get();
+						} catch (InterruptedException | ExecutionException e) {
+							e.printStackTrace();
+						}
+						if(photoFile != null) {
+							uploadFiles(result);
+						} else {
+							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
+						}
 					} else {
-						Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
+						if(photoFile != null) {
+							uploadFiles(result);
+						} else {
+							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
+						}
 					}
 				}
 			}
+
 		};
 		bt.setOnClickListener(myListener);
 
@@ -133,19 +123,65 @@ public class DocumentsActivity extends ActionBarActivity {
 		};
 		bt2.setOnClickListener(myListener2);
 
-		//Cancel File new Insurance
+		//Cancel File new Insurance or Update Existing Claim
 		//Go to Main Activity
 		bt3 = (Button) findViewById(R.id.cancel);
 		Button.OnClickListener myListener3 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
-				Toast.makeText(DocumentsActivity.this, "File New Claim Cancelled", Toast.LENGTH_LONG).show();
+				if(getExistingClaims)
+					Toast.makeText(DocumentsActivity.this, "Update Existing Claim Cancelled", Toast.LENGTH_LONG).show();
+				else
+					Toast.makeText(DocumentsActivity.this, "File New Claim Cancelled", Toast.LENGTH_LONG).show();
 				myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 				DocumentsActivity.this.startActivity(myIntent);
 			}
 		};
 		bt3.setOnClickListener(myListener3);
 
+	}
+
+	protected SoapObject getRequestObject() {
+		PolicyHolderDetailsType policyHolderDetails = (PolicyHolderDetailsType) getIntent().getParcelableExtra("policyHolderDetails");
+		VehicleDetailsType vehicleDetails = (VehicleDetailsType) getIntent().getParcelableExtra("vehicleDetails");
+		AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
+		DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
+
+		PropertyInfo policyHolderDetailsProp = new PropertyInfo();
+		policyHolderDetailsProp.name = "policyHolderDetails";
+		policyHolderDetailsProp.type = PolicyHolderDetailsType.class;
+		policyHolderDetailsProp.setValue(policyHolderDetails);
+
+		PropertyInfo vehicleDetailsProp = new PropertyInfo();
+		vehicleDetailsProp.name="vehicleDetails";
+		vehicleDetailsProp.type= VehicleDetailsType.class;
+		vehicleDetailsProp.setValue(vehicleDetails);
+
+		PropertyInfo accidentDetailsProp = new PropertyInfo();
+		accidentDetailsProp.name = "accidentDetails";
+		accidentDetailsProp.type = AccidentDetailsType.class;
+		accidentDetailsProp.setValue(accidentDetails);
+
+		PropertyInfo driverDetailsProp = new PropertyInfo();
+		driverDetailsProp.name = "driverDetails";
+		driverDetailsProp.type = DriverDetailsType.class;
+		driverDetailsProp.setValue(driverDetails);
+		SoapObject request = null;
+		if(getExistingClaims) {
+			request = new SoapObject(NAMESPACE, METHOD_NAME2);
+			request.addProperty("claimId", claimId);
+			request.addProperty("policeStationName", accidentDetails.getPoliceStationName());
+			request.addProperty("FIRNo", accidentDetails.getFIRNo());
+		}
+		else {
+			request = new SoapObject(NAMESPACE, METHOD_NAME1);
+			request.addProperty(policyHolderDetailsProp);
+			request.addProperty(vehicleDetailsProp);
+			request.addProperty(accidentDetailsProp);
+			request.addProperty(driverDetailsProp);
+		}
+
+		return request;
 	}
 
 	protected void uploadFiles(SoapPrimitive result2) {
@@ -155,6 +191,7 @@ public class DocumentsActivity extends ActionBarActivity {
 			//saving documents to S3
 			//Go to Main Activity
 			new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath());
+			Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
 			DocumentsActivity.this.startActivity(myIntent);
 		} catch (Exception e) {
 			e.printStackTrace();

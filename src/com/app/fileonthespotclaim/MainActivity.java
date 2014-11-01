@@ -1,8 +1,10 @@
 package com.app.fileonthespotclaim;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import com.app.service.entity.AccidentDetailsType;
 import com.app.service.entity.DriverDetailsType;
@@ -14,7 +16,12 @@ import com.app.service.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
 				myIntent.putExtra("vehicleDetails", vehicleDetails);
 				myIntent.putExtra("accidentDetails", accidentDetails);
 				myIntent.putExtra("driverDetails", driverDetails);
-				//myIntent.putExtra("fileNewClaim", true);
 				MainActivity.this.startActivity(myIntent);
 			}
 		};
@@ -98,8 +104,29 @@ public class MainActivity extends ActionBarActivity {
 		accidentDetails.setSpeed("60");
 		accidentDetails.setNoOfPeopleTravelling("1");
 		//TODO set current location
+		Address currAddress = null;
+		LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+		Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+		if(location != null) {
+			//location.
+			Geocoder geoCoder = new Geocoder(getApplicationContext());
+			try {
+				 List<Address> address = geoCoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+				 if(address.size() == 1)
+					 currAddress = address.get(0);
+			} catch (Exception e) {
+				// TODO Do not throw, if location is not availale, ask user to enter..
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
+		
+		
 		//TODO set nearest policestation name
-		accidentDetails.setPlace("");
+		if(currAddress!=null)
+			accidentDetails.setPlace(currAddress.getSubAdminArea() + ", " + currAddress.getSubLocality() + ", " + currAddress.getLocality());
+		else
+			accidentDetails.setPlace("");
 		accidentDetails.setPoliceStationName("");
 		accidentDetails.setMileage("15");
 		accidentDetails.setFIRNo("");
