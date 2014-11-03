@@ -1,18 +1,19 @@
 package com.app.fileonthespotclaim;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import com.app.service.entity.AccidentDetailsType;
-import com.app.service.entity.DriverDetailsType;
-import com.app.service.entity.LicenseType;
-import com.app.service.entity.PeriodOfInsuranceType;
-import com.app.service.entity.PhoneType;
-import com.app.service.entity.PolicyHolderDetailsType;
-import com.app.service.entity.VehicleDetailsType;
+import com.app.entity.AccidentDetailsType;
+import com.app.entity.DriverDetailsType;
+import com.app.entity.LicenseType;
+import com.app.entity.PeriodOfInsuranceType;
+import com.app.entity.PhoneType;
+import com.app.entity.PolicyHolderDetailsType;
+import com.app.entity.VehicleDetailsType;
+import com.app.task.FetchLocationTask;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
@@ -21,18 +22,22 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements LocationListener{
 
-	Button nc;
-	Button ec;
+	private Button nc;
+	private Button ec;
+	protected String currLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
 		ec.setOnClickListener(myListener2);
 
 	}
-	
+
 
 
 	protected DriverDetailsType getDriverDetails() {
@@ -104,35 +109,18 @@ public class MainActivity extends ActionBarActivity {
 		accidentDetails.setSpeed("60");
 		accidentDetails.setNoOfPeopleTravelling("1");
 		//TODO set current location
-		Address currAddress = null;
 		LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-		Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
-		if(location != null) {
-			//location.
-			Geocoder geoCoder = new Geocoder(getApplicationContext());
-			try {
-				 List<Address> address = geoCoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-				 if(address.size() == 1)
-					 currAddress = address.get(0);
-			} catch (Exception e) {
-				// TODO Do not throw, if location is not availale, ask user to enter..
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
-		}
-		
-		
-		//TODO set nearest policestation name
-		if(currAddress!=null)
-			accidentDetails.setPlace(currAddress.getSubAdminArea() + ", " + currAddress.getSubLocality() + ", " + currAddress.getLocality());
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		if(!currLocation.isEmpty() && currLocation!=null)
+			accidentDetails.setPlace(currLocation);
 		else
 			accidentDetails.setPlace("");
+		//TODO set nearest policestation name
 		accidentDetails.setPoliceStationName("");
 		accidentDetails.setMileage("15");
 		accidentDetails.setFIRNo("");
 		return accidentDetails;
 	}
-
 
 
 	protected VehicleDetailsType getVehicleDetails() {
@@ -147,8 +135,6 @@ public class MainActivity extends ActionBarActivity {
 		vehicleDetails.setColor("color123");
 		return vehicleDetails;
 	}
-
-
 
 	protected PolicyHolderDetailsType getPolicyHolderDetails() {
 		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
@@ -171,8 +157,6 @@ public class MainActivity extends ActionBarActivity {
 		return policyHolderDetails;
 	}
 
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -187,8 +171,42 @@ public class MainActivity extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			Toast.makeText(MainActivity.this, "Settings option selected", Toast.LENGTH_LONG).show();
+			Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+			MainActivity.this.startActivity(myIntent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		try {
+			currLocation = new FetchLocationTask().execute(location.getLatitude(), location.getLongitude()).get();
+			Log.d("Latitude, Longitude", location.getLatitude() + ", " + location.getLongitude());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		Log.d("Latitude","disable");
+
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		Log.d("Latitude","enable");
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		Log.d("Latitude","status");
 	}
 }

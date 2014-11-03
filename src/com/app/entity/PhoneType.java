@@ -1,5 +1,5 @@
 
-package com.app.service.entity;
+package com.app.entity;
 
 import java.util.Hashtable;
 

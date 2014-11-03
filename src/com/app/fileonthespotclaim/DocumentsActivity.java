@@ -2,7 +2,6 @@ package com.app.fileonthespotclaim;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.ksoap2.serialization.PropertyInfo;
@@ -16,19 +15,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.app.service.ExistingClaimsServiceTask;
-import com.app.service.NewClaimsServiceTask;
-import com.app.service.S3UploadTask;
-import com.app.service.entity.AccidentDetailsType;
-import com.app.service.entity.DriverDetailsType;
-import com.app.service.entity.PolicyHolderDetailsType;
-import com.app.service.entity.VehicleDetailsType;
+import com.app.entity.AccidentDetailsType;
+import com.app.entity.DriverDetailsType;
+import com.app.entity.PolicyHolderDetailsType;
+import com.app.entity.VehicleDetailsType;
+import com.app.task.NewClaimsServiceTask;
+import com.app.task.S3UploadTask;
+import com.app.task.UpdateExistingClaimsServiceTask;
 import com.example.fileonthespotclaim.R;
 
 @SuppressLint("NewApi")
@@ -38,7 +38,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	public static int count=0;
 	Intent takePictureIntent;
 	File photoFile;
-	private Button bt;
+	private Button bt1;
 	private Button bt2;
 	private Button bt3;
 
@@ -57,21 +57,23 @@ public class DocumentsActivity extends ActionBarActivity {
 
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		claimId = getIntent().getStringExtra("claimId");
+
 		//submit File new Claim
-		bt = (Button) findViewById(R.id.submit_next);
+		bt1 = (Button) findViewById(R.id.submit_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
 				if(getExistingClaims) {
 					myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 					SoapObject request = getRequestObject();
-					//TODO Calling updateExistingClaim web service
+					//Calling updateExistingClaim web service
 					try {
-						result = (SoapPrimitive)((List) new ExistingClaimsServiceTask("updateExistingClaims").execute(request).get()).get(0);
+						SoapPrimitive result = (SoapPrimitive) new UpdateExistingClaimsServiceTask().execute(request).get();
+						Log.d("Update result", result.toString());
 					} catch (InterruptedException | ExecutionException e) {
 						e.printStackTrace();
 					}
-				//TODO upload garage bill document and videos to s3 
+					//TODO upload garage bill document and videos to s3, rest should not be updated 
 					Toast.makeText(DocumentsActivity.this, "Update Existing Claim Successful", Toast.LENGTH_LONG).show();
 					DocumentsActivity.this.startActivity(myIntent);
 				} else {
@@ -100,10 +102,13 @@ public class DocumentsActivity extends ActionBarActivity {
 			}
 
 		};
-		bt.setOnClickListener(myListener);
+		bt1.setOnClickListener(myListener);
 
 		//Save Damaged Car Image
 		bt2 = (Button) findViewById(R.id.clickImage);
+		if(getExistingClaims) {
+			bt2.setEnabled(false);
+		}
 		Button.OnClickListener myListener2 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -203,6 +208,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.documents, menu);
+		menu.findItem(R.id.action_settings).setVisible(false);
 		return true;
 	}
 

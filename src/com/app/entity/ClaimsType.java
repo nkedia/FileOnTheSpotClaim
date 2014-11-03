@@ -1,4 +1,4 @@
-package com.app.service.entity;
+package com.app.entity;
 
 public class ClaimsType {
 

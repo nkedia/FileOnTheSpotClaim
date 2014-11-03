@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.app.service.entity.PeriodOfInsuranceType;
-import com.app.service.entity.PhoneType;
-import com.app.service.entity.PolicyHolderDetailsType;
+import com.app.entity.PeriodOfInsuranceType;
+import com.app.entity.PhoneType;
+import com.app.entity.PolicyHolderDetailsType;
 import com.example.fileonthespotclaim.R;
 
 public class PolicyHolderDetailsActivity extends ActionBarActivity {
@@ -125,6 +125,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.policy_holder_details, menu);
+		menu.findItem(R.id.action_settings).setVisible(false);
 		return true;
 	}
 

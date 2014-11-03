@@ -87,4 +87,7 @@
         <item>Learners</item>
     </string-array>
 
+    <string name="title_activity_settings">Settings</string>
+    <string name="enterDetails">Enter your Personal Details here:</string>
+
 </resources>

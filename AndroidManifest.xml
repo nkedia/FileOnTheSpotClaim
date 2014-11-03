@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="21" />
 
     <uses-feature
@@ -59,6 +59,10 @@
         <activity
             android:name="com.app.fileonthespotclaim.GetExistingClaimsActivity"
             android:label="@string/title_activity_get_existing_claims" >
+        </activity>
+        <activity
+            android:name="com.app.fileonthespotclaim.SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

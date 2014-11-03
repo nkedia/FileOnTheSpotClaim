@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.app.service.entity.AccidentDetailsType;
+import com.app.entity.AccidentDetailsType;
 import com.example.fileonthespotclaim.R;
 
 public class AccidentDetailsActivity extends ActionBarActivity {
@@ -114,6 +114,7 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.accident_details, menu);
+		menu.findItem(R.id.action_settings).setVisible(false);
 		return true;
 	}
 

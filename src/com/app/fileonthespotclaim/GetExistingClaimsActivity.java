@@ -21,15 +21,15 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.service.ExistingClaimsServiceTask;
-import com.app.service.entity.AccidentDetailsType;
-import com.app.service.entity.ClaimsType;
-import com.app.service.entity.DriverDetailsType;
-import com.app.service.entity.LicenseType;
-import com.app.service.entity.PeriodOfInsuranceType;
-import com.app.service.entity.PhoneType;
-import com.app.service.entity.PolicyHolderDetailsType;
-import com.app.service.entity.VehicleDetailsType;
+import com.app.entity.AccidentDetailsType;
+import com.app.entity.ClaimsType;
+import com.app.entity.DriverDetailsType;
+import com.app.entity.LicenseType;
+import com.app.entity.PeriodOfInsuranceType;
+import com.app.entity.PhoneType;
+import com.app.entity.PolicyHolderDetailsType;
+import com.app.entity.VehicleDetailsType;
+import com.app.task.ExistingClaimsServiceTask;
 import com.example.fileonthespotclaim.R;
 
 public class GetExistingClaimsActivity extends ActionBarActivity {
@@ -57,9 +57,8 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		List<SoapObject> result = null;
 		request.addProperty(policyId);
 		try {
-			String soapAction = "getExistingClaims";
 			//call getExistingClaims web service
-			result = new ExistingClaimsServiceTask(soapAction ).execute(request).get();
+			result = new ExistingClaimsServiceTask().execute(request).get();
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
@@ -250,6 +249,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.get_existing_claims, menu);
+		menu.findItem(R.id.action_settings).setVisible(false);
 		return true;
 	}
 

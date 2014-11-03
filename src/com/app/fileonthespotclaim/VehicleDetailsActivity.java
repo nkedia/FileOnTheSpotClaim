@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.app.service.entity.PolicyHolderDetailsType;
-import com.app.service.entity.VehicleDetailsType;
+import com.app.entity.PolicyHolderDetailsType;
+import com.app.entity.VehicleDetailsType;
 import com.example.fileonthespotclaim.R;
 
 public class VehicleDetailsActivity extends ActionBarActivity {
@@ -108,6 +108,7 @@ public class VehicleDetailsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.vehicle_details, menu);
+		menu.findItem(R.id.action_settings).setVisible(false);
 		return true;
 	}
 

@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.app.service.entity.DriverDetailsType;
-import com.app.service.entity.LicenseType;
+import com.app.entity.DriverDetailsType;
+import com.app.entity.LicenseType;
 import com.example.fileonthespotclaim.R;
 
 public class DriverDetailsActivity extends ActionBarActivity {
@@ -142,6 +142,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.driver_details, menu);
+		menu.findItem(R.id.action_settings).setVisible(false);
 		return true;
 	}
 
