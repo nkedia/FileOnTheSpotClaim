@@ -15,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="15dp"
         android:ems="10"
         android:text="@string/regdNo" />
 
@@ -26,7 +26,7 @@
         android:layout_alignLeft="@+id/make"
         android:layout_alignStart="@+id/make"
         android:layout_below="@+id/make"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="15dp"
         android:text="@string/dateOfFirstReg" />
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_alignLeft="@+id/regdNo"
         android:layout_alignStart="@+id/regdNo"
         android:layout_below="@+id/regdNo"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="15dp"
         android:text="@string/make" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_alignLeft="@+id/dateOfFirstReg"
         android:layout_alignStart="@+id/dateOfFirstReg"
         android:layout_below="@+id/dateOfFirstReg"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="@string/chassisNo" />
 
     <TextView
@@ -56,7 +56,7 @@
         android:layout_alignLeft="@+id/chassisNo"
         android:layout_alignStart="@+id/chassisNo"
         android:layout_below="@+id/chassisNo"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="15dp"
         android:text="@string/engineNo" />
 
     <TextView
@@ -65,7 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/engineNo"
         android:layout_alignStart="@+id/engineNo"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/engineNo"
+        android:layout_marginTop="15dp"
         android:text="@string/dateOfTx" />
 
     <TextView
@@ -75,7 +76,7 @@
         android:layout_alignLeft="@+id/dateOfTx"
         android:layout_alignStart="@+id/dateOfTx"
         android:layout_below="@+id/dateOfTx"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         android:text="@string/typeOfFuel" />
 
     <TextView
@@ -85,7 +86,7 @@
         android:layout_alignLeft="@+id/typeOfFuel"
         android:layout_alignStart="@+id/typeOfFuel"
         android:layout_below="@+id/typeOfFuel"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="@string/colour" />
 
     <EditText
@@ -94,93 +95,78 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/regdNo"
         android:layout_alignBottom="@+id/regdNo"
-        android:layout_toEndOf="@+id/dateOfTx"
-        android:layout_toRightOf="@+id/dateOfTx"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="REGD123"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/make"
         android:layout_alignBottom="@+id/make"
-        android:layout_alignEnd="@+id/editText1"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_alignStart="@+id/editText1"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="make"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dateOfFirstReg"
         android:layout_alignBottom="@+id/dateOfFirstReg"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="2010-07-08"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/engineNo"
-        android:layout_toEndOf="@+id/dateOfTx"
-        android:layout_toRightOf="@+id/dateOfTx"
+        android:layout_alignBaseline="@+id/chassisNo"
+        android:layout_alignBottom="@+id/chassisNo"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="chasis123"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_below="@+id/editText4"
+        android:layout_alignBaseline="@+id/engineNo"
+        android:layout_alignBottom="@+id/engineNo"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="engine123"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/dateOfTx"
-        android:layout_toRightOf="@+id/dateOfTx"
+        android:layout_alignBaseline="@+id/dateOfTx"
+        android:layout_alignBottom="@+id/dateOfTx"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="2012-07-08"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText6"
-        android:layout_alignLeft="@+id/editText6"
-        android:layout_alignRight="@+id/editText6"
-        android:layout_alignStart="@+id/editText6"
-        android:layout_below="@+id/dateOfTx"
+        android:layout_alignBaseline="@+id/typeOfFuel"
+        android:layout_alignBottom="@+id/typeOfFuel"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="type"
         android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/colour"
         android:layout_alignBottom="@+id/colour"
-        android:layout_toEndOf="@+id/dateOfTx"
-        android:layout_toRightOf="@+id/dateOfTx"
+        android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:text="white"
         android:textSize="10dp" />
 
     <Button

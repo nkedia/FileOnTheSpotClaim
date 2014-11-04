@@ -86,6 +86,7 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 		office.setText(policyHolderDetails.getPhoneType().getOffice());
 		residence.setText(policyHolderDetails.getPhoneType().getResidence());
 		mobile.setText(policyHolderDetails.getPhoneType().getMobile());
+		email.setText(policyHolderDetails.getEmailOfInsured());
 		
 		if (getExistingClaims) {
 			policyNo.setEnabled(false);

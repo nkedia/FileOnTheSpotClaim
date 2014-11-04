@@ -7,7 +7,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry exported="true" kind="lib" path="/Users/vikask/Desktop/software/aws-android-sdk-2.1.1/lib/release/aws-android-sdk-2.1.1-s3.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/vikask/Desktop/software/aws-android-sdk-2.1.1/lib/release/aws-android-sdk-2.1.1-core.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/google-play-services_lib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/android-support-v7-appcompat"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

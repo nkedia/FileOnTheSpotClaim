@@ -3,8 +3,15 @@ package com.app.fileonthespotclaim;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.app.entity.AccidentDetailsType;
 import com.app.entity.DriverDetailsType;
@@ -13,27 +20,10 @@ import com.app.entity.PeriodOfInsuranceType;
 import com.app.entity.PhoneType;
 import com.app.entity.PolicyHolderDetailsType;
 import com.app.entity.VehicleDetailsType;
-import com.app.task.FetchLocationTask;
 import com.example.fileonthespotclaim.R;
 
-import android.support.v7.app.ActionBarActivity;
-import android.content.Context;
-import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-
-public class MainActivity extends ActionBarActivity implements LocationListener{
+public class MainActivity extends ActionBarActivity {
 
 	private Button nc;
 	private Button ec;
@@ -108,13 +98,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener{
 		accidentDetails.setTime(currTime);
 		accidentDetails.setSpeed("60");
 		accidentDetails.setNoOfPeopleTravelling("1");
-		//TODO set current location
-		LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-		if(!currLocation.isEmpty() && currLocation!=null)
-			accidentDetails.setPlace(currLocation);
-		else
-			accidentDetails.setPlace("");
 		//TODO set nearest policestation name
 		accidentDetails.setPoliceStationName("");
 		accidentDetails.setMileage("15");
@@ -179,34 +162,4 @@ public class MainActivity extends ActionBarActivity implements LocationListener{
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
-		try {
-			currLocation = new FetchLocationTask().execute(location.getLatitude(), location.getLongitude()).get();
-			Log.d("Latitude, Longitude", location.getLatitude() + ", " + location.getLongitude());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		Log.d("Latitude","disable");
-
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		Log.d("Latitude","enable");
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		Log.d("Latitude","status");
-	}
 }

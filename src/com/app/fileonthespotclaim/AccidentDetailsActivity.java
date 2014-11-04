@@ -1,8 +1,13 @@
 package com.app.fileonthespotclaim;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.app.entity.AccidentDetailsType;
+import com.app.task.FetchLocationTask;
 import com.example.fileonthespotclaim.R;
 
-public class AccidentDetailsActivity extends ActionBarActivity {
+public class AccidentDetailsActivity extends ActionBarActivity implements LocationListener{
 
 	Button bt;
 	EditText date;
@@ -32,6 +38,9 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accident_details);
 
+		LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
 		bt = (Button) findViewById(R.id.ad_next);
 		date = (EditText) findViewById(R.id.editText1);
 		time = (EditText) findViewById(R.id.editText2);
@@ -44,7 +53,7 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 		fir = (TextView) findViewById(R.id.firNo);
 
 		//TODO set map to nearest police station for edittext6
-		
+
 		AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		setAccidentDetails(accidentDetails, getExistingClaims);
@@ -59,7 +68,7 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 				myIntent.putExtra("accidentDetails", accidentDetails); 
 				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
 				if(getExistingClaims)
-    				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
+					myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				AccidentDetailsActivity.this.startActivity(myIntent);
 			}
@@ -73,13 +82,14 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 		date.setText(accidentDetails.getDateOfAccident());
 		time.setText(accidentDetails.getTime());
 		speed.setText(accidentDetails.getSpeed());
-		place.setText(accidentDetails.getPlace());
+		//place.setText(accidentDetails.getPlace());
+
 		peopleNo.setText(accidentDetails.getNoOfPeopleTravelling());
 		policeStationName.setText(accidentDetails.getPoliceStationName());
 		mileage.setText(accidentDetails.getMileage());
 		fir.setEnabled(false);
 		firNo.setEnabled(false);
-		
+
 		if(getExistingClaims) {
 			date.setEnabled(false);
 			time.setEnabled(false);
@@ -91,9 +101,9 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 			fir.setEnabled(true);
 			firNo.setEnabled(true);
 			firNo.setText(accidentDetails.getFIRNo());
-			
+
 		}
-		
+
 	}
 
 	protected AccidentDetailsType getAccidentDetails() {
@@ -128,5 +138,36 @@ public class AccidentDetailsActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		if(place.getText().toString().isEmpty()) {
+			try { 
+				String latLong = location.getLatitude() + "," + location.getLongitude();
+				String currPlace = new FetchLocationTask().execute(latLong).get();
+				place.setText(currPlace);
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
+		Log.d("Latitude, Longitude", location.getLatitude() + ", " + location.getLongitude());
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		Log.d("Latitude","disable");
+
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		Log.d("Latitude","enable");
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		Log.d("Latitude","status");
 	}
 }
