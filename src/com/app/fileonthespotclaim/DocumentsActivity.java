@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.entity.AccidentDetailsType;
@@ -38,9 +39,15 @@ public class DocumentsActivity extends ActionBarActivity {
 	public static int count=0;
 	Intent takePictureIntent;
 	File photoFile;
+	File billPhoto;
+	File firPhoto;
 	private Button bt1;
 	private Button bt2;
 	private Button bt3;
+	private Button bt4;
+	private Button bt5;
+	private TextView bills;
+	private TextView fir;
 
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME1 = "fileNewClaim";
@@ -127,7 +134,61 @@ public class DocumentsActivity extends ActionBarActivity {
 			}
 		};
 		bt2.setOnClickListener(myListener2);
+		
+		if(!getExistingClaims) {
+			bt4.setEnabled(false);
+			bt5.setEnabled(false);
+			bills = (TextView) findViewById(R.id.bills);
+			bills.setEnabled(false);
+			fir = (TextView) findViewById(R.id.fir);
+			fir.setEnabled(false);
+		}
+		
+		//Save FIR copy
+		bt4 = (Button) findViewById(R.id.clickImageFIR);
+		Button.OnClickListener myListener4 = new Button.OnClickListener(){
 
+			public void onClick(View v) {
+				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				try {
+					photoFile = File.createTempFile("damagedcar", ".jpg", getApplication().getExternalFilesDir(null));
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(photoFile));
+					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+				}
+			}
+		};
+		bt4.setOnClickListener(myListener4);
+		
+		
+		//Save Garage Bill copy
+		bt5 = (Button) findViewById(R.id.clickImageGB);
+		Button.OnClickListener myListener5 = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				try {
+					photoFile = File.createTempFile("damagedcar", ".jpg", getApplication().getExternalFilesDir(null));
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(photoFile));
+					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+				}
+			}
+		};
+		bt5.setOnClickListener(myListener5);
+		
+		
+		
 		//Cancel File new Insurance or Update Existing Claim
 		//Go to Main Activity
 		bt3 = (Button) findViewById(R.id.cancel);

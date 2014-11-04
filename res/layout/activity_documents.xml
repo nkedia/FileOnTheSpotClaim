@@ -101,6 +101,32 @@
       android:background="@android:color/transparent"
       android:drawableLeft="@drawable/camera1"
       android:drawableStart="@drawable/camera1" />
+  
+  <Button
+      android:id="@+id/clickImageFIR"
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/fir"
+      android:layout_alignBottom="@+id/fir"
+      android:layout_alignEnd="@+id/submit_next"
+      android:layout_alignRight="@+id/submit_next"
+      android:background="@android:color/transparent"
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1" />
+  
+  <Button
+      android:id="@+id/clickImageGB"
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/bills"
+      android:layout_alignBottom="@+id/bills"
+      android:layout_alignEnd="@+id/submit_next"
+      android:layout_alignRight="@+id/submit_next"
+      android:background="@android:color/transparent"
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1" />
 
   <Button
       android:id="@+id/cancel"

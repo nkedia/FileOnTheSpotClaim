@@ -3,31 +3,17 @@ package com.app.fileonthespotclaim;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-//Enter Policy Details
-public class SettingsActivity extends ActionBarActivity {
+// Upload documents
+public class SettingsActivity2 extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_settings);
-		
-		Button bt = (Button) findViewById(R.id.next);
-		Button.OnClickListener myListener = new Button.OnClickListener(){
-
-			public void onClick(View v) {
-				Intent myIntent = new Intent(SettingsActivity.this, SettingsActivity1.class);
-				SettingsActivity.this.startActivity(myIntent);	
-			}
-		};
-		bt.setOnClickListener(myListener);
-		
+		setContentView(R.layout.activity_settings2);
 	}
 
 	@Override

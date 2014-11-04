@@ -1,462 +1,299 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.app.fileonthespotclaim.SettingsActivity" >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/enterDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com..fileonthespotclaim.SettingsActivity" >
+        android:layout_marginTop="7dp"
+        android:text="@string/enterDetails" />
 
-        <TextView
-            android:id="@+id/enterDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/enterDetails" />
+    <TextView
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/period"
+        android:layout_alignStart="@+id/period"
+        android:layout_below="@+id/period"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/from" />
 
-        <TextView
-            android:id="@+id/from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/period"
-            android:layout_alignStart="@+id/period"
-            android:layout_below="@+id/period"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/from" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/period"
+        android:layout_alignStart="@+id/period"
+        android:layout_below="@+id/to"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/nameInsured" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/period"
-            android:layout_alignStart="@+id/period"
-            android:layout_below="@+id/to"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/nameInsured" />
+    <TextView
+        android:id="@+id/pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/address"
+        android:layout_alignStart="@+id/address"
+        android:layout_below="@+id/address"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/pin" />
 
-        <TextView
-            android:id="@+id/pin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/address"
-            android:layout_alignStart="@+id/address"
-            android:layout_below="@+id/address"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/pin" />
+    <TextView
+        android:id="@+id/phoneOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pin"
+        android:layout_alignStart="@+id/pin"
+        android:layout_below="@+id/pin"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/phoneOff" />
 
-        <TextView
-            android:id="@+id/phoneOff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/pin"
-            android:layout_alignStart="@+id/pin"
-            android:layout_below="@+id/pin"
-            android:layout_marginTop="13dp"
-            android:ems="10"
-            android:text="@string/phoneOff" />
+    <TextView
+        android:id="@+id/policyNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enterDetail"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/policyNo" />
 
-        <TextView
-            android:id="@+id/policyNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/enterDetail"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/policyNo" />
+    <TextView
+        android:id="@+id/coverNoteNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/period"
+        android:layout_alignStart="@+id/period"
+        android:layout_below="@+id/policyNo"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/coverNoteNo" />
 
-        <TextView
-            android:id="@+id/coverNoteNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/period"
-            android:layout_alignStart="@+id/period"
-            android:layout_below="@+id/policyNo"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/coverNoteNo" />
+    <TextView
+        android:id="@+id/period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/coverNoteNo"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/period" />
 
-        <TextView
-            android:id="@+id/period"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/coverNoteNo"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/period" />
+    <TextView
+        android:id="@+id/dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/dob" />
 
-        <TextView
-            android:id="@+id/dob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/name"
-            android:layout_alignStart="@+id/name"
-            android:layout_below="@+id/name"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/dob" />
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/dob"
+        android:layout_alignStart="@+id/dob"
+        android:layout_below="@+id/dob"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/address" />
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/dob"
-            android:layout_alignStart="@+id/dob"
-            android:layout_below="@+id/dob"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/address" />
+    <TextView
+        android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/from"
+        android:layout_alignStart="@+id/from"
+        android:layout_below="@+id/from"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/to" />
 
-        <TextView
-            android:id="@+id/to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/from"
-            android:layout_alignStart="@+id/from"
-            android:layout_below="@+id/from"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/to" />
+    <TextView
+        android:id="@+id/phoneRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/phoneOff"
+        android:layout_alignStart="@+id/phoneOff"
+        android:layout_below="@+id/phoneOff"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/phoneRes" />
 
-        <TextView
-            android:id="@+id/phoneRes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/phoneOff"
-            android:layout_alignStart="@+id/phoneOff"
-            android:layout_below="@+id/phoneOff"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/phoneRes" />
+    <TextView
+        android:id="@+id/mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/phoneRes"
+        android:layout_alignStart="@+id/phoneRes"
+        android:layout_below="@+id/phoneRes"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/mobile" />
 
-        <TextView
-            android:id="@+id/mobile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/phoneRes"
-            android:layout_alignStart="@+id/phoneRes"
-            android:layout_below="@+id/phoneRes"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/mobile" />
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_alignStart="@+id/mobile"
+        android:layout_below="@+id/mobile"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:text="@string/email" />
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/mobile"
-            android:layout_alignStart="@+id/mobile"
-            android:layout_below="@+id/mobile"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:text="@string/email" />
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/address"
+        android:layout_alignBottom="@+id/address"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/address"
-            android:layout_alignBottom="@+id/address"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:inputType="textPostalAddress"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/name"
-            android:layout_alignBottom="@+id/name"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/policyNo"
+        android:layout_alignBottom="@+id/policyNo"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/policyNo"
-            android:layout_alignBottom="@+id/policyNo"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/coverNoteNo"
+        android:layout_alignBottom="@+id/coverNoteNo"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/coverNoteNo"
-            android:layout_alignBottom="@+id/coverNoteNo"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/from"
+        android:layout_alignBottom="@+id/from"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/from"
-            android:layout_alignBottom="@+id/from"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/to"
+        android:layout_alignBottom="@+id/to"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/to"
-            android:layout_alignBottom="@+id/to"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dob"
+        android:layout_alignBottom="@+id/dob"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/dob"
-            android:layout_alignBottom="@+id/dob"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pin"
+        android:layout_alignBottom="@+id/pin"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/pin"
-            android:layout_alignBottom="@+id/pin"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/phoneOff"
+        android:layout_alignBottom="@+id/phoneOff"
+        android:layout_alignLeft="@+id/editText9"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:textSize="10dp"
+        android:inputType="phone" />
 
-        <EditText
-            android:id="@+id/editText10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/phoneOff"
-            android:layout_alignBottom="@+id/phoneOff"
-            android:layout_alignLeft="@+id/editText9"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:inputType="phone" />
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/phoneRes"
+        android:layout_alignBottom="@+id/phoneRes"
+        android:layout_alignLeft="@+id/editText9"
+        android:layout_toRightOf="@+id/phoneRes"
+        android:ems="10"
+        android:textSize="10dp"
+        android:inputType="phone" />
 
-        <EditText
-            android:id="@+id/editText11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/phoneRes"
-            android:layout_alignBottom="@+id/phoneRes"
-            android:layout_alignLeft="@+id/editText9"
-            android:layout_toRightOf="@+id/phoneRes"
-            android:ems="10"
-            android:inputType="phone" />
+    <EditText
+        android:id="@+id/editText12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/mobile"
+        android:layout_alignBottom="@+id/mobile"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:inputType="phone"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/mobile"
-            android:layout_alignBottom="@+id/mobile"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:inputType="phone"
-            android:textSize="10dp" />
+    <EditText
+        android:id="@+id/editText13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/email"
+        android:layout_alignBottom="@+id/email"
+        android:layout_alignRight="@+id/next"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/email"
-            android:layout_alignBottom="@+id/email"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:textSize="10dp" />
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText13"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="7dp"
+        android:text="@string/next" />
 
-        <TextView
-            android:id="@+id/regdNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/email"
-            android:layout_alignStart="@+id/email"
-            android:layout_below="@+id/email"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:text="@string/regdNo" />
-
-        <TextView
-            android:id="@+id/dateOfFirstReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/make"
-            android:layout_alignStart="@+id/make"
-            android:layout_below="@+id/make"
-            android:layout_marginTop="15dp"
-            android:text="@string/dateOfFirstReg" />
-
-        <TextView
-            android:id="@+id/make"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/regdNo"
-            android:layout_alignStart="@+id/regdNo"
-            android:layout_below="@+id/regdNo"
-            android:layout_marginTop="15dp"
-            android:text="@string/make" />
-
-        <TextView
-            android:id="@+id/chassisNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/dateOfFirstReg"
-            android:layout_alignStart="@+id/dateOfFirstReg"
-            android:layout_below="@+id/dateOfFirstReg"
-            android:layout_marginTop="15dp"
-            android:text="@string/chassisNo" />
-
-        <TextView
-            android:id="@+id/engineNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/chassisNo"
-            android:layout_alignStart="@+id/chassisNo"
-            android:layout_below="@+id/chassisNo"
-            android:layout_marginTop="15dp"
-            android:text="@string/engineNo" />
-
-        <TextView
-            android:id="@+id/dateOfTx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/engineNo"
-            android:layout_alignStart="@+id/engineNo"
-            android:layout_below="@+id/engineNo"
-            android:layout_marginTop="15dp"
-            android:text="@string/dateOfTx" />
-
-        <TextView
-            android:id="@+id/typeOfFuel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/dateOfTx"
-            android:layout_alignStart="@+id/dateOfTx"
-            android:layout_below="@+id/dateOfTx"
-            android:layout_marginTop="15dp"
-            android:text="@string/typeOfFuel" />
-
-        <TextView
-            android:id="@+id/colour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/typeOfFuel"
-            android:layout_alignStart="@+id/typeOfFuel"
-            android:layout_below="@+id/typeOfFuel"
-            android:layout_marginTop="15dp"
-            android:text="@string/colour" />
-
-        <EditText
-            android:id="@+id/editText14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/regdNo"
-            android:layout_alignBottom="@+id/regdNo"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/make"
-            android:layout_alignBottom="@+id/make"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/dateOfFirstReg"
-            android:layout_alignBottom="@+id/dateOfFirstReg"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/chassisNo"
-            android:layout_alignBottom="@+id/chassisNo"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/engineNo"
-            android:layout_alignBottom="@+id/engineNo"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/dateOfTx"
-            android:layout_alignBottom="@+id/dateOfTx"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/typeOfFuel"
-            android:layout_alignBottom="@+id/typeOfFuel"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:text="type"
-            android:textSize="10dp" />
-
-        <EditText
-            android:id="@+id/editText21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/colour"
-            android:layout_alignBottom="@+id/colour"
-            android:layout_alignRight="@+id/submit"
-            android:ems="10"
-            android:textSize="10dp" />
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/submit" />
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

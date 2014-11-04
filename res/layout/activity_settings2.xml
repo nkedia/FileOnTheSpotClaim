@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com..fileonthespotclaim.SettingsActivity2" >
+
+    <TextView
+        android:id="@+id/enterDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/enterDetails2" />
+
+    <TextView
+      android:id="@+id/ic"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/enterDetail"
+      android:layout_alignStart="@+id/enterDetail"
+      android:layout_below="@+id/enterDetail"
+      android:layout_marginTop="35dp"
+      android:text="@string/insuranceCopy" />
+
+  <TextView
+      android:id="@+id/rc"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/ic"
+      android:layout_alignStart="@+id/ic"
+      android:layout_below="@+id/ic"
+      android:layout_marginTop="25dp"
+      android:text="@string/rc" />
+
+  <TextView
+      android:id="@+id/lc"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/rc"
+      android:layout_alignStart="@+id/rc"
+      android:layout_below="@+id/rc"
+      android:layout_marginTop="25dp"
+      android:text="@string/license" />
+    
+  <Button
+      android:id="@+id/clickImageIC"
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/ic"
+      android:layout_alignBottom="@+id/ic"
+      android:layout_alignEnd="@+id/submit"
+      android:layout_alignRight="@+id/submit"
+      android:background="@android:color/transparent"
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1" />
+  
+  <Button
+      android:id="@+id/clickImageRC"
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/rc"
+      android:layout_alignBottom="@+id/rc"
+      android:layout_alignEnd="@+id/submit"
+      android:layout_alignRight="@+id/submit"
+      android:background="@android:color/transparent"
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1" />
+  
+  <Button
+      android:id="@+id/clickImageLC"
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/lc"
+      android:layout_alignBottom="@+id/lc"
+      android:layout_alignEnd="@+id/submit"
+      android:layout_alignRight="@+id/submit"
+      android:background="@android:color/transparent"
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/submit" />
+
+</RelativeLayout>

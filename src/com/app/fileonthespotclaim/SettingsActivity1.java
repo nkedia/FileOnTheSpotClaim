@@ -10,24 +10,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-//Enter Policy Details
-public class SettingsActivity extends ActionBarActivity {
+//Enter Vehicle Details
+public class SettingsActivity1 extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_settings);
+		setContentView(R.layout.activity_settings1);
 		
 		Button bt = (Button) findViewById(R.id.next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
-				Intent myIntent = new Intent(SettingsActivity.this, SettingsActivity1.class);
-				SettingsActivity.this.startActivity(myIntent);	
+				Intent myIntent = new Intent(SettingsActivity1.this, SettingsActivity2.class);
+				SettingsActivity1.this.startActivity(myIntent);	
 			}
 		};
 		bt.setOnClickListener(myListener);
-		
 	}
 
 	@Override
