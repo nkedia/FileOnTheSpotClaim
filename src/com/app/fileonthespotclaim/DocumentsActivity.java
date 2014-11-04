@@ -77,10 +77,11 @@ public class DocumentsActivity extends ActionBarActivity {
 					try {
 						SoapPrimitive result = (SoapPrimitive) new UpdateExistingClaimsServiceTask().execute(request).get();
 						Log.d("Update result", result.toString());
+						uploadFiles(claimId);
+						//TODO upload garage bill document and videos to s3, rest should not be updated
 					} catch (InterruptedException | ExecutionException e) {
 						e.printStackTrace();
 					}
-					//TODO upload garage bill document and videos to s3, rest should not be updated 
 					Toast.makeText(DocumentsActivity.this, "Update Existing Claim Successful", Toast.LENGTH_LONG).show();
 					DocumentsActivity.this.startActivity(myIntent);
 				} else {
@@ -94,13 +95,13 @@ public class DocumentsActivity extends ActionBarActivity {
 							e.printStackTrace();
 						}
 						if(photoFile != null) {
-							uploadFiles(result);
+							uploadFiles(result.toString());
 						} else {
 							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
 						}
 					} else {
 						if(photoFile != null) {
-							uploadFiles(result);
+							uploadFiles(result.toString());
 						} else {
 							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
 						}
@@ -134,7 +135,51 @@ public class DocumentsActivity extends ActionBarActivity {
 			}
 		};
 		bt2.setOnClickListener(myListener2);
-		
+
+
+		//Save FIR copy
+		bt4 = (Button) findViewById(R.id.clickImageFIR);
+		Button.OnClickListener myListener4 = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				try {
+					billPhoto = File.createTempFile("garagebill", ".jpg", getApplication().getExternalFilesDir(null));
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(billPhoto));
+					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+				}
+			}
+		};
+		bt4.setOnClickListener(myListener4);
+
+
+		//Save Garage Bill copy
+		bt5 = (Button) findViewById(R.id.clickImageGB);
+		Button.OnClickListener myListener5 = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				try {
+					firPhoto = File.createTempFile("fir", ".jpg", getApplication().getExternalFilesDir(null));
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(firPhoto));
+					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+				}
+			}
+		};
+		bt5.setOnClickListener(myListener5);
+
 		if(!getExistingClaims) {
 			bt4.setEnabled(false);
 			bt5.setEnabled(false);
@@ -143,52 +188,7 @@ public class DocumentsActivity extends ActionBarActivity {
 			fir = (TextView) findViewById(R.id.fir);
 			fir.setEnabled(false);
 		}
-		
-		//Save FIR copy
-		bt4 = (Button) findViewById(R.id.clickImageFIR);
-		Button.OnClickListener myListener4 = new Button.OnClickListener(){
 
-			public void onClick(View v) {
-				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				try {
-					photoFile = File.createTempFile("damagedcar", ".jpg", getApplication().getExternalFilesDir(null));
-				} catch (IOException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
-				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-							Uri.fromFile(photoFile));
-					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-				}
-			}
-		};
-		bt4.setOnClickListener(myListener4);
-		
-		
-		//Save Garage Bill copy
-		bt5 = (Button) findViewById(R.id.clickImageGB);
-		Button.OnClickListener myListener5 = new Button.OnClickListener(){
-
-			public void onClick(View v) {
-				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				try {
-					photoFile = File.createTempFile("damagedcar", ".jpg", getApplication().getExternalFilesDir(null));
-				} catch (IOException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
-				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-							Uri.fromFile(photoFile));
-					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-				}
-			}
-		};
-		bt5.setOnClickListener(myListener5);
-		
-		
-		
 		//Cancel File new Insurance or Update Existing Claim
 		//Go to Main Activity
 		bt3 = (Button) findViewById(R.id.cancel);
@@ -250,15 +250,24 @@ public class DocumentsActivity extends ActionBarActivity {
 		return request;
 	}
 
-	protected void uploadFiles(SoapPrimitive result2) {
-		String claimId = result.toString();
+	protected void uploadFiles(String claimId) {
 		Context context = DocumentsActivity.this.getApplicationContext();
 		try {
-			//saving documents to S3
-			//Go to Main Activity
-			new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath());
-			Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
-			DocumentsActivity.this.startActivity(myIntent);
+			if(getExistingClaims) {
+				if(billPhoto != null) {
+					new S3UploadTask(context, claimId).execute(billPhoto.getAbsolutePath());
+				}
+				if(firPhoto != null) {
+					new S3UploadTask(context, claimId).execute(firPhoto.getAbsolutePath());
+				}
+			}
+			else {
+				//saving documents to S3
+				//Go to Main Activity
+				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath());
+				Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
+				DocumentsActivity.this.startActivity(myIntent);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

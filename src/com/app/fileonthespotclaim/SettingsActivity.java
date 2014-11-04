@@ -1,5 +1,8 @@
 package com.app.fileonthespotclaim;
 
+import com.app.entity.PeriodOfInsuranceType;
+import com.app.entity.PhoneType;
+import com.app.entity.PolicyHolderDetailsType;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
@@ -9,19 +12,48 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 //Enter Policy Details
 public class SettingsActivity extends ActionBarActivity {
 
+	Button bt;
+	EditText policyNo;
+	EditText coverNoteNo;
+	EditText from;
+	EditText to;
+	EditText name;
+	EditText dob;
+	EditText address;
+	EditText pin;
+	EditText office;
+	EditText residence;
+	EditText mobile;
+	EditText email;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		
+		policyNo = (EditText) findViewById(R.id.editText4);
+		coverNoteNo = (EditText) findViewById(R.id.editText5);
+		from = (EditText) findViewById(R.id.editText6);
+		to = (EditText) findViewById(R.id.editText7);
+		name = (EditText) findViewById(R.id.editText2);
+		dob = (EditText) findViewById(R.id.editText8);
+		address = (EditText) findViewById(R.id.editText1);
+		pin = (EditText) findViewById(R.id.editText9);
+		office = (EditText) findViewById(R.id.editText10);
+		residence = (EditText) findViewById(R.id.editText11);
+		mobile = (EditText) findViewById(R.id.editText12);
+		email = (EditText) findViewById(R.id.editText13);
+		
 		Button bt = (Button) findViewById(R.id.next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
+				 getPolicyHolderDetails();
 				Intent myIntent = new Intent(SettingsActivity.this, SettingsActivity1.class);
 				SettingsActivity.this.startActivity(myIntent);	
 			}
@@ -30,6 +62,23 @@ public class SettingsActivity extends ActionBarActivity {
 		
 	}
 
+	protected PolicyHolderDetailsType getPolicyHolderDetails() {
+		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
+		policyHolderDetails.setPolicyNo(policyNo.getText().toString());
+		policyHolderDetails.setCoverNoteNo(coverNoteNo.getText().toString());
+		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType(from.getText().toString(), to.getText().toString());
+		policyHolderDetails.setPeriodOfInsurance(periodOfInsurance);
+		policyHolderDetails.setNameOfInsured(name.getText().toString());
+		policyHolderDetails.setDobOfInsured(dob.getText().toString());
+		policyHolderDetails.setAddressOfInsured(address.getText().toString());
+		policyHolderDetails.setPinOfInsured(pin.getText().toString());
+		PhoneType phoneType = new PhoneType(office.getText().toString(), residence.getText().toString(), mobile.getText().toString());
+		policyHolderDetails.setPhoneType(phoneType);
+		policyHolderDetails.setEmailOfInsured(email.getText().toString());
+
+		return policyHolderDetails;
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
