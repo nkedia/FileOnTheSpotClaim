@@ -147,6 +147,9 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 			try { 
 				String latLong = location.getLatitude() + "," + location.getLongitude();
 				String currPlace = new FetchLocationTask().execute(latLong).get();
+				if(currPlace.length()>45) {
+					currPlace = currPlace.substring(0, 44);
+				}
 				place.setText(currPlace);
 				String policeStation = new FetchPoliceStationTask().execute(latLong).get();
 				policeStationName.setText(policeStation);
