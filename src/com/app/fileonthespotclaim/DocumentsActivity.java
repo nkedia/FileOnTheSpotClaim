@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -36,8 +37,6 @@ import com.example.fileonthespotclaim.R;
 public class DocumentsActivity extends ActionBarActivity {
 
 	static final int REQUEST_IMAGE_CAPTURE = 1;
-	public static int count=0;
-	Intent takePictureIntent;
 	File photoFile;
 	File billPhoto;
 	File firPhoto;
@@ -46,6 +45,10 @@ public class DocumentsActivity extends ActionBarActivity {
 	private Button bt3;
 	private Button bt4;
 	private Button bt5;
+	private TextView ic;
+	private TextView rc;
+	private TextView lc;
+	private TextView dc;
 	private TextView bills;
 	private TextView fir;
 
@@ -187,6 +190,15 @@ public class DocumentsActivity extends ActionBarActivity {
 			bills.setEnabled(false);
 			fir = (TextView) findViewById(R.id.fir);
 			fir.setEnabled(false);
+		} else {
+			ic = (TextView) findViewById(R.id.insuranceCopy);
+			rc = (TextView) findViewById(R.id.rc);
+			lc = (TextView) findViewById(R.id.license);
+			dc = (TextView) findViewById(R.id.carImage);
+			ic.setEnabled(false);
+			rc.setEnabled(false);
+			lc.setEnabled(false);
+			dc.setEnabled(false);
 		}
 
 		//Cancel File new Insurance or Update Existing Claim
@@ -262,6 +274,7 @@ public class DocumentsActivity extends ActionBarActivity {
 				}
 			}
 			else {
+				//TODO save insurance, rc, license copies
 				//saving documents to S3
 				//Go to Main Activity
 				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath());

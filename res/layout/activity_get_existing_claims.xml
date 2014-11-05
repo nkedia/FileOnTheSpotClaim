@@ -18,17 +18,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="26dp" >
+            android:layout_marginTop="10dp" >
         </TableLayout>
 
         <Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/existingClaimsTable"
+            android:layout_marginTop="15dp"
             android:layout_alignParentRight="true"
             android:text="@string/back" />
+        
     </RelativeLayout>
 
 </ScrollView>

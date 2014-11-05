@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.app.entity.AccidentDetailsType;
 import com.app.task.FetchLocationTask;
+import com.app.task.FetchPoliceStationTask;
 import com.example.fileonthespotclaim.R;
 
 public class AccidentDetailsActivity extends ActionBarActivity implements LocationListener{
@@ -147,6 +148,8 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 				String latLong = location.getLatitude() + "," + location.getLongitude();
 				String currPlace = new FetchLocationTask().execute(latLong).get();
 				place.setText(currPlace);
+				String policeStation = new FetchPoliceStationTask().execute(latLong).get();
+				policeStationName.setText(policeStation);
 			} catch(Exception e) {
 				e.printStackTrace();
 				throw new RuntimeException(e);

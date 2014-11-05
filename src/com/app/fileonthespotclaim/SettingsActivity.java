@@ -53,8 +53,9 @@ public class SettingsActivity extends ActionBarActivity {
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
-				 getPolicyHolderDetails();
+				PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails();
 				Intent myIntent = new Intent(SettingsActivity.this, SettingsActivity1.class);
+				myIntent.putExtra("policyHolderDetails", policyHolderDetails);
 				SettingsActivity.this.startActivity(myIntent);	
 			}
 		};

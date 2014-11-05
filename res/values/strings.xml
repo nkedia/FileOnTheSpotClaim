@@ -91,5 +91,7 @@
     <string name="enterDetails">Enter your Policy Details here:</string>
     <string name="enterDetails1">Enter your Vehicle Details here:</string>
     <string name="enterDetails2">Upload your Documents here:</string>
+    <string name="driverDetails">Driver Details</string>
+    <string name="self">Self</string>
 
 </resources>

@@ -14,16 +14,16 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class FetchLocationTask extends AsyncTask<String, Void, String>{
-
-
+public class FetchPoliceStationTask extends AsyncTask<String, Void, String>{
+	
 	@Override
 	protected String doInBackground(String... plookupString) {
 		String lookupString = plookupString[0];
 		final String lookupStringUriencoded = Uri.encode(lookupString);
 		HttpGet httpGet = new HttpGet(
-				"https://maps.googleapis.com/maps/api/geocode/json?latlng="
-						+ lookupStringUriencoded);
+				"https://maps.googleapis.com/maps/api/place/nearbysearch/json?types=police&location="
+				+ lookupStringUriencoded 
+				+ "&rankby=distance&sensor=true&key=AIzaSyAXd_dfqKZSIpqJrVGYsq1R6pbzZLtLXXU");
 		HttpClient client = new DefaultHttpClient();
 		HttpResponse response;
 		StringBuilder stringBuilder = new StringBuilder();
@@ -41,22 +41,22 @@ public class FetchLocationTask extends AsyncTask<String, Void, String>{
 		}
 
 		JSONObject jsonObject = new JSONObject();
-		String currPlace="";
+		String policeStationName="";
 		try {
 			Log.d("MAPSAPI", stringBuilder.toString());
 			jsonObject = new JSONObject(stringBuilder.toString());
 			if (jsonObject.getString("status").equals("OK")) {
 				jsonObject = jsonObject.getJSONArray("results")
 						.getJSONObject(0);
-				currPlace = jsonObject.getString("formatted_address");
-				Log.d("MAPSAPI", "currPlace " + currPlace);
+				policeStationName = jsonObject.getString("name");
+				Log.d("MAPSAPI", "Police Station Name " + policeStationName);
 			}
 
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
-		return currPlace;
+		return policeStationName;
 	}
 
 
