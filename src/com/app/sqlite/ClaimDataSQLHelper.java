@@ -17,8 +17,8 @@ public class ClaimDataSQLHelper extends SQLiteOpenHelper {
 	// Columns
 	public static final String POLICY_NO = "policyNo";
 	public static final String COVERNOTE_NO = "coverNoteNo";
-	public static final String FROM = "from";
-	public static final String TO = "to";
+	public static final String FROM = "fromDate";
+	public static final String TO = "toDate";
 	public static final String NAME = "name";
 	public static final String DOB = "dob";
 	public static final String ADDRESS = "address";
@@ -28,13 +28,13 @@ public class ClaimDataSQLHelper extends SQLiteOpenHelper {
 	public static final String PHONE_MOB = "mobile";
 	public static final String EMAIL = "email";
 	public static final String REGD_NO = "regdNo";
-	public static final String MAKE = "make";
+	public static final String MAKE = "makeVehicle";
 	public static final String DATE_FIRST_REGISTRATION = "dateFirstRegistration";
 	public static final String CHASSIS_NO = "chassisNo";
 	public static final String ENGINE_NO = "engineNo";
 	public static final String DATE_TRANSFER = "dateTransfer";
 	public static final String TYPE_FUEL = "typeFuel";
-	public static final String COLOR = "color";
+	public static final String COLOR = "colorVehicle";
 	public static final String LICENSE_NO = "licenseNo";
 	public static final String RTO = "rto";
 	public static final String EFFECTIVE_FROM = "effectiveFrom";
@@ -46,6 +46,7 @@ public class ClaimDataSQLHelper extends SQLiteOpenHelper {
 	public ClaimDataSQLHelper(Context context, String dbName,
 			CursorFactory factory, int version) {
 		super(context, dbName, factory, version);
+		//context.deleteDatabase(dbName);
 	}
 
 

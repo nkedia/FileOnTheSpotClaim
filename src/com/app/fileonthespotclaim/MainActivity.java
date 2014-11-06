@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
 				SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
 				Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
 				startManagingCursor(cursor);
-				while(cursor.moveToLast()) {
+				if(cursor.moveToNext()) {
 					//0 will give base id
 					PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(cursor);
 					VehicleDetailsType vehicleDetails = getVehicleDetails(cursor);
@@ -88,18 +88,18 @@ public class MainActivity extends ActionBarActivity {
 
 	protected DriverDetailsType getDriverDetails(Cursor cursor) {
 		DriverDetailsType driverDetails = new DriverDetailsType();
-		driverDetails.setName("Natasha Kedia");
+		driverDetails.setName(cursor.getString(5));
 		driverDetails.setRelationWithInsured("self");
-		driverDetails.setDOB("1984-08-07");
-		driverDetails.setAddress("Agate 104");
-		driverDetails.setContactNo("8008288109");
+		driverDetails.setDOB(cursor.getString(6));
+		driverDetails.setAddress(cursor.getString(7));
+		driverDetails.setContactNo(cursor.getString(11));
 		LicenseType licenseType = new LicenseType();
-		licenseType.setLicenseNo("LicenseNo123");
-		licenseType.setEffectiveFrom("2000-01-01");
-		licenseType.setExpiryDate("2020-12-31");
-		licenseType.setIssuingRTO("RTO");
-		licenseType.setType("Permanent");
-		licenseType.setClazz("HGV");
+		licenseType.setLicenseNo(cursor.getString(21));
+		licenseType.setEffectiveFrom(cursor.getString(22));
+		licenseType.setExpiryDate(cursor.getString(23));
+		licenseType.setIssuingRTO(cursor.getString(24));
+		licenseType.setType(cursor.getString(25));
+		licenseType.setClazz(cursor.getString(26));
 		driverDetails.setLicenseType(licenseType);
 		return driverDetails;
 	}
