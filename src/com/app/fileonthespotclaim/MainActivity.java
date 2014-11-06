@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
 				SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
 				Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
 				startManagingCursor(cursor);
-				if(cursor.moveToNext()) {
+				if(cursor.moveToLast()) {
 					//0 will give base id
 					PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(cursor);
 					VehicleDetailsType vehicleDetails = getVehicleDetails(cursor);
@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
 					myIntent.putExtra("vehicleDetails", vehicleDetails);
 					myIntent.putExtra("accidentDetails", accidentDetails);
 					myIntent.putExtra("driverDetails", driverDetails);
-					//Log.d("", policyNo + ", " + covernote);
+					Log.d("", "Inside cursor while loop");
 				}
 				
 				MainActivity.this.startActivity(myIntent);
@@ -95,9 +95,9 @@ public class MainActivity extends ActionBarActivity {
 		driverDetails.setContactNo(cursor.getString(11));
 		LicenseType licenseType = new LicenseType();
 		licenseType.setLicenseNo(cursor.getString(21));
-		licenseType.setEffectiveFrom(cursor.getString(22));
-		licenseType.setExpiryDate(cursor.getString(23));
-		licenseType.setIssuingRTO(cursor.getString(24));
+		licenseType.setIssuingRTO(cursor.getString(22));
+		licenseType.setEffectiveFrom(cursor.getString(23));
+		licenseType.setExpiryDate(cursor.getString(24));
 		licenseType.setType(cursor.getString(25));
 		licenseType.setClazz(cursor.getString(26));
 		driverDetails.setLicenseType(licenseType);

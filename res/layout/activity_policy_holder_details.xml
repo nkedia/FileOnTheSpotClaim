@@ -249,6 +249,7 @@
             android:layout_alignLeft="@+id/editText9"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
+            android:textSize="10dp" 
             android:inputType="phone" />
 
         <EditText
@@ -260,6 +261,7 @@
             android:layout_alignLeft="@+id/editText9"
             android:layout_toRightOf="@+id/phoneRes"
             android:ems="10"
+            android:textSize="10dp" 
             android:inputType="phone" />
 
         <EditText
@@ -270,8 +272,8 @@
             android:layout_alignBottom="@+id/mobile"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:inputType="phone"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/editText13"

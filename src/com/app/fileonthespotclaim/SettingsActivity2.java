@@ -115,7 +115,7 @@ public class SettingsActivity2 extends ActionBarActivity {
 				claimDataSQLHelper = new ClaimDataSQLHelper(getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
 				SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
 				ContentValues values = createInsertValues(policyHolderDetails, vehicleDetails, driverDetails);
-				db.insert(ClaimDataSQLHelper.TABLE, null, values);
+				long id = db.insert(ClaimDataSQLHelper.TABLE, null, values);
 
 				//Log.d("File Path", insuranceCopy.getAbsolutePath());
 				//Log.d("File Path", rcCopy.getAbsolutePath());
@@ -145,7 +145,7 @@ public class SettingsActivity2 extends ActionBarActivity {
 		values.put(ClaimDataSQLHelper.PHONE_OFF, policyHolderDetails.getPhoneType().getOffice());
 		values.put(ClaimDataSQLHelper.PHONE_RES, policyHolderDetails.getPhoneType().getResidence());
 		values.put(ClaimDataSQLHelper.PHONE_MOB, policyHolderDetails.getPhoneType().getMobile());
-		values.put(ClaimDataSQLHelper.EMAIL, policyHolderDetails.getCoverNoteNo());
+		values.put(ClaimDataSQLHelper.EMAIL, policyHolderDetails.getEmailOfInsured());
 		values.put(ClaimDataSQLHelper.REGD_NO, vehicleDetails.getRegdNo());
 		values.put(ClaimDataSQLHelper.MAKE, vehicleDetails.getMake());
 		values.put(ClaimDataSQLHelper.DATE_FIRST_REGISTRATION, vehicleDetails.getDateOfFirstRegistration());
