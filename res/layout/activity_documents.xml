@@ -137,5 +137,28 @@
       android:layout_alignParentStart="true"
       android:alpha="0.7"
       android:text="@string/cancel"/>
+
+  <TextView
+      android:id="@+id/insuranceText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBottom="@+id/insuranceCopy"
+      android:layout_alignRight="@+id/clickImage"/>
+
+  <TextView
+      android:id="@+id/rcText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/rc"
+      android:layout_alignBottom="@+id/rc"
+      android:layout_alignLeft="@+id/insuranceText"/>
+
+  <TextView
+      android:id="@+id/licenseText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/license"
+      android:layout_alignBottom="@+id/license"
+      android:layout_alignLeft="@+id/rcText"/>
   
 </RelativeLayout>

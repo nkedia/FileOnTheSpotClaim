@@ -13,7 +13,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -51,6 +50,9 @@ public class DocumentsActivity extends ActionBarActivity {
 	private TextView dc;
 	private TextView bills;
 	private TextView fir;
+	private TextView insuranceText;
+	private TextView rcText;
+	private TextView licenseText;
 
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME1 = "fileNewClaim";
@@ -67,7 +69,14 @@ public class DocumentsActivity extends ActionBarActivity {
 
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		claimId = getIntent().getStringExtra("claimId");
-
+		
+		insuranceText = (TextView) findViewById(R.id.insuranceText);
+		rcText = (TextView) findViewById(R.id.rcText);
+		licenseText = (TextView) findViewById(R.id.licenseText);
+		insuranceText.setText("insuranceCopy.jpg");
+		rcText.setText("rcCopy.jpg");
+		licenseText.setText("licenceCopy.jpg");
+		
 		//submit File new Claim
 		bt1 = (Button) findViewById(R.id.submit_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -80,8 +89,9 @@ public class DocumentsActivity extends ActionBarActivity {
 					try {
 						SoapPrimitive result = (SoapPrimitive) new UpdateExistingClaimsServiceTask().execute(request).get();
 						Log.d("Update result", result.toString());
+						//Upload garage bills to s3
 						uploadFiles(claimId);
-						//TODO upload garage bill document and videos to s3, rest should not be updated
+						//TODO upload videos to s3
 					} catch (InterruptedException | ExecutionException e) {
 						e.printStackTrace();
 					}
@@ -98,6 +108,7 @@ public class DocumentsActivity extends ActionBarActivity {
 							e.printStackTrace();
 						}
 						if(photoFile != null) {
+							//upload documents to S3
 							uploadFiles(result.toString());
 						} else {
 							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();

@@ -5,8 +5,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +23,7 @@ import com.app.entity.PeriodOfInsuranceType;
 import com.app.entity.PhoneType;
 import com.app.entity.PolicyHolderDetailsType;
 import com.app.entity.VehicleDetailsType;
+import com.app.sqlite.ClaimDataSQLHelper;
 import com.example.fileonthespotclaim.R;
 
 
@@ -28,6 +32,9 @@ public class MainActivity extends ActionBarActivity {
 	private Button nc;
 	private Button ec;
 	protected String currLocation;
+	protected ClaimDataSQLHelper claimDataSQLHelper;
+	private static final String DATABASE_NAME = "ClaimData.db";
+	private static final int DATABASE_VERSION = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +49,23 @@ public class MainActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent myIntent = new Intent(MainActivity.this, PolicyHolderDetailsActivity.class);
-				PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails();
-				VehicleDetailsType vehicleDetails = getVehicleDetails();
-				AccidentDetailsType accidentDetails = getAccidentDetails();
-				DriverDetailsType driverDetails = getDriverDetails();
-				myIntent.putExtra("policyHolderDetails", policyHolderDetails);
-				myIntent.putExtra("vehicleDetails", vehicleDetails);
-				myIntent.putExtra("accidentDetails", accidentDetails);
-				myIntent.putExtra("driverDetails", driverDetails);
+				claimDataSQLHelper = new ClaimDataSQLHelper(getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
+				SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
+				Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
+				startManagingCursor(cursor);
+				while(cursor.moveToLast()) {
+					//0 will give base id
+					PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(cursor);
+					VehicleDetailsType vehicleDetails = getVehicleDetails(cursor);
+					AccidentDetailsType accidentDetails = getAccidentDetails();
+					DriverDetailsType driverDetails = getDriverDetails(cursor);
+					myIntent.putExtra("policyHolderDetails", policyHolderDetails);
+					myIntent.putExtra("vehicleDetails", vehicleDetails);
+					myIntent.putExtra("accidentDetails", accidentDetails);
+					myIntent.putExtra("driverDetails", driverDetails);
+					//Log.d("", policyNo + ", " + covernote);
+				}
+				
 				MainActivity.this.startActivity(myIntent);
 			}
 		};
@@ -70,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-	protected DriverDetailsType getDriverDetails() {
+	protected DriverDetailsType getDriverDetails(Cursor cursor) {
 		DriverDetailsType driverDetails = new DriverDetailsType();
 		driverDetails.setName("Natasha Kedia");
 		driverDetails.setRelationWithInsured("self");
@@ -98,7 +114,7 @@ public class MainActivity extends ActionBarActivity {
 		accidentDetails.setTime(currTime);
 		accidentDetails.setSpeed("60");
 		accidentDetails.setNoOfPeopleTravelling("1");
-		//TODO set nearest policestation name
+		accidentDetails.setPlace("");
 		accidentDetails.setPoliceStationName("");
 		accidentDetails.setMileage("15");
 		accidentDetails.setFIRNo("");
@@ -106,37 +122,37 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 
-	protected VehicleDetailsType getVehicleDetails() {
+	protected VehicleDetailsType getVehicleDetails(Cursor cursor) {
 		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
-		vehicleDetails.setRegdNo("Regd123");
-		vehicleDetails.setMake("Make123");
-		vehicleDetails.setDateOfFirstRegistration("2010-10-10");
-		vehicleDetails.setChassisNo("ChassisNo123");
-		vehicleDetails.setEngineNo("EngineNo123");
-		vehicleDetails.setDateOfTransfer("2012-10-10");
-		vehicleDetails.setTypeOfFuel("fueltype123");
-		vehicleDetails.setColor("color123");
+		vehicleDetails.setRegdNo(cursor.getString(13));
+		vehicleDetails.setMake(cursor.getString(14));
+		vehicleDetails.setDateOfFirstRegistration(cursor.getString(15));
+		vehicleDetails.setChassisNo(cursor.getString(16));
+		vehicleDetails.setEngineNo(cursor.getString(17));
+		vehicleDetails.setDateOfTransfer(cursor.getString(18));
+		vehicleDetails.setTypeOfFuel(cursor.getString(19));
+		vehicleDetails.setColor(cursor.getString(20));
 		return vehicleDetails;
 	}
 
-	protected PolicyHolderDetailsType getPolicyHolderDetails() {
+	protected PolicyHolderDetailsType getPolicyHolderDetails(Cursor cursor) {
 		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
-		policyHolderDetails.setPolicyNo("policyno8431");
-		policyHolderDetails.setCoverNoteNo("covernote123");
+		policyHolderDetails.setPolicyNo(cursor.getString(1));
+		policyHolderDetails.setCoverNoteNo(cursor.getString(2));
 		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType();
-		periodOfInsurance.setFrom("2013-12-10");
-		periodOfInsurance.setTo("2014-12-10");
+		periodOfInsurance.setFrom(cursor.getString(3));
+		periodOfInsurance.setTo(cursor.getString(4));
 		policyHolderDetails.setPeriodOfInsurance(periodOfInsurance );
-		policyHolderDetails.setNameOfInsured("Natasha Kedia");
-		policyHolderDetails.setDobOfInsured("1984-08-07");
-		policyHolderDetails.setAddressOfInsured("Agate 104");
-		policyHolderDetails.setPinOfInsured("500049");
+		policyHolderDetails.setNameOfInsured(cursor.getString(5));
+		policyHolderDetails.setDobOfInsured(cursor.getString(6));
+		policyHolderDetails.setAddressOfInsured(cursor.getString(7));
+		policyHolderDetails.setPinOfInsured(cursor.getString(8));
 		PhoneType phoneType = new PhoneType();
-		phoneType.setOffice("");
-		phoneType.setMobile("8008288109");
-		phoneType.setResidence("");
+		phoneType.setOffice(cursor.getString(9));
+		phoneType.setResidence(cursor.getString(10));
+		phoneType.setMobile(cursor.getString(11));
 		policyHolderDetails.setPhoneType(phoneType);
-		policyHolderDetails.setEmailOfInsured("natasha@gmail.com");
+		policyHolderDetails.setEmailOfInsured(cursor.getString(12));
 		return policyHolderDetails;
 	}
 
@@ -162,4 +178,5 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	
 }
