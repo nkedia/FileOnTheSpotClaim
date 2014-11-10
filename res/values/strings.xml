@@ -66,6 +66,7 @@
     <string name="rc">RC Copy:</string>
     <string name="license">License Copy:</string>
     <string name="damagedCar">Damaged Car:</string>
+    <string name="damagedCarThirdParty">Damaged Car (Third Party):</string>
     <string name="bills">Garage Bills:</string>
     <string name="fir">FIR Copy:</string>
     <string name="attachImage">Attach Image</string>
@@ -93,5 +94,7 @@
     <string name="enterDetails2">Upload your Documents here:</string>
     <string name="driverDetails">Driver Details</string>
     <string name="self">Self</string>
+    <string name="towVehicle">Need a Tow Vehicle</string>
+    
 
 </resources>

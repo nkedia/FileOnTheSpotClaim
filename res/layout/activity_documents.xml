@@ -36,7 +36,7 @@
       android:layout_alignLeft="@+id/attachDocuments"
       android:layout_alignStart="@+id/attachDocuments"
       android:layout_below="@+id/attachDocuments"
-      android:layout_marginTop="35dp"
+      android:layout_marginTop="20dp"
       android:text="@string/insuranceCopy" />
 
   <TextView
@@ -46,7 +46,7 @@
       android:layout_alignLeft="@+id/insuranceCopy"
       android:layout_alignStart="@+id/insuranceCopy"
       android:layout_below="@+id/insuranceCopy"
-      android:layout_marginTop="25dp"
+      android:layout_marginTop="20dp"
       android:text="@string/rc" />
 
   <TextView
@@ -56,18 +56,8 @@
       android:layout_alignLeft="@+id/rc"
       android:layout_alignStart="@+id/rc"
       android:layout_below="@+id/rc"
-      android:layout_marginTop="25dp"
+      android:layout_marginTop="20dp"
       android:text="@string/license" />
-
-  <TextView
-      android:id="@+id/fir"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/bills"
-      android:layout_alignStart="@+id/bills"
-      android:layout_below="@+id/bills"
-      android:layout_marginTop="25dp"
-      android:text="@string/fir" />
 
   <TextView
       android:id="@+id/carImage"
@@ -76,26 +66,59 @@
       android:layout_alignLeft="@+id/license"
       android:layout_alignStart="@+id/license"
       android:layout_below="@+id/license"
-      android:layout_marginTop="25dp"
+      android:layout_marginTop="20dp"
       android:text="@string/damagedCar" />
+  
+  <TextView
+      android:id="@+id/carImageThirdParty"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/carImage"
+      android:layout_alignStart="@+id/carImage"
+      android:layout_below="@+id/carImage"
+      android:layout_marginTop="20dp"
+      android:text="@string/damagedCarThirdParty" />
 
   <TextView
       android:id="@+id/bills"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/carImage"
-      android:layout_alignStart="@+id/license"
-      android:layout_below="@+id/carImage"
-      android:layout_marginTop="25dp"
+      android:layout_alignLeft="@+id/carImageThirdParty"
+      android:layout_alignStart="@+id/carImageThirdParty"
+      android:layout_below="@+id/carImageThirdParty"
+      android:layout_marginTop="20dp"
       android:text="@string/bills" />
+  
+   <TextView
+      android:id="@+id/fir"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/bills"
+      android:layout_alignStart="@+id/bills"
+      android:layout_below="@+id/bills"
+      android:layout_marginTop="20dp"
+      android:text="@string/fir" />
 
   <Button
-      android:id="@+id/clickImage"
+      android:id="@+id/clickImageCar"
       style="?android:attr/buttonStyleSmall"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignBaseline="@+id/carImage"
       android:layout_alignBottom="@+id/carImage"
+      android:layout_alignEnd="@+id/submit_next"
+      android:layout_alignRight="@+id/submit_next"
+      android:background="@android:color/transparent"
+      android:drawableLeft="@drawable/camera1"
+      android:drawableStart="@drawable/camera1" />
+  
+  <Button
+      android:id="@+id/clickImageCarThirdParty"
+      style="?android:attr/buttonStyleSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/carImageThirdParty"
+      android:layout_alignBottom="@+id/carImageThirdParty"
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
       android:background="@android:color/transparent"
@@ -160,5 +183,15 @@
       android:layout_alignBaseline="@+id/license"
       android:layout_alignBottom="@+id/license"
       android:layout_alignLeft="@+id/rcText"/>
+
+  <CheckBox
+      android:id="@+id/checkBox1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/fir"
+      android:layout_below="@+id/fir"
+      android:layout_marginTop="25dp"
+      android:text="@string/towVehicle"
+      android:checked="true" />
   
 </RelativeLayout>

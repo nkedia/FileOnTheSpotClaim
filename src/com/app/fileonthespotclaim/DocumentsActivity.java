@@ -37,6 +37,7 @@ public class DocumentsActivity extends ActionBarActivity {
 
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	File photoFile;
+	File photoFileThirdParty;
 	File billPhoto;
 	File firPhoto;
 	private Button bt1;
@@ -44,6 +45,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	private Button bt3;
 	private Button bt4;
 	private Button bt5;
+	private Button bt6;
 	private TextView ic;
 	private TextView rc;
 	private TextView lc;
@@ -127,7 +129,7 @@ public class DocumentsActivity extends ActionBarActivity {
 		bt1.setOnClickListener(myListener);
 
 		//Save Damaged Car Image
-		bt2 = (Button) findViewById(R.id.clickImage);
+		bt2 = (Button) findViewById(R.id.clickImageCar);
 		if(getExistingClaims) {
 			bt2.setEnabled(false);
 		}
@@ -150,7 +152,31 @@ public class DocumentsActivity extends ActionBarActivity {
 		};
 		bt2.setOnClickListener(myListener2);
 
+		//Save damaged car Image Third Party
+		bt6 = (Button)findViewById(R.id.clickImageCarThirdParty);
+		if(getExistingClaims) {
+			bt6.setEnabled(false);
+		}
+		Button.OnClickListener myListener6 = new Button.OnClickListener(){
 
+			public void onClick(View v) {
+				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				try {
+					photoFileThirdParty = File.createTempFile("damagedcarThirdParty", ".jpg", getApplication().getExternalFilesDir(null));
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
+				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(photoFileThirdParty));
+					startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+				}
+			}
+		};
+		bt6.setOnClickListener(myListener6);
+		
+		
 		//Save FIR copy
 		bt4 = (Button) findViewById(R.id.clickImageFIR);
 		Button.OnClickListener myListener4 = new Button.OnClickListener(){
@@ -210,6 +236,9 @@ public class DocumentsActivity extends ActionBarActivity {
 			rc.setEnabled(false);
 			lc.setEnabled(false);
 			dc.setEnabled(false);
+			insuranceText.setEnabled(false);
+			rcText.setEnabled(false);
+			licenseText.setEnabled(false);
 		}
 
 		//Cancel File new Insurance or Update Existing Claim
@@ -289,6 +318,9 @@ public class DocumentsActivity extends ActionBarActivity {
 				//saving documents to S3
 				//Go to Main Activity
 				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath());
+				if(photoFileThirdParty != null) {
+					new S3UploadTask(context, claimId).execute(photoFileThirdParty.getAbsolutePath());
+				}
 				Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
 				DocumentsActivity.this.startActivity(myIntent);
 			}
