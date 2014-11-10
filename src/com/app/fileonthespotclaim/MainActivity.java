@@ -40,7 +40,6 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
 
 		nc = (Button) findViewById(R.id.btn_nc);
 		ec = (Button) findViewById(R.id.btn_ec);

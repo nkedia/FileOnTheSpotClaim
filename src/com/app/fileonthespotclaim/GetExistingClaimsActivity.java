@@ -51,7 +51,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		PropertyInfo policyId = new PropertyInfo();
 		policyId.name = "policyId";
 		policyId.type = String.class;
-		policyId.setValue("84321");
+		policyId.setValue("policyno8431");
 		
 		SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 		List<SoapObject> result = null;

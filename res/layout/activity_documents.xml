@@ -166,7 +166,9 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignBottom="@+id/insuranceCopy"
-      android:layout_alignRight="@+id/clickImage"/>
+      android:layout_alignBaseline="@+id/insuranceCopy"
+      android:layout_alignEnd="@+id/submit_next"
+      android:layout_alignRight="@+id/submit_next"/>
 
   <TextView
       android:id="@+id/rcText"
@@ -174,7 +176,8 @@
       android:layout_height="wrap_content"
       android:layout_alignBaseline="@+id/rc"
       android:layout_alignBottom="@+id/rc"
-      android:layout_alignLeft="@+id/insuranceText"/>
+      android:layout_alignEnd="@+id/submit_next"
+      android:layout_alignRight="@+id/submit_next"/>
 
   <TextView
       android:id="@+id/licenseText"
@@ -182,7 +185,8 @@
       android:layout_height="wrap_content"
       android:layout_alignBaseline="@+id/license"
       android:layout_alignBottom="@+id/license"
-      android:layout_alignLeft="@+id/rcText"/>
+      android:layout_alignEnd="@+id/submit_next"
+      android:layout_alignRight="@+id/submit_next"/>
 
   <CheckBox
       android:id="@+id/checkBox1"
