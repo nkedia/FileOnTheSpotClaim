@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -117,10 +119,10 @@ public class SettingsActivity2 extends ActionBarActivity {
 				ContentValues values = createInsertValues(policyHolderDetails, vehicleDetails, driverDetails);
 				long id = db.insert(ClaimDataSQLHelper.TABLE, null, values);
 
-				//Log.d("File Path", insuranceCopy.getAbsolutePath());
-				//Log.d("File Path", rcCopy.getAbsolutePath());
-				//Log.d("File Path", licenseCopy.getAbsolutePath());
-				//Log.d("File Path", Environment.getExternalStorageDirectory().getAbsolutePath());
+				Log.d("File Path", insuranceCopy.getAbsolutePath());
+				Log.d("File Path", rcCopy.getAbsolutePath());
+				Log.d("File Path", licenseCopy.getAbsolutePath());
+				Log.d("File Path", Environment.getExternalStorageDirectory().getAbsolutePath());
 
 				Intent myIntent = new Intent(SettingsActivity2.this, MainActivity.class);
 				SettingsActivity2.this.startActivity(myIntent);	

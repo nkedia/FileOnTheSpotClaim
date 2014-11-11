@@ -315,9 +315,12 @@ public class DocumentsActivity extends ActionBarActivity {
 			}
 			else {
 				//TODO save insurance, rc, license copies
+				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
+				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
+				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
 				//saving documents to S3
 				//Go to Main Activity
-				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath());
+				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath());
 				if(photoFileThirdParty != null) {
 					new S3UploadTask(context, claimId).execute(photoFileThirdParty.getAbsolutePath());
 				}
