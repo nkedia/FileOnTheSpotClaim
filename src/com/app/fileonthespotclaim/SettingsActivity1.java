@@ -5,12 +5,15 @@ import java.util.Calendar;
 import com.app.entity.DriverDetailsType;
 import com.app.entity.LicenseType;
 import com.app.entity.VehicleDetailsType;
+import com.app.sqlite.ClaimDataSQLHelper;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -46,6 +49,9 @@ public class SettingsActivity1 extends ActionBarActivity {
 	Spinner vehicleTypeSpinner;
 	String vehicleClass;
 	String vehicleType;
+	protected ClaimDataSQLHelper claimDataSQLHelper;
+	private static final String DATABASE_NAME = "ClaimData.db";
+	private static final int DATABASE_VERSION = 1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,7 @@ public class SettingsActivity1 extends ActionBarActivity {
             }
         });
         
+        //next button
 		bt = (Button) findViewById(R.id.next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
@@ -94,7 +101,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 		};
 		bt.setOnClickListener(myListener);
 		
-		
+		//get Date of First Registration
 		bt1 = (Button) findViewById(R.id.firstRegDate);
 		Button.OnClickListener myListener1 = new Button.OnClickListener(){
 
@@ -112,8 +119,14 @@ public class SettingsActivity1 extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						regDate = year + "-" + dayOfMonth + "-" + monthOfYear;
-						bt3.setText(regDate);
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						regDate = year + "-" + day + "-" + month;
+						bt1.setText(regDate);
 					}
 
 				}, myyear, mymonth, mydate);
@@ -123,7 +136,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 		};
 		bt1.setOnClickListener(myListener1);
 		
-		
+		// get Date of Transfer
 		bt2 = (Button) findViewById(R.id.transferDate);
 		Button.OnClickListener myListener2 = new Button.OnClickListener(){
 
@@ -141,8 +154,14 @@ public class SettingsActivity1 extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						transferDate = year + "-" + dayOfMonth + "-" + monthOfYear;
-						bt3.setText(transferDate);
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						transferDate = year + "-" + day + "-" + month;
+						bt2.setText(transferDate);
 					}
 
 				}, myyear, mymonth, mydate);
@@ -152,7 +171,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 		};
 		bt2.setOnClickListener(myListener2);
 		
-		
+		//get Effective from date
 		bt3 = (Button) findViewById(R.id.effectiveFromDate);
 		Button.OnClickListener myListener3 = new Button.OnClickListener(){
 
@@ -170,7 +189,13 @@ public class SettingsActivity1 extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						effectiveFrom = year + "-" + dayOfMonth + "-" + monthOfYear;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						effectiveFrom = year + "-" + day + "-" + month;
 						bt3.setText(effectiveFrom);
 					}
 
@@ -182,6 +207,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 		bt3.setOnClickListener(myListener3);
 		
 		
+		//get Expiry date
 		bt4 = (Button) findViewById(R.id.expiryDateDt);
 		Button.OnClickListener myListener4 = new Button.OnClickListener(){
 
@@ -199,8 +225,14 @@ public class SettingsActivity1 extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						expiryDate = year + "-" + dayOfMonth + "-" + monthOfYear;
-						bt3.setText(expiryDate);
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						expiryDate = year + "-" + day + "-" + month;
+						bt4.setText(expiryDate);
 					}
 
 				}, myyear, mymonth, mydate);
@@ -210,6 +242,45 @@ public class SettingsActivity1 extends ActionBarActivity {
 		};
 		bt4.setOnClickListener(myListener4);
 		
+		claimDataSQLHelper = new ClaimDataSQLHelper(getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
+		SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
+		Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
+		startManagingCursor(cursor);
+		if(cursor.moveToLast()) {
+			//0 will give base id
+			regdNo.setText(cursor.getString(13));
+			make.setText(cursor.getString(14));
+			bt1.setText(cursor.getString(15));
+			chassisNo.setText(cursor.getString(16));
+			engineNo.setText(cursor.getString(17));
+			bt2.setText(cursor.getString(18));
+			fuelType.setText(cursor.getString(19));
+			color.setText(cursor.getString(20));
+			licenseNo.setText(cursor.getString(21));
+			issuingRTO.setText(cursor.getString(22));
+			bt3.setText(cursor.getString(23));
+			bt4.setText(cursor.getString(24));
+			//policyNo.setText(cursor.getString(1));
+			//policyNo.setText(cursor.getString(1));
+			int position = 0;
+			if(cursor.getString(25).equals("MCycle"))
+				position = 0;
+			else if(cursor.getString(25).equals("LMV"))
+				position = 1;
+			else if(cursor.getString(25).equals("HGV"))
+				position = 2;
+			else if(cursor.getString(25).equals("Transport"))
+				position = 3;
+			else
+				position = 4;
+			vehicleClassSpinner.setSelection(position);
+			
+			if(cursor.getString(26).equals("Permanent"))
+				position = 0;
+			else
+				position = 1;
+			vehicleTypeSpinner.setSelection(position);
+		}
 		
 	}
 

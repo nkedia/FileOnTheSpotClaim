@@ -5,12 +5,15 @@ import java.util.Calendar;
 import com.app.entity.PeriodOfInsuranceType;
 import com.app.entity.PhoneType;
 import com.app.entity.PolicyHolderDetailsType;
+import com.app.sqlite.ClaimDataSQLHelper;
 import com.example.fileonthespotclaim.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -39,6 +42,9 @@ public class SettingsActivity extends ActionBarActivity {
 	Button bt1;
 	Button bt2;
 	Button bt3;
+	protected ClaimDataSQLHelper claimDataSQLHelper;
+	private static final String DATABASE_NAME = "ClaimData.db";
+	private static final int DATABASE_VERSION = 1;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,7 +59,7 @@ public class SettingsActivity extends ActionBarActivity {
 		residence = (EditText) findViewById(R.id.editText11);
 		mobile = (EditText) findViewById(R.id.editText12);
 		email = (EditText) findViewById(R.id.editText13);
-
+		
 		//Next button
 		Button bt = (Button) findViewById(R.id.next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -85,7 +91,13 @@ public class SettingsActivity extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						fromDate = year + "-" + dayOfMonth + "-" + monthOfYear;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						fromDate = year + "-" + day + "-" + month;
 						bt1.setText(fromDate);
 					}
 
@@ -115,7 +127,13 @@ public class SettingsActivity extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						toDate = year + "-" + dayOfMonth + "-" + monthOfYear;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						toDate = year + "-" + day + "-" + month;
 						bt2.setText(toDate);
 					}
 
@@ -145,7 +163,13 @@ public class SettingsActivity extends ActionBarActivity {
 							int monthOfYear, int dayOfMonth) {
 						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
 						monthOfYear++;
-						dob = year + "-" + dayOfMonth + "-" + monthOfYear;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						dob = year + "-" + day + "-" + month;
 						bt3.setText(dob);
 					}
 
@@ -155,6 +179,26 @@ public class SettingsActivity extends ActionBarActivity {
 			}
 		};
 		bt3.setOnClickListener(myListener3);
+		
+		claimDataSQLHelper = new ClaimDataSQLHelper(getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
+		SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
+		Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
+		startManagingCursor(cursor);
+		if(cursor.moveToLast()) {
+			//0 will give base id
+			policyNo.setText(cursor.getString(1));
+			coverNoteNo.setText(cursor.getString(2));
+			bt1.setText(cursor.getString(3));
+			bt2.setText(cursor.getString(4));
+			name.setText(cursor.getString(5));
+			bt3.setText(cursor.getString(6));
+			address.setText(cursor.getString(7));
+			pin.setText(cursor.getString(8));
+			office.setText(cursor.getString(9));
+			residence.setText(cursor.getString(10));
+			mobile.setText(cursor.getString(11));
+			email.setText(cursor.getString(12));
+		}
 		
 	}
 	

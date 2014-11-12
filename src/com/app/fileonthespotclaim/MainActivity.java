@@ -104,8 +104,8 @@ public class MainActivity extends ActionBarActivity {
 		licenseType.setIssuingRTO(cursor.getString(22));
 		licenseType.setEffectiveFrom(cursor.getString(23));
 		licenseType.setExpiryDate(cursor.getString(24));
-		licenseType.setType(cursor.getString(25));
-		licenseType.setClazz(cursor.getString(26));
+		licenseType.setClazz(cursor.getString(25));
+		licenseType.setType(cursor.getString(26));
 		driverDetails.setLicenseType(licenseType);
 		return driverDetails;
 	}

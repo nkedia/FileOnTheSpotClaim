@@ -295,7 +295,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/vehicleClass"
         android:layout_alignBottom="@+id/vehicleClass"
-        android:layout_alignLeft="@+id/editText25"
+        android:layout_alignLeft="@+id/editText23"
         android:layout_alignRight="@+id/next"
         android:entries="@array/classArray"
         android:prompt="@string/classPrompt" />

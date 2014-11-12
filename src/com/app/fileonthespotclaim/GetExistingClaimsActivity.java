@@ -54,6 +54,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		policyId.name = "policyId";
 		policyId.type = String.class;
 		policyId.setValue(policyNo);
+		//policyId.setValue("Pol123");
 		
 		SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 		List<SoapObject> result = null;
@@ -176,13 +177,16 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		driverDetails.setRelationWithInsured(driverDetailsObj.getPrimitivePropertyAsString("relationWithInsured"));
 		driverDetails.setAddress(driverDetailsObj.getPrimitivePropertyAsString("address"));
 		driverDetails.setContactNo(driverDetailsObj.getPrimitivePropertyAsString("contactNo"));
-		driverDetails.setDOB(driverDetailsObj.getPrimitivePropertyAsString("DOB"));
+		String dob = driverDetailsObj.getPrimitivePropertyAsString("DOB");
+		driverDetails.setDOB(dob.substring(0, dob.length()-1));
 		LicenseType license = new LicenseType();
 		SoapObject licenseObj = (SoapObject) driverDetailsObj.getProperty("license");
 		license.setLicenseNo(licenseObj.getPrimitivePropertyAsString("licenseNo"));
 		license.setIssuingRTO(licenseObj.getPrimitivePropertyAsString("issuingRTO"));
-		license.setEffectiveFrom(licenseObj.getPrimitivePropertyAsString("effectiveFrom"));
-		license.setExpiryDate(licenseObj.getPrimitivePropertyAsString("expiryDate"));
+		String effectiveFrom = licenseObj.getPrimitivePropertyAsString("effectiveFrom");
+		license.setEffectiveFrom(effectiveFrom.substring(0, effectiveFrom.length()-1));
+		String expiryDate = licenseObj.getPrimitivePropertyAsString("expiryDate");
+		license.setExpiryDate(expiryDate.substring(0, expiryDate.length()-1));
 		license.setClazz(licenseObj.getPrimitivePropertyAsString("class"));
 		license.setType(licenseObj.getPrimitivePropertyAsString("type"));
 		driverDetails.setLicenseType(license);
@@ -194,14 +198,16 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
 		SoapObject accidentDetailsObj = (SoapObject) soapObj.getProperty("accidentDetails");
-		accidentDetails.setDateOfAccident(accidentDetailsObj.getPrimitivePropertyAsString("dateOfAccident"));
+		String dateOfAccident = accidentDetailsObj.getPrimitivePropertyAsString("dateOfAccident");
+		accidentDetails.setDateOfAccident(dateOfAccident.substring(0, dateOfAccident.length()-1));
 		accidentDetails.setFIRNo(accidentDetailsObj.getPrimitivePropertyAsString("FIRNo"));
 		accidentDetails.setMileage(accidentDetailsObj.getPrimitivePropertyAsString("Mileage"));
 		accidentDetails.setNoOfPeopleTravelling(accidentDetailsObj.getPrimitivePropertyAsString("noOfPeopleTravelling"));
 		accidentDetails.setPlace(accidentDetailsObj.getPrimitivePropertyAsString("place"));
 		accidentDetails.setPoliceStationName(accidentDetailsObj.getPrimitivePropertyAsString("policeStationName"));
 		accidentDetails.setSpeed(accidentDetailsObj.getPrimitivePropertyAsString("speed"));
-		accidentDetails.setTime(accidentDetailsObj.getPrimitivePropertyAsString("time"));
+		String time = accidentDetailsObj.getPrimitivePropertyAsString("time");
+		accidentDetails.setTime(time.substring(0, time.length()-1));
 		return accidentDetails;
 	}
 
@@ -213,8 +219,10 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		vehicleDetails.setRegdNo(vehicleDetailsObj.getPrimitivePropertyAsString("regdNo"));
 		vehicleDetails.setChassisNo(vehicleDetailsObj.getPrimitivePropertyAsString("chassisNo"));
 		vehicleDetails.setEngineNo(vehicleDetailsObj.getPrimitivePropertyAsString("engineNo"));
-		vehicleDetails.setDateOfFirstRegistration(vehicleDetailsObj.getPrimitivePropertyAsString("dateOfFirstRegistration"));
-		vehicleDetails.setDateOfTransfer(vehicleDetailsObj.getPrimitivePropertyAsString("dateOfTransfer"));
+		String dateOfFirstRegistration = vehicleDetailsObj.getPrimitivePropertyAsString("dateOfFirstRegistration");
+		vehicleDetails.setDateOfFirstRegistration(dateOfFirstRegistration.substring(0, dateOfFirstRegistration.length()-1));
+		String dateOfTransfer = vehicleDetailsObj.getPrimitivePropertyAsString("dateOfTransfer");
+		vehicleDetails.setDateOfTransfer(dateOfTransfer.substring(0, dateOfTransfer.length()-1));
 		vehicleDetails.setMake(vehicleDetailsObj.getPrimitivePropertyAsString("make"));
 		vehicleDetails.setTypeOfFuel(vehicleDetailsObj.getPrimitivePropertyAsString("typeOfFuel"));
 		vehicleDetails.setColor(vehicleDetailsObj.getPrimitivePropertyAsString("color"));
@@ -230,11 +238,14 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		policyHolderDetails.setCoverNoteNo(policyHolderDetailsObj.getPrimitivePropertyAsString("coverNoteNo"));
 		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType();
 		SoapObject periodObj = (SoapObject) policyHolderDetailsObj.getProperty("periodOfInsurance");
-		periodOfInsurance.setFrom(periodObj.getPrimitivePropertyAsString("from"));
-		periodOfInsurance.setTo(periodObj.getPrimitivePropertyAsString("to"));
+		String from = periodObj.getPrimitivePropertyAsString("from");
+		periodOfInsurance.setFrom(from.substring(0, from.length()-1));
+		String to = periodObj.getPrimitivePropertyAsString("to");
+		periodOfInsurance.setTo(to.substring(0, to.length()-1));
 		policyHolderDetails.setPeriodOfInsurance(periodOfInsurance);
 		policyHolderDetails.setNameOfInsured(policyHolderDetailsObj.getPrimitivePropertyAsString("NameOfInsured"));
-		policyHolderDetails.setDobOfInsured(policyHolderDetailsObj.getPrimitivePropertyAsString("dobOfInsured"));
+		String dobOfInsured = policyHolderDetailsObj.getPrimitivePropertyAsString("dobOfInsured");
+		policyHolderDetails.setDobOfInsured(dobOfInsured.substring(0, dobOfInsured.length()-1));
 		policyHolderDetails.setAddressOfInsured(policyHolderDetailsObj.getPrimitivePropertyAsString("addressOfInsured"));
 		policyHolderDetails.setPinOfInsured(policyHolderDetailsObj.getPrimitivePropertyAsString("pinOfInsured"));
 		PhoneType phone = new PhoneType();

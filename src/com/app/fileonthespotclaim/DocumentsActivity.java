@@ -318,6 +318,12 @@ public class DocumentsActivity extends ActionBarActivity {
 				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
+				
+				File driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
+				Log.d("is FIle", driverStatement.isFile() + "");
+				if(driverStatement.isFile()) {
+					new S3UploadTask(context, claimId).execute(driverStatement.getAbsolutePath());
+				}
 				//saving documents to S3
 				//Go to Main Activity
 				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath());
