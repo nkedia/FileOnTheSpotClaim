@@ -96,6 +96,7 @@
     <string name="self">Self</string>
     <string name="towVehicle">Need a Tow Vehicle</string>
     <string name="selectDate">Select Date</string>
+    <string name="map">Show on Map</string>
     
 
 </resources>

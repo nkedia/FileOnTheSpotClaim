@@ -165,16 +165,16 @@
         android:ems="10"
         android:textSize="10dp" >
     </EditText>
-<!-- TODO add map to nearest police station -->
-    <EditText
-        android:id="@+id/editText6"
+    
+    <Button
+        android:id="@+id/psMap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30sp"
         android:layout_above="@+id/policeStationName"
         android:layout_alignLeft="@+id/editText5"
         android:layout_alignStart="@+id/editText5"
-        android:ems="10"
-        android:textSize="10dp" />
+        android:text="@string/map" 
+        android:textSize="10dp"/>
 
     <EditText
         android:id="@+id/editText4"
@@ -184,10 +184,7 @@
         android:layout_alignLeft="@+id/editText3"
         android:layout_alignStart="@+id/editText3"
         android:ems="10"
-        android:textSize="10dp" >
-
-        <requestFocus />
-    </EditText>
+        android:textSize="10dp" />
 
     <EditText
         android:id="@+id/editText8"

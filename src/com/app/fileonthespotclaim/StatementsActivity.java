@@ -1,39 +1,36 @@
 package com.app.fileonthespotclaim;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
-import com.example.fileonthespotclaim.R;
-
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.MediaController;
-import android.widget.VideoView;
+
+import com.example.fileonthespotclaim.R;
 
 public class StatementsActivity extends ActionBarActivity {
 
 	static final int REQUEST_VIDEO_CAPTURE = 1;
 	Boolean getExistingClaims = false;
 	File driverStatement;
+	File passengerStatement;
+	File thirdPartyStatement;
+	File witnessStatement;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statements);
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
-		
+
 		Button bt = (Button) findViewById(R.id.stmt_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 			public void onClick(View v) {
@@ -43,7 +40,7 @@ public class StatementsActivity extends ActionBarActivity {
 				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 				myIntent.putExtra("driverDetails", getIntent().getParcelableExtra("driverDetails"));
 				if(getExistingClaims)
-    				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
+					myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				StatementsActivity.this.startActivity(myIntent);
 			}
@@ -55,13 +52,8 @@ public class StatementsActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				try {
-					driverStatement = File.createTempFile("driverStatement", ".3gp", getApplication().getExternalFilesDir(null));
-					Log.d("file path", driverStatement.getAbsolutePath());
-				} catch (IOException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
+				driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
+				Log.d("file path", driverStatement.getAbsolutePath());
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
 					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(driverStatement));
@@ -76,8 +68,10 @@ public class StatementsActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				takeVideoIntent.putExtra("filename", "passengerStatement.mp4");
+				passengerStatement = new File(getApplication().getExternalFilesDir(null), "passengerStatement.3gp");
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(passengerStatement));
 					startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
 				}
 			}
@@ -89,8 +83,10 @@ public class StatementsActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				takeVideoIntent.putExtra("filename", "thirdPartyStatement.mp4");
+				thirdPartyStatement = new File(getApplication().getExternalFilesDir(null), "thirdPartyStatement.3gp");
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(thirdPartyStatement));
 					startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
 				}
 			}
@@ -102,8 +98,10 @@ public class StatementsActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				takeVideoIntent.putExtra("filename", "witnessStatement.mp4");
+				witnessStatement = new File(getApplication().getExternalFilesDir(null), "witnessStatement.3gp");
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+							Uri.fromFile(witnessStatement));
 					startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
 				}
 			}
@@ -113,36 +111,6 @@ public class StatementsActivity extends ActionBarActivity {
 
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
-		/*	Uri videoUri = data.getData();
-			  try {
-				    AssetFileDescriptor videoAsset = getContentResolver().openAssetFileDescriptor(videoUri, "r");
-				    FileInputStream fis = videoAsset.createInputStream();
-				    //File tmpFile = new File(getApplication().getExternalFilesDir(null), data.getStringExtra("filename")); 
-				    FileOutputStream fos = new FileOutputStream(driverStatement);
-
-				    byte[] buf = new byte[1024];
-				    int len;
-				    while ((len = fis.read(buf)) > 0) {
-				        fos.write(buf, 0, len);
-				    }       
-				    fis.close();
-				    fos.close();
-				  } catch (IOException io_e) {
-				    // TODO: handle error
-				  }
-			//VideoView mVideoView = new VideoView(getApplicationContext());
-			/*mVideoView.setVideoURI(videoUri);
-			MediaController mediaController = new MediaController(this);
-			mediaController.setAnchorView(mVideoView);
-			mVideoView.setMediaController(mediaController);
-			mVideoView.start(); */
-			//setContentView(mVideoView);
-			//mVideoView.start();
-		}
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

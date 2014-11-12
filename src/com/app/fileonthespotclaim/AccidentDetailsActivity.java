@@ -1,10 +1,13 @@
 package com.app.fileonthespotclaim;
 
+import java.util.Locale;
+
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -23,6 +26,7 @@ import com.example.fileonthespotclaim.R;
 public class AccidentDetailsActivity extends ActionBarActivity implements LocationListener{
 
 	Button bt;
+	Button map;
 	EditText date;
 	EditText time;
 	EditText speed;
@@ -33,6 +37,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 	EditText mileage;
 	TextView fir;
 	Boolean getExistingClaims = false;
+	String latLong = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
 		bt = (Button) findViewById(R.id.ad_next);
+		map = (Button) findViewById(R.id.psMap);
 		date = (EditText) findViewById(R.id.editText1);
 		time = (EditText) findViewById(R.id.editText2);
 		speed = (EditText) findViewById(R.id.editText3);
@@ -76,6 +82,17 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 		};
 
 		bt.setOnClickListener(myListener);
+
+		Button.OnClickListener mapListener = new Button.OnClickListener(){
+
+			public void onClick(View v) {
+				String uri = String.format(Locale.ENGLISH, "geo:" + latLong);
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+				AccidentDetailsActivity.this.startActivity(intent);
+			}
+		};
+
+		map.setOnClickListener(mapListener);
 	}
 
 	private void setAccidentDetails(AccidentDetailsType accidentDetails,
@@ -144,7 +161,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 	public void onLocationChanged(Location location) {
 		if(place.getText().toString().isEmpty()) {
 			try { 
-				String latLong = location.getLatitude() + "," + location.getLongitude();
+				latLong = location.getLatitude() + "," + location.getLongitude();
 				String currPlace = new FetchLocationTask().execute(latLong).get();
 				if(currPlace.length()>45) {
 					currPlace = currPlace.substring(0, 44);

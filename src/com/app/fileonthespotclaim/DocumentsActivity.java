@@ -71,14 +71,14 @@ public class DocumentsActivity extends ActionBarActivity {
 
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		claimId = getIntent().getStringExtra("claimId");
-		
+
 		insuranceText = (TextView) findViewById(R.id.insuranceText);
 		rcText = (TextView) findViewById(R.id.rcText);
 		licenseText = (TextView) findViewById(R.id.licenseText);
 		insuranceText.setText("insurance.jpg");
 		rcText.setText("rcImage.jpg");
 		licenseText.setText("license.jpg");
-		
+
 		//submit File new Claim
 		bt1 = (Button) findViewById(R.id.submit_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
@@ -93,7 +93,6 @@ public class DocumentsActivity extends ActionBarActivity {
 						Log.d("Update result", result.toString());
 						//Upload garage bills to s3
 						uploadFiles(claimId);
-						//TODO upload videos to s3
 					} catch (InterruptedException | ExecutionException e) {
 						e.printStackTrace();
 					}
@@ -175,8 +174,8 @@ public class DocumentsActivity extends ActionBarActivity {
 			}
 		};
 		bt6.setOnClickListener(myListener6);
-		
-		
+
+
 		//Save FIR copy
 		bt4 = (Button) findViewById(R.id.clickImageFIR);
 		Button.OnClickListener myListener4 = new Button.OnClickListener(){
@@ -306,30 +305,36 @@ public class DocumentsActivity extends ActionBarActivity {
 		Context context = DocumentsActivity.this.getApplicationContext();
 		try {
 			if(getExistingClaims) {
-				if(billPhoto != null) {
-					new S3UploadTask(context, claimId).execute(billPhoto.getAbsolutePath());
-				}
-				if(firPhoto != null) {
-					new S3UploadTask(context, claimId).execute(firPhoto.getAbsolutePath());
-				}
+				//save statements
+				File driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
+				File passengerStatement = new File(getApplication().getExternalFilesDir(null), "passengerStatement.3gp");
+				File thirdPartyStatement = new File(getApplication().getExternalFilesDir(null), "thirdPartyStatement.3gp");
+				File witnessStatement = new File(getApplication().getExternalFilesDir(null), "witnessStatement.3gp");
+				
+				//saving documents to S3
+				new S3UploadTask(context, claimId).execute(billPhoto.getAbsolutePath(), firPhoto.getAbsolutePath(),
+						driverStatement.getAbsolutePath(), passengerStatement.getAbsolutePath(),
+						thirdPartyStatement.getAbsolutePath(), witnessStatement.getAbsolutePath());
 			}
 			else {
 				//save insurance, rc, license copies
 				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
-				
+
+				//save statements
 				File driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
-				Log.d("is FIle", driverStatement.isFile() + "");
-				if(driverStatement.isFile()) {
-					new S3UploadTask(context, claimId).execute(driverStatement.getAbsolutePath());
-				}
+				File passengerStatement = new File(getApplication().getExternalFilesDir(null), "passengerStatement.3gp");
+				File thirdPartyStatement = new File(getApplication().getExternalFilesDir(null), "thirdPartyStatement.3gp");
+				File witnessStatement = new File(getApplication().getExternalFilesDir(null), "witnessStatement.3gp");
+
 				//saving documents to S3
 				//Go to Main Activity
-				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath());
-				if(photoFileThirdParty != null) {
-					new S3UploadTask(context, claimId).execute(photoFileThirdParty.getAbsolutePath());
-				}
+				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), photoFileThirdParty.getAbsolutePath(),
+						insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath(), 
+						driverStatement.getAbsolutePath(), passengerStatement.getAbsolutePath(),
+						thirdPartyStatement.getAbsolutePath(), witnessStatement.getAbsolutePath());
+
 				Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
 				DocumentsActivity.this.startActivity(myIntent);
 			}
