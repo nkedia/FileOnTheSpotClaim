@@ -52,7 +52,6 @@ public class ClaimDataSQLHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		String sql = "create table " + TABLE + "( " 
 				+ BaseColumns._ID + " integer primary key autoincrement, " 
 				+ POLICY_NO + " text, "
@@ -88,7 +87,6 @@ public class ClaimDataSQLHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 		
 	}
 

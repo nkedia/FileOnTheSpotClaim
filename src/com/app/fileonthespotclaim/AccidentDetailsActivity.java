@@ -83,8 +83,6 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 		date.setText(accidentDetails.getDateOfAccident());
 		time.setText(accidentDetails.getTime());
 		speed.setText(accidentDetails.getSpeed());
-		//place.setText(accidentDetails.getPlace());
-
 		peopleNo.setText(accidentDetails.getNoOfPeopleTravelling());
 		policeStationName.setText(accidentDetails.getPoliceStationName());
 		mileage.setText(accidentDetails.getMileage());
@@ -96,6 +94,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 			time.setEnabled(false);
 			speed.setEnabled(false);
 			place.setEnabled(false);
+			place.setText(accidentDetails.getPlace());
 			peopleNo.setEnabled(false);
 			mileage.setEnabled(false);
 			policeStationName.setEnabled(true);

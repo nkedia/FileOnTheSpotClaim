@@ -62,7 +62,6 @@ public class MainActivity extends ActionBarActivity {
 					myIntent.putExtra("vehicleDetails", vehicleDetails);
 					myIntent.putExtra("accidentDetails", accidentDetails);
 					myIntent.putExtra("driverDetails", driverDetails);
-					Log.d("", "Inside cursor while loop");
 				}
 				
 				MainActivity.this.startActivity(myIntent);
@@ -75,6 +74,14 @@ public class MainActivity extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent myIntent = new Intent(MainActivity.this, GetExistingClaimsActivity.class);
+				claimDataSQLHelper = new ClaimDataSQLHelper(getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
+				SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
+				Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
+				startManagingCursor(cursor);
+				if(cursor.moveToLast()) {
+					String policyNo = cursor.getString(1);
+					myIntent.putExtra("policyNo", policyNo);
+				}
 				MainActivity.this.startActivity(myIntent);
 			}
 		};

@@ -203,34 +203,37 @@
             android:ems="10"
             android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText6"
+        <Button
+            android:id="@+id/fromDate"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:layout_alignBaseline="@+id/from"
             android:layout_alignBottom="@+id/from"
             android:layout_alignRight="@+id/next"
-            android:ems="10"
+            android:text="@string/selectDate"
             android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText7"
+        <Button
+            android:id="@+id/toDate"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:layout_alignBaseline="@+id/to"
             android:layout_alignBottom="@+id/to"
             android:layout_alignRight="@+id/next"
-            android:ems="10"
+            android:text="@string/selectDate"
             android:textSize="10dp" />
 
-        <EditText
-            android:id="@+id/editText8"
+        <Button
+            android:id="@+id/dobDate"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:layout_alignBaseline="@+id/dob"
             android:layout_alignBottom="@+id/dob"
             android:layout_alignRight="@+id/next"
-            android:ems="10"
+            android:text="@string/selectDate"
             android:textSize="10dp" />
 
         <EditText
@@ -298,4 +301,5 @@
             android:layout_marginTop="10dp"
             android:text="@string/next" />
     </RelativeLayout>
+
 </ScrollView>

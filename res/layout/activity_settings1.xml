@@ -185,14 +185,15 @@
         android:ems="10"
         android:textSize="10dp" />
 
-    <EditText
-        android:id="@+id/editText16"
+    <Button
+        android:id="@+id/firstRegDate"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30sp"
         android:layout_alignBaseline="@+id/dateOfFirstReg"
         android:layout_alignBottom="@+id/dateOfFirstReg"
         android:layout_alignRight="@+id/next"
-        android:ems="10"
+        android:text="@string/selectDate"
         android:textSize="10dp" />
 
     <EditText
@@ -215,14 +216,15 @@
         android:ems="10"
         android:textSize="10dp" />
 
-    <EditText
-        android:id="@+id/editText19"
+    <Button
+        android:id="@+id/transferDate"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30sp"
         android:layout_alignBaseline="@+id/dateOfTx"
         android:layout_alignBottom="@+id/dateOfTx"
         android:layout_alignRight="@+id/next"
-        android:ems="10"
+        android:text="@string/selectDate"
         android:textSize="10dp" />
 
     <EditText
@@ -265,24 +267,26 @@
         android:ems="10"
         android:textSize="10dp" />
 
-    <EditText
-        android:id="@+id/editText24"
+    <Button
+        android:id="@+id/effectiveFromDate"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30sp"
         android:layout_alignBaseline="@+id/effectiveFrom"
         android:layout_alignBottom="@+id/effectiveFrom"
         android:layout_alignRight="@+id/next"
-        android:ems="10"
+        android:text="@string/selectDate"
         android:textSize="10dp" />
 
-    <EditText
-        android:id="@+id/editText25"
+    <Button
+        android:id="@+id/expiryDateDt"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30sp"
         android:layout_alignBaseline="@+id/expiryDate"
         android:layout_alignBottom="@+id/expiryDate"
         android:layout_alignRight="@+id/next"
-        android:ems="10"
+        android:text="@string/selectDate"
         android:textSize="10dp" />
 
     <Spinner
@@ -314,9 +318,9 @@
         android:layout_alignBottom="@+id/driverDetails"
         android:layout_alignLeft="@+id/vehicleTypeSpinner"
         android:layout_alignRight="@+id/next"
-        android:text="@string/self" 
         android:checked="true"
-        android:enabled="false"/>
+        android:enabled="false"
+        android:text="@string/self" />
 
     <Button
         android:id="@+id/next"

@@ -75,9 +75,9 @@ public class DocumentsActivity extends ActionBarActivity {
 		insuranceText = (TextView) findViewById(R.id.insuranceText);
 		rcText = (TextView) findViewById(R.id.rcText);
 		licenseText = (TextView) findViewById(R.id.licenseText);
-		insuranceText.setText("insuranceCopy.jpg");
-		rcText.setText("rcCopy.jpg");
-		licenseText.setText("licenceCopy.jpg");
+		insuranceText.setText("insurance.jpg");
+		rcText.setText("rcImage.jpg");
+		licenseText.setText("license.jpg");
 		
 		//submit File new Claim
 		bt1 = (Button) findViewById(R.id.submit_next);
@@ -314,7 +314,7 @@ public class DocumentsActivity extends ActionBarActivity {
 				}
 			}
 			else {
-				//TODO save insurance, rc, license copies
+				//save insurance, rc, license copies
 				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");

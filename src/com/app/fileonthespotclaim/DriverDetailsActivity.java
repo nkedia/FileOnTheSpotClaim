@@ -102,7 +102,24 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		issuingRTO.setText(driverDetails.getLicenseType().getIssuingRTO());
 		effectiveFrom.setText(driverDetails.getLicenseType().getEffectiveFrom());
 		expiryDate.setText(driverDetails.getLicenseType().getExpiryDate());
-		// TODO  set vehicle type and vehicleClass as per driverdetails
+		int position = 0;
+		if(driverDetails.getLicenseType().getClazz().equals("MCycle"))
+			position = 0;
+		else if(driverDetails.getLicenseType().getClazz().equals("LMV"))
+			position = 1;
+		else if(driverDetails.getLicenseType().getClazz().equals("HGV"))
+			position = 2;
+		else if(driverDetails.getLicenseType().getClazz().equals("Transport"))
+			position = 3;
+		else
+			position = 4;
+		vehicleClassSpinner.setSelection(position);
+		
+		if(driverDetails.getLicenseType().getType().equals("Permanent"))
+			position = 0;
+		else
+			position = 1;
+		vehicleTypeSpinner.setSelection(position);
 		
 		if(getExistingClaims) {
 			name.setEnabled(false);

@@ -48,10 +48,12 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_get_existing_claims);
 		
+		String policyNo = getIntent().getStringExtra("policyNo");
+		
 		PropertyInfo policyId = new PropertyInfo();
 		policyId.name = "policyId";
 		policyId.type = String.class;
-		policyId.setValue("policyno8431");
+		policyId.setValue(policyNo);
 		
 		SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 		List<SoapObject> result = null;
@@ -69,7 +71,8 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 			claim.setClaimId(soapObj.getPrimitivePropertyAsString("claimId"));
 			claim.setClaimStatus(soapObj.getPrimitivePropertyAsString("claimStatus"));
 			claim.setAmountSettled(soapObj.getPrimitivePropertyAsString("amountSettled"));
-			claim.setDateOfSettlement(soapObj.getPrimitivePropertyAsString("dateOfSettlement"));
+			String date = soapObj.getPrimitivePropertyAsString("dateOfSettlement");
+			claim.setDateOfSettlement(date.substring(0, date.length()-1));
 			
 			PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(soapObj);
 			VehicleDetailsType vehicleDetails = getVehicleDetails(soapObj);

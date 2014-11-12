@@ -49,12 +49,7 @@ public class SettingsActivity2 extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				try {
-					insuranceCopy = File.createTempFile("insurance", ".jpg", getApplication().getExternalFilesDir(null));
-				} catch (IOException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
+				insuranceCopy = new File(getApplication().getExternalFilesDir(null), "insurance.jpg"); 
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(insuranceCopy));
@@ -70,12 +65,7 @@ public class SettingsActivity2 extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				try {
-					rcCopy = File.createTempFile("rcImage", ".jpg", getApplication().getExternalFilesDir(null));
-				} catch (IOException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
+				rcCopy = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg"); 
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(rcCopy));
@@ -91,12 +81,7 @@ public class SettingsActivity2 extends ActionBarActivity {
 
 			public void onClick(View v) {
 				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				try {
-					licenseCopy = File.createTempFile("license", ".jpg", getApplication().getExternalFilesDir(null));
-				} catch (IOException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
+				licenseCopy = new File(getApplication().getExternalFilesDir(null), "license.jpg"); 
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(licenseCopy));
