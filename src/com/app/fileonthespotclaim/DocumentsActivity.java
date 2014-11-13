@@ -95,6 +95,8 @@ public class DocumentsActivity extends ActionBarActivity {
 						uploadFiles(claimId);
 					} catch (InterruptedException | ExecutionException e) {
 						e.printStackTrace();
+						Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+						DocumentsActivity.this.startActivity(newIntent);
 					}
 					Toast.makeText(DocumentsActivity.this, "Update Existing Claim Successful", Toast.LENGTH_LONG).show();
 					DocumentsActivity.this.startActivity(myIntent);
@@ -107,6 +109,8 @@ public class DocumentsActivity extends ActionBarActivity {
 							result = new NewClaimsServiceTask().execute(request).get();
 						} catch (InterruptedException | ExecutionException e) {
 							e.printStackTrace();
+							Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+							DocumentsActivity.this.startActivity(newIntent);
 						}
 						if(photoFile != null) {
 							//upload documents to S3
@@ -140,7 +144,8 @@ public class DocumentsActivity extends ActionBarActivity {
 					photoFile = File.createTempFile("damagedcar", ".jpg", getApplication().getExternalFilesDir(null));
 				} catch (IOException e) {
 					e.printStackTrace();
-					throw new RuntimeException(e);
+					Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+					DocumentsActivity.this.startActivity(newIntent);
 				}
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -164,7 +169,8 @@ public class DocumentsActivity extends ActionBarActivity {
 					photoFileThirdParty = File.createTempFile("damagedcarThirdParty", ".jpg", getApplication().getExternalFilesDir(null));
 				} catch (IOException e) {
 					e.printStackTrace();
-					throw new RuntimeException(e);
+					Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+					DocumentsActivity.this.startActivity(newIntent);
 				}
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -186,7 +192,8 @@ public class DocumentsActivity extends ActionBarActivity {
 					billPhoto = File.createTempFile("garagebill", ".jpg", getApplication().getExternalFilesDir(null));
 				} catch (IOException e) {
 					e.printStackTrace();
-					throw new RuntimeException(e);
+					Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+					DocumentsActivity.this.startActivity(newIntent);
 				}
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -208,7 +215,8 @@ public class DocumentsActivity extends ActionBarActivity {
 					firPhoto = File.createTempFile("fir", ".jpg", getApplication().getExternalFilesDir(null));
 				} catch (IOException e) {
 					e.printStackTrace();
-					throw new RuntimeException(e);
+					Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+					DocumentsActivity.this.startActivity(newIntent);
 				}
 				if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -305,16 +313,12 @@ public class DocumentsActivity extends ActionBarActivity {
 		Context context = DocumentsActivity.this.getApplicationContext();
 		try {
 			if(getExistingClaims) {
-				//save statements
-				File driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
-				File passengerStatement = new File(getApplication().getExternalFilesDir(null), "passengerStatement.3gp");
-				File thirdPartyStatement = new File(getApplication().getExternalFilesDir(null), "thirdPartyStatement.3gp");
-				File witnessStatement = new File(getApplication().getExternalFilesDir(null), "witnessStatement.3gp");
-				
-				//saving documents to S3
-				new S3UploadTask(context, claimId).execute(billPhoto.getAbsolutePath(), firPhoto.getAbsolutePath(),
-						driverStatement.getAbsolutePath(), passengerStatement.getAbsolutePath(),
-						thirdPartyStatement.getAbsolutePath(), witnessStatement.getAbsolutePath());
+				//save statements to S3
+				//save documents to S3
+				new S3UploadTask(context, claimId).execute(billPhoto == null ? "" : billPhoto.getAbsolutePath(), 
+						firPhoto == null ? "" : firPhoto.getAbsolutePath(),
+						getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+						getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
 			}
 			else {
 				//save insurance, rc, license copies
@@ -322,24 +326,21 @@ public class DocumentsActivity extends ActionBarActivity {
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
 
-				//save statements
-				File driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
-				File passengerStatement = new File(getApplication().getExternalFilesDir(null), "passengerStatement.3gp");
-				File thirdPartyStatement = new File(getApplication().getExternalFilesDir(null), "thirdPartyStatement.3gp");
-				File witnessStatement = new File(getApplication().getExternalFilesDir(null), "witnessStatement.3gp");
-
-				//saving documents to S3
+				//save statements to S3
+				//save documents to S3
 				//Go to Main Activity
-				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), photoFileThirdParty.getAbsolutePath(),
+				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), photoFileThirdParty == null ? "" : photoFileThirdParty.getAbsolutePath(),
 						insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath(), 
-						driverStatement.getAbsolutePath(), passengerStatement.getAbsolutePath(),
-						thirdPartyStatement.getAbsolutePath(), witnessStatement.getAbsolutePath());
+						getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+						getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
 
 				Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
 				DocumentsActivity.this.startActivity(myIntent);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+			DocumentsActivity.this.startActivity(newIntent);
 		}
 
 	}

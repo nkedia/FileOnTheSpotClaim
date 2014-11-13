@@ -171,7 +171,8 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 				policeStationName.setText(policeStation);
 			} catch(Exception e) {
 				e.printStackTrace();
-				throw new RuntimeException(e);
+				Intent newIntent = new Intent(AccidentDetailsActivity.this, MainActivity.class);
+				AccidentDetailsActivity.this.startActivity(newIntent);
 			}
 		}
 		Log.d("Latitude, Longitude", location.getLatitude() + ", " + location.getLongitude());

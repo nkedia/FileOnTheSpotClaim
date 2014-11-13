@@ -31,7 +31,7 @@ public class UpdateExistingClaimsServiceTask  extends AsyncTask<SoapObject, Void
 			Log.d("result", response.toString());;
 		} catch (Exception e) {
 			e.printStackTrace();  
-
+			response = null;
 		}
 		finally{
 			Log.d("request dump", androidHttpTransport.requestDump, null);

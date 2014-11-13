@@ -31,7 +31,7 @@ public class NewClaimsServiceTask extends AsyncTask<SoapObject, Void, SoapPrimit
 		   Log.d("result", response.toString());;
 		  } catch (Exception e) {
 			e.printStackTrace();  
-		   
+		   response = null;
 		  }
 		finally{
 			Log.d("request dump", androidHttpTransport.requestDump, null);

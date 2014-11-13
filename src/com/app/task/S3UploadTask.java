@@ -50,6 +50,8 @@ public class S3UploadTask extends AsyncTask<String, Void, Boolean>{
 		try {
 			List<Upload> uploadList = new ArrayList<Upload>();
 			for(String path : params) {
+				if(path==null || path.isEmpty())
+					continue;
 				File file = new File(path);
 				if(file.length() > 0) {
 					String[] filePath = path.split("/");

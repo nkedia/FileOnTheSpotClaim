@@ -27,7 +27,7 @@ public class FetchLocationTask extends AsyncTask<String, Void, String>{
 		HttpClient client = new DefaultHttpClient();
 		HttpResponse response;
 		StringBuilder stringBuilder = new StringBuilder();
-
+		String currPlace="";
 		try {
 			response = client.execute(httpGet);
 			HttpEntity entity = response.getEntity();
@@ -41,7 +41,6 @@ public class FetchLocationTask extends AsyncTask<String, Void, String>{
 		}
 
 		JSONObject jsonObject = new JSONObject();
-		String currPlace="";
 		try {
 			Log.d("MAPSAPI", stringBuilder.toString());
 			jsonObject = new JSONObject(stringBuilder.toString());

@@ -83,6 +83,10 @@ public class DriverDetailsActivity extends ActionBarActivity {
 				if(getExistingClaims)
     				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
+				myIntent.putExtra("driverStatement", getIntent().getStringExtra("driverStatement"));
+				myIntent.putExtra("passengerStatement", getIntent().getStringExtra("passengerStatement"));
+				myIntent.putExtra("thirdPartyStatement", getIntent().getStringExtra("thirdPartyStatement"));
+				myIntent.putExtra("witnessStatement", getIntent().getStringExtra("witnessStatement"));
 				DriverDetailsActivity.this.startActivity(myIntent);
 			}
 		};

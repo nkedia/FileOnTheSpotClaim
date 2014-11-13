@@ -1,6 +1,7 @@
 package com.app.fileonthespotclaim;
 
 import java.io.File;
+import java.io.IOException;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,6 +24,7 @@ public class StatementsActivity extends ActionBarActivity {
 	File passengerStatement;
 	File thirdPartyStatement;
 	File witnessStatement;
+	Intent myIntent;
 	
 
 	@Override
@@ -30,11 +32,10 @@ public class StatementsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statements);
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
-
+		myIntent = new Intent(StatementsActivity.this, DriverDetailsActivity.class);
 		Button bt = (Button) findViewById(R.id.stmt_next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 			public void onClick(View v) {
-				Intent myIntent = new Intent(StatementsActivity.this, DriverDetailsActivity.class);
 				myIntent.putExtra("policyHolderDetails", getIntent().getParcelableExtra("policyHolderDetails"));
 				myIntent.putExtra("vehicleDetails", getIntent().getParcelableExtra("vehicleDetails"));
 				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
@@ -47,13 +48,21 @@ public class StatementsActivity extends ActionBarActivity {
 		};
 		bt.setOnClickListener(myListener);
 
+		//driver Statement
 		Button bt2 = (Button) findViewById(R.id.driverStatement);
 		Button.OnClickListener myListener2 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				driverStatement = new File(getApplication().getExternalFilesDir(null), "driverStatement.3gp");
+				try {
+					driverStatement = File.createTempFile("driverStatement", ".3gp", getApplication().getExternalFilesDir(null));
+				}catch (IOException e) {
+					e.printStackTrace();
+					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
+					StatementsActivity.this.startActivity(newIntent);
+				}
 				Log.d("file path", driverStatement.getAbsolutePath());
+				myIntent.putExtra("driverStatement", driverStatement.getAbsolutePath());
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
 					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(driverStatement));
@@ -63,12 +72,21 @@ public class StatementsActivity extends ActionBarActivity {
 		};
 		bt2.setOnClickListener(myListener2);
 
+		//passenger Statement
 		Button bt3 = (Button) findViewById(R.id.passengerStatement);
 		Button.OnClickListener myListener3 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				passengerStatement = new File(getApplication().getExternalFilesDir(null), "passengerStatement.3gp");
+				try {
+					passengerStatement = File.createTempFile("passengerStatement", ".3gp", getApplication().getExternalFilesDir(null));
+				}catch (IOException e) {
+					e.printStackTrace();
+					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
+					StatementsActivity.this.startActivity(newIntent);
+				}
+				Log.d("file path", passengerStatement.getAbsolutePath());
+				myIntent.putExtra("passengerStatement", passengerStatement.getAbsolutePath());
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
 					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(passengerStatement));
@@ -78,12 +96,21 @@ public class StatementsActivity extends ActionBarActivity {
 		};
 		bt3.setOnClickListener(myListener3);
 
+		//thirdParty Statement
 		Button bt4 = (Button) findViewById(R.id.thirdPartyStatement);
 		Button.OnClickListener myListener4 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				thirdPartyStatement = new File(getApplication().getExternalFilesDir(null), "thirdPartyStatement.3gp");
+				try {
+					thirdPartyStatement = File.createTempFile("thirdPartyStatement", ".3gp", getApplication().getExternalFilesDir(null));
+				}catch (IOException e) {
+					e.printStackTrace();
+					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
+					StatementsActivity.this.startActivity(newIntent);
+				}
+				Log.d("file path", thirdPartyStatement.getAbsolutePath());
+				myIntent.putExtra("thirdPartyStatement", thirdPartyStatement.getAbsolutePath());
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
 					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(thirdPartyStatement));
@@ -93,12 +120,21 @@ public class StatementsActivity extends ActionBarActivity {
 		};
 		bt4.setOnClickListener(myListener4);
 
+		//witness Statement
 		Button bt5 = (Button) findViewById(R.id.witnessStatement);
 		Button.OnClickListener myListener5 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-				witnessStatement = new File(getApplication().getExternalFilesDir(null), "witnessStatement.3gp");
+				try {
+					witnessStatement = File.createTempFile("witnessStatement", ".3gp", getApplication().getExternalFilesDir(null));
+				}catch (IOException e) {
+					e.printStackTrace();
+					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
+					StatementsActivity.this.startActivity(newIntent);
+				}
+				Log.d("file path", witnessStatement.getAbsolutePath());
+				myIntent.putExtra("witnessStatement", witnessStatement.getAbsolutePath());
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
 					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(witnessStatement));

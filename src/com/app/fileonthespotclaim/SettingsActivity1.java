@@ -288,10 +288,10 @@ public class SettingsActivity1 extends ActionBarActivity {
 		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
 		vehicleDetails.setRegdNo(regdNo.getText().toString());
 		vehicleDetails.setMake(make.getText().toString());
-		vehicleDetails.setDateOfFirstRegistration(regDate);
+		vehicleDetails.setDateOfFirstRegistration(bt1.getText().toString());
 		vehicleDetails.setChassisNo(chassisNo.getText().toString());
 		vehicleDetails.setEngineNo(engineNo.getText().toString());
-		vehicleDetails.setDateOfTransfer(transferDate);
+		vehicleDetails.setDateOfTransfer(bt2.getText().toString());
 		vehicleDetails.setTypeOfFuel(fuelType.getText().toString());
 		vehicleDetails.setColor(color.getText().toString());
 		return vehicleDetails;
@@ -300,7 +300,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
 		LicenseType licenseType = new LicenseType(licenseNo.getText().toString(), issuingRTO.getText().toString(),
-				effectiveFrom, expiryDate, 
+				bt3.getText().toString(), bt4.getText().toString(), 
 				vehicleClass, vehicleType);
 		driverDetails.setLicenseType(licenseType);
 		return driverDetails;

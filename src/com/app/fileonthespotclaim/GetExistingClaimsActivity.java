@@ -64,6 +64,8 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 			result = new ExistingClaimsServiceTask().execute(request).get();
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
+			Intent newIntent = new Intent(GetExistingClaimsActivity.this, MainActivity.class);
+			GetExistingClaimsActivity.this.startActivity(newIntent);
 		}
 		
 		for(SoapObject soapObj : result) {

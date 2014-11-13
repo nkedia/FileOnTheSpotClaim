@@ -80,9 +80,9 @@ public class SettingsActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = Calendar.YEAR ;
+				int mymonth = Calendar.MONTH;
+				int mydate = Calendar.DATE ;
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 
@@ -207,10 +207,10 @@ public class SettingsActivity extends ActionBarActivity {
 		policyHolderDetails.setPolicyNo(policyNo.getText().toString());
 		policyHolderDetails.setCoverNoteNo(coverNoteNo.getText().toString());
 		//PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType(from.getText().toString(), to.getText().toString());
-		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType(fromDate, toDate);
+		PeriodOfInsuranceType periodOfInsurance = new PeriodOfInsuranceType(bt1.getText().toString(), bt2.getText().toString());
 		policyHolderDetails.setPeriodOfInsurance(periodOfInsurance);
 		policyHolderDetails.setNameOfInsured(name.getText().toString());
-		policyHolderDetails.setDobOfInsured(dob);
+		policyHolderDetails.setDobOfInsured(bt3.getText().toString());
 		policyHolderDetails.setAddressOfInsured(address.getText().toString());
 		policyHolderDetails.setPinOfInsured(pin.getText().toString());
 		PhoneType phoneType = new PhoneType(office.getText().toString(), residence.getText().toString(), mobile.getText().toString());

@@ -1,5 +1,6 @@
 package com.app.task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.ksoap2.SoapEnvelope;
@@ -24,13 +25,16 @@ public class ExistingClaimsServiceTask  extends AsyncTask<SoapObject, Void, List
 		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
 		androidHttpTransport.debug = true;
 		androidHttpTransport.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
-		List<SoapObject> response = null;
+		List<SoapObject> response = new ArrayList<SoapObject>();
 		try {
 			androidHttpTransport.call(SOAP_ACTION, envelope);
-			response = (List<SoapObject>) envelope.getResponse();
+			if((envelope.getResponse()) instanceof List)
+				response = (List<SoapObject>) envelope.getResponse();
+			else
+				response.add((SoapObject)envelope.getResponse());
 			Log.d("result", response.toString());;
 		} catch (Exception e) {
-			e.printStackTrace();  
+			response = null;
 
 		}
 		finally{
