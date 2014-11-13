@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,11 +51,13 @@ public class DocumentsActivity extends ActionBarActivity {
 	private TextView rc;
 	private TextView lc;
 	private TextView dc;
+	private TextView dctp;
 	private TextView bills;
 	private TextView fir;
 	private TextView insuranceText;
 	private TextView rcText;
 	private TextView licenseText;
+	private CheckBox towV;
 
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME1 = "fileNewClaim";
@@ -133,9 +136,6 @@ public class DocumentsActivity extends ActionBarActivity {
 
 		//Save Damaged Car Image
 		bt2 = (Button) findViewById(R.id.clickImageCar);
-		if(getExistingClaims) {
-			bt2.setEnabled(false);
-		}
 		Button.OnClickListener myListener2 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -158,9 +158,6 @@ public class DocumentsActivity extends ActionBarActivity {
 
 		//Save damaged car Image Third Party
 		bt6 = (Button)findViewById(R.id.clickImageCarThirdParty);
-		if(getExistingClaims) {
-			bt6.setEnabled(false);
-		}
 		Button.OnClickListener myListener6 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -239,13 +236,19 @@ public class DocumentsActivity extends ActionBarActivity {
 			rc = (TextView) findViewById(R.id.rc);
 			lc = (TextView) findViewById(R.id.license);
 			dc = (TextView) findViewById(R.id.carImage);
+			dctp = (TextView) findViewById(R.id.carImageThirdParty);
+			towV = (CheckBox) findViewById(R.id.towV);
 			ic.setEnabled(false);
 			rc.setEnabled(false);
 			lc.setEnabled(false);
 			dc.setEnabled(false);
+			dctp.setEnabled(false);
+			bt2.setEnabled(false);
+			bt6.setEnabled(false);
 			insuranceText.setEnabled(false);
 			rcText.setEnabled(false);
 			licenseText.setEnabled(false);
+			towV.setEnabled(false);
 		}
 
 		//Cancel File new Insurance or Update Existing Claim

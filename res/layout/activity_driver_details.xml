@@ -142,8 +142,7 @@
             android:layout_alignBottom="@+id/name"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="Natasha Kedia"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText2"
@@ -153,8 +152,7 @@
             android:layout_alignBottom="@+id/relation"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="self"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText3"
@@ -164,8 +162,7 @@
             android:layout_alignBottom="@+id/driverAddress"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="Agate 104"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText4"
@@ -175,8 +172,7 @@
             android:layout_alignBottom="@+id/contactNumber"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="8008288109"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText5"
@@ -186,8 +182,7 @@
             android:layout_alignBottom="@+id/dobLicense"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="1985-10-10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText6"
@@ -197,8 +192,7 @@
             android:layout_alignBottom="@+id/dlNo"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="Lic123"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText7"
@@ -208,8 +202,7 @@
             android:layout_alignBottom="@+id/issuingRTO"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="RTO"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText8"
@@ -219,8 +212,7 @@
             android:layout_alignBottom="@+id/effectiveFrom"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="2000-10-10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText9"
@@ -230,8 +222,7 @@
             android:layout_alignBottom="@+id/expiryDate"
             android:layout_alignRight="@+id/dd_next"
             android:ems="10"
-            android:text="2020-10-10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <Spinner
             android:id="@+id/vehicleClassSpinner"

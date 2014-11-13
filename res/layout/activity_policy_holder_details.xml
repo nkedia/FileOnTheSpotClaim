@@ -55,7 +55,7 @@
             android:layout_alignLeft="@+id/pin"
             android:layout_alignStart="@+id/pin"
             android:layout_below="@+id/pin"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:text="@string/phoneOff" />
 
@@ -167,7 +167,7 @@
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
             android:inputType="textPostalAddress"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText2"
@@ -178,7 +178,7 @@
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText4"
@@ -188,7 +188,7 @@
             android:layout_alignBottom="@+id/policyNo"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText5"
@@ -198,7 +198,7 @@
             android:layout_alignBottom="@+id/coverNoteNo"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText6"
@@ -208,7 +208,7 @@
             android:layout_alignBottom="@+id/from"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText7"
@@ -218,7 +218,7 @@
             android:layout_alignBottom="@+id/to"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText8"
@@ -228,7 +228,7 @@
             android:layout_alignBottom="@+id/dob"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText9"
@@ -238,7 +238,7 @@
             android:layout_alignBottom="@+id/pin"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <EditText
             android:id="@+id/editText10"
@@ -249,7 +249,7 @@
             android:layout_alignLeft="@+id/editText9"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp" 
+            android:textSize="12dp" 
             android:inputType="phone" />
 
         <EditText
@@ -261,7 +261,7 @@
             android:layout_alignLeft="@+id/editText9"
             android:layout_toRightOf="@+id/phoneRes"
             android:ems="10"
-            android:textSize="10dp" 
+            android:textSize="12dp" 
             android:inputType="phone" />
 
         <EditText
@@ -272,7 +272,7 @@
             android:layout_alignBottom="@+id/mobile"
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:inputType="phone" />
 
         <EditText
@@ -284,7 +284,7 @@
             android:layout_alignRight="@+id/phd_next"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:textSize="10dp" />
+            android:textSize="12dp" />
 
         <Button
             android:id="@+id/phd_next"

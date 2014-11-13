@@ -97,7 +97,7 @@
         android:layout_alignBottom="@+id/regdNo"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText2"
@@ -107,7 +107,7 @@
         android:layout_alignBottom="@+id/make"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText3"
@@ -117,7 +117,7 @@
         android:layout_alignBottom="@+id/dateOfFirstReg"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText4"
@@ -127,7 +127,7 @@
         android:layout_alignBottom="@+id/chassisNo"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText5"
@@ -137,7 +137,7 @@
         android:layout_alignBottom="@+id/engineNo"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText6"
@@ -147,7 +147,7 @@
         android:layout_alignBottom="@+id/dateOfTx"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText7"
@@ -157,7 +157,7 @@
         android:layout_alignBottom="@+id/typeOfFuel"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText8"
@@ -167,7 +167,7 @@
         android:layout_alignBottom="@+id/colour"
         android:layout_alignRight="@+id/vd_next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/vd_next"

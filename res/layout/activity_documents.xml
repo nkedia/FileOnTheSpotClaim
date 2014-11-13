@@ -189,7 +189,7 @@
       android:layout_alignRight="@+id/submit_next"/>
 
   <CheckBox
-      android:id="@+id/checkBox1"
+      android:id="@+id/towV"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignLeft="@+id/fir"

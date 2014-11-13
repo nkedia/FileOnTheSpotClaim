@@ -173,7 +173,7 @@
         android:layout_alignBottom="@+id/regdNo"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText15"
@@ -183,7 +183,7 @@
         android:layout_alignBottom="@+id/make"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/firstRegDate"
@@ -194,7 +194,7 @@
         android:layout_alignBottom="@+id/dateOfFirstReg"
         android:layout_alignRight="@+id/next"
         android:text="@string/selectDate"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText17"
@@ -204,7 +204,7 @@
         android:layout_alignBottom="@+id/chassisNo"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText18"
@@ -214,7 +214,7 @@
         android:layout_alignBottom="@+id/engineNo"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/transferDate"
@@ -225,7 +225,7 @@
         android:layout_alignBottom="@+id/dateOfTx"
         android:layout_alignRight="@+id/next"
         android:text="@string/selectDate"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText20"
@@ -235,7 +235,7 @@
         android:layout_alignBottom="@+id/typeOfFuel"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText21"
@@ -245,7 +245,7 @@
         android:layout_alignBottom="@+id/colour"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText22"
@@ -255,7 +255,7 @@
         android:layout_alignBottom="@+id/dlNo"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <EditText
         android:id="@+id/editText23"
@@ -265,7 +265,7 @@
         android:layout_alignBottom="@+id/issuingRTO"
         android:layout_alignRight="@+id/next"
         android:ems="10"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/effectiveFromDate"
@@ -276,7 +276,7 @@
         android:layout_alignBottom="@+id/effectiveFrom"
         android:layout_alignRight="@+id/next"
         android:text="@string/selectDate"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <Button
         android:id="@+id/expiryDateDt"
@@ -287,7 +287,7 @@
         android:layout_alignBottom="@+id/expiryDate"
         android:layout_alignRight="@+id/next"
         android:text="@string/selectDate"
-        android:textSize="10dp" />
+        android:textSize="12dp" />
 
     <Spinner
         android:id="@+id/vehicleClassSpinner"

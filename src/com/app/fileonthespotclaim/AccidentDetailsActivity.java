@@ -59,7 +59,6 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 		mileage = (EditText) findViewById(R.id.editText9);
 		fir = (TextView) findViewById(R.id.firNo);
 
-		//TODO set map to nearest police station for edittext6
 
 		AccidentDetailsType accidentDetails = (AccidentDetailsType) getIntent().getParcelableExtra("accidentDetails");
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
@@ -114,6 +113,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 			place.setText(accidentDetails.getPlace());
 			peopleNo.setEnabled(false);
 			mileage.setEnabled(false);
+			map.setEnabled(false);
 			policeStationName.setEnabled(true);
 			fir.setEnabled(true);
 			firNo.setEnabled(true);

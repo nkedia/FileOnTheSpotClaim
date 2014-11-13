@@ -34,6 +34,7 @@ public class ExistingClaimsServiceTask  extends AsyncTask<SoapObject, Void, List
 				response.add((SoapObject)envelope.getResponse());
 			Log.d("result", response.toString());;
 		} catch (Exception e) {
+			e.printStackTrace();
 			response = null;
 
 		}
