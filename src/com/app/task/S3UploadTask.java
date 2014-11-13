@@ -1,6 +1,11 @@
 package com.app.task;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +17,9 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -52,11 +60,12 @@ public class S3UploadTask extends AsyncTask<String, Void, Boolean>{
 			for(String path : params) {
 				if(path==null || path.isEmpty())
 					continue;
-				File file = new File(path);
+				String compressedPath = compressFile(path);
+				File file = new File(compressedPath);
 				if(file.length() > 0) {
-					String[] filePath = path.split("/");
+					String[] filePath = compressedPath.split("/");
 					String fileName = "claimid" + claimId + "/" + filePath[filePath.length-1];
-					Log.d("path", path);
+					Log.d("path", compressedPath);
 					Upload upload = transferManager.upload(
 							"claim-data",
 							fileName,
@@ -73,5 +82,18 @@ public class S3UploadTask extends AsyncTask<String, Void, Boolean>{
 
 		return true;
 	}
+
+	private String compressFile(String path) throws FileNotFoundException {
+		if(path.contains("3gp")) {
+			return path;
+		}
+		Bitmap bmp = BitmapFactory.decodeFile(path);
+		Bitmap scaledBMP = Bitmap.createScaledBitmap(bmp, 800, 600, true);
+		File file = new File(path);
+		FileOutputStream fos = new FileOutputStream(file);
+		scaledBMP.compress(CompressFormat.JPEG, 70, fos);
+		return file.getAbsolutePath();
+	}
+
 
 }

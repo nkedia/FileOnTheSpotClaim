@@ -1,5 +1,6 @@
 package com.app.fileonthespotclaim;
 
+import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
@@ -38,6 +39,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 	TextView fir;
 	Boolean getExistingClaims = false;
 	String latLong = "";
+	String psLatLong = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 		setContentView(R.layout.activity_accident_details);
 
 		LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
 		bt = (Button) findViewById(R.id.ad_next);
 		map = (Button) findViewById(R.id.psMap);
@@ -82,10 +84,11 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 
 		bt.setOnClickListener(myListener);
 
+		//Opens Map
 		Button.OnClickListener mapListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
-				String uri = String.format(Locale.ENGLISH, "geo:" + latLong);
+				String uri = String.format(Locale.ENGLISH, "geo:" + psLatLong);
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 				AccidentDetailsActivity.this.startActivity(intent);
 			}
@@ -163,12 +166,13 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 			try { 
 				latLong = location.getLatitude() + "," + location.getLongitude();
 				String currPlace = new FetchLocationTask().execute(latLong).get();
-				if(currPlace.length()>45) {
+				/*if(currPlace.length()>45) {
 					currPlace = currPlace.substring(0, 44);
-				}
+				}*/
 				place.setText(currPlace);
-				String policeStation = new FetchPoliceStationTask().execute(latLong).get();
-				policeStationName.setText(policeStation);
+				List<String> list = new FetchPoliceStationTask().execute(latLong).get();
+				policeStationName.setText(list.get(0));
+				psLatLong = list.get(1);
 			} catch(Exception e) {
 				e.printStackTrace();
 				Intent newIntent = new Intent(AccidentDetailsActivity.this, MainActivity.class);
