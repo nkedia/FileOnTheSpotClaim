@@ -166,9 +166,10 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 			try { 
 				latLong = location.getLatitude() + "," + location.getLongitude();
 				String currPlace = new FetchLocationTask().execute(latLong).get();
-				/*if(currPlace.length()>45) {
+				if(currPlace.length()>45) {
 					currPlace = currPlace.substring(0, 44);
-				}*/
+					currPlace = currPlace.substring(0, currPlace.lastIndexOf(","));
+				}
 				place.setText(currPlace);
 				List<String> list = new FetchPoliceStationTask().execute(latLong).get();
 				policeStationName.setText(list.get(0));

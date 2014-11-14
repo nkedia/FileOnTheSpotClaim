@@ -80,9 +80,9 @@ public class SettingsActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 
