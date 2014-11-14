@@ -108,9 +108,9 @@ public class SettingsActivity1 extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -125,7 +125,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						regDate = year + "-" + day + "-" + month;
+						regDate = year + "-" + month + "-" + day;
 						bt1.setText(regDate);
 					}
 
@@ -143,9 +143,9 @@ public class SettingsActivity1 extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -160,7 +160,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						transferDate = year + "-" + day + "-" + month;
+						transferDate = year + "-" + month + "-" + day;
 						bt2.setText(transferDate);
 					}
 
@@ -178,9 +178,9 @@ public class SettingsActivity1 extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -195,7 +195,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						effectiveFrom = year + "-" + day + "-" + month;
+						effectiveFrom = year + "-" + month + "-" + day;
 						bt3.setText(effectiveFrom);
 					}
 
@@ -214,9 +214,9 @@ public class SettingsActivity1 extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -231,7 +231,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						expiryDate = year + "-" + day + "-" + month;
+						expiryDate = year + "-" + month + "-" + day;
 						bt4.setText(expiryDate);
 					}
 
@@ -260,8 +260,6 @@ public class SettingsActivity1 extends ActionBarActivity {
 			issuingRTO.setText(cursor.getString(22));
 			bt3.setText(cursor.getString(23));
 			bt4.setText(cursor.getString(24));
-			//policyNo.setText(cursor.getString(1));
-			//policyNo.setText(cursor.getString(1));
 			int position = 0;
 			if(cursor.getString(25).equals("MCycle"))
 				position = 0;

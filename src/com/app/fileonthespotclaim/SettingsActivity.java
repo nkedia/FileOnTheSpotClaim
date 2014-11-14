@@ -97,7 +97,7 @@ public class SettingsActivity extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						fromDate = year + "-" + day + "-" + month;
+						fromDate = year + "-" + month + "-" + day;
 						bt1.setText(fromDate);
 					}
 
@@ -116,9 +116,9 @@ public class SettingsActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 
@@ -133,7 +133,7 @@ public class SettingsActivity extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						toDate = year + "-" + day + "-" + month;
+						toDate = year + "-" + month + "-" + day;
 						bt2.setText(toDate);
 					}
 
@@ -152,9 +152,9 @@ public class SettingsActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Calendar c = Calendar.getInstance();
-				int myyear = c.YEAR ;
-				int mymonth = c.MONTH;
-				int mydate = c.DATE ;
+				int myyear = c.get(Calendar.YEAR);
+				int mymonth = c.get(Calendar.MONTH);
+				int mydate = c.get(Calendar.DATE);
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 
@@ -169,7 +169,7 @@ public class SettingsActivity extends ActionBarActivity {
 							month = "0" + monthOfYear;
 						if(dayOfMonth < 10)
 							day = "0" + dayOfMonth;
-						dob = year + "-" + day + "-" + month;
+						dob = year + "-" + month + "-" + day;
 						bt3.setText(dob);
 					}
 
