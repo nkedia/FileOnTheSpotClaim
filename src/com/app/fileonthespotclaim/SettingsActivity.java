@@ -79,11 +79,20 @@ public class SettingsActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
-
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt1.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt1.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 
 					@Override
@@ -115,10 +124,20 @@ public class SettingsActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt2.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt2.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 
@@ -151,10 +170,20 @@ public class SettingsActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt3.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt3.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity.this, new OnDateSetListener() {
 

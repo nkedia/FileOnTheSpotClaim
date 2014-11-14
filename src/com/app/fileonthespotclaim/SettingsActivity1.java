@@ -27,7 +27,7 @@ import android.widget.Spinner;
 
 //Enter Vehicle Details
 public class SettingsActivity1 extends ActionBarActivity {
-	
+
 	Button bt;
 	Button bt1;
 	Button bt2;
@@ -52,12 +52,12 @@ public class SettingsActivity1 extends ActionBarActivity {
 	protected ClaimDataSQLHelper claimDataSQLHelper;
 	private static final String DATABASE_NAME = "ClaimData.db";
 	private static final int DATABASE_VERSION = 1;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings1);
-		
+
 		regdNo = (EditText) findViewById(R.id.editText14);
 		make = (EditText) findViewById(R.id.editText15);
 		chassisNo = (EditText) findViewById(R.id.editText17);
@@ -68,24 +68,24 @@ public class SettingsActivity1 extends ActionBarActivity {
 		issuingRTO = (EditText) findViewById(R.id.editText23);
 		vehicleClassSpinner = (Spinner) findViewById(R.id.vehicleClassSpinner);
 		vehicleTypeSpinner = (Spinner) findViewById(R.id.vehicleTypeSpinner);
-		
+
 		vehicleClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                vehicleClass = parent.getItemAtPosition(pos).toString();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        
-        vehicleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                vehicleType = parent.getItemAtPosition(pos).toString();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        
-        //next button
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				vehicleClass = parent.getItemAtPosition(pos).toString();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+
+		vehicleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				vehicleType = parent.getItemAtPosition(pos).toString();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+
+		//next button
 		bt = (Button) findViewById(R.id.next);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
@@ -94,23 +94,34 @@ public class SettingsActivity1 extends ActionBarActivity {
 				DriverDetailsType driverDetails = getDriverDetails();
 				Intent myIntent = new Intent(SettingsActivity1.this, SettingsActivity2.class);
 				myIntent.putExtra("policyHolderDetails", getIntent().getParcelableExtra("policyHolderDetails"));
-    			myIntent.putExtra("vehicleDetails", vehicleDetails);
-    			myIntent.putExtra("driverDetails", driverDetails);
+				myIntent.putExtra("vehicleDetails", vehicleDetails);
+				myIntent.putExtra("driverDetails", driverDetails);
 				SettingsActivity1.this.startActivity(myIntent);	
 			}
 		};
 		bt.setOnClickListener(myListener);
-		
+
 		//get Date of First Registration
 		bt1 = (Button) findViewById(R.id.firstRegDate);
 		Button.OnClickListener myListener1 = new Button.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt1.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt1.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
+
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -135,17 +146,28 @@ public class SettingsActivity1 extends ActionBarActivity {
 			}
 		};
 		bt1.setOnClickListener(myListener1);
-		
+
 		// get Date of Transfer
 		bt2 = (Button) findViewById(R.id.transferDate);
 		Button.OnClickListener myListener2 = new Button.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt2.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt2.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
+
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -170,17 +192,27 @@ public class SettingsActivity1 extends ActionBarActivity {
 			}
 		};
 		bt2.setOnClickListener(myListener2);
-		
+
 		//get Effective from date
 		bt3 = (Button) findViewById(R.id.effectiveFromDate);
 		Button.OnClickListener myListener3 = new Button.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt3.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt3.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -205,18 +237,28 @@ public class SettingsActivity1 extends ActionBarActivity {
 			}
 		};
 		bt3.setOnClickListener(myListener3);
-		
-		
+
+
 		//get Expiry date
 		bt4 = (Button) findViewById(R.id.expiryDateDt);
 		Button.OnClickListener myListener4 = new Button.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				Calendar c = Calendar.getInstance();
-				int myyear = c.get(Calendar.YEAR);
-				int mymonth = c.get(Calendar.MONTH);
-				int mydate = c.get(Calendar.DATE);
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(bt4.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = bt4.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
 
 				DatePickerDialog ddp = new DatePickerDialog(SettingsActivity1.this, new OnDateSetListener() {
 
@@ -241,7 +283,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 			}
 		};
 		bt4.setOnClickListener(myListener4);
-		
+
 		claimDataSQLHelper = new ClaimDataSQLHelper(getApplicationContext(), DATABASE_NAME, null, DATABASE_VERSION);
 		SQLiteDatabase db = claimDataSQLHelper.getWritableDatabase();
 		Cursor cursor = db.query(ClaimDataSQLHelper.TABLE, null, null, null, null, null, null);
@@ -272,14 +314,14 @@ public class SettingsActivity1 extends ActionBarActivity {
 			else
 				position = 4;
 			vehicleClassSpinner.setSelection(position);
-			
+
 			if(cursor.getString(26).equals("Permanent"))
 				position = 0;
 			else
 				position = 1;
 			vehicleTypeSpinner.setSelection(position);
 		}
-		
+
 	}
 
 	protected VehicleDetailsType getVehicleDetails() {
@@ -294,7 +336,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 		vehicleDetails.setColor(color.getText().toString());
 		return vehicleDetails;
 	}
-	
+
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
 		LicenseType licenseType = new LicenseType(licenseNo.getText().toString(), issuingRTO.getText().toString(),
@@ -304,7 +346,7 @@ public class SettingsActivity1 extends ActionBarActivity {
 		return driverDetails;
 	}
 
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

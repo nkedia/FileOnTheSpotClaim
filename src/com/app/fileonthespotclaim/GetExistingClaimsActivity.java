@@ -208,8 +208,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 		accidentDetails.setPlace(accidentDetailsObj.getPrimitivePropertyAsString("place"));
 		accidentDetails.setPoliceStationName(accidentDetailsObj.getPrimitivePropertyAsString("policeStationName"));
 		accidentDetails.setSpeed(accidentDetailsObj.getPrimitivePropertyAsString("speed"));
-		String time = accidentDetailsObj.getPrimitivePropertyAsString("time");
-		accidentDetails.setTime(time.substring(0, time.length()-1));
+		accidentDetails.setTime(accidentDetailsObj.getPrimitivePropertyAsString("time"));
 		return accidentDetails;
 	}
 
