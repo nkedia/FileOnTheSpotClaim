@@ -84,7 +84,7 @@ public class S3UploadTask extends AsyncTask<String, Void, Boolean>{
 	}
 
 	private String compressFile(String path) throws FileNotFoundException {
-		if(path.contains("3gp")) {
+		if(path.contains("3gp") || path.contains("mp4")) {
 			return path;
 		}
 		Bitmap bmp = BitmapFactory.decodeFile(path);

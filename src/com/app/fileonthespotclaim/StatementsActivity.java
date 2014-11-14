@@ -55,7 +55,7 @@ public class StatementsActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 				try {
-					driverStatement = File.createTempFile("driverStatement", ".3gp", getApplication().getExternalFilesDir(null));
+					driverStatement = File.createTempFile("driverStatement", ".mp4", getApplication().getExternalFilesDir(null));
 				}catch (IOException e) {
 					e.printStackTrace();
 					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
@@ -63,6 +63,7 @@ public class StatementsActivity extends ActionBarActivity {
 				}
 				Log.d("file path", driverStatement.getAbsolutePath());
 				myIntent.putExtra("driverStatement", driverStatement.getAbsolutePath());
+				myIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
 				if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
 					takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
 							Uri.fromFile(driverStatement));
