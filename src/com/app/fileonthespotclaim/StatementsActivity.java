@@ -80,7 +80,7 @@ public class StatementsActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 				try {
-					passengerStatement = File.createTempFile("passengerStatement", ".3gp", getApplication().getExternalFilesDir(null));
+					passengerStatement = File.createTempFile("passengerStatement", ".mp4", getApplication().getExternalFilesDir(null));
 				}catch (IOException e) {
 					e.printStackTrace();
 					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
@@ -104,7 +104,7 @@ public class StatementsActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 				try {
-					thirdPartyStatement = File.createTempFile("thirdPartyStatement", ".3gp", getApplication().getExternalFilesDir(null));
+					thirdPartyStatement = File.createTempFile("thirdPartyStatement", ".mp4", getApplication().getExternalFilesDir(null));
 				}catch (IOException e) {
 					e.printStackTrace();
 					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);
@@ -128,7 +128,7 @@ public class StatementsActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 				try {
-					witnessStatement = File.createTempFile("witnessStatement", ".3gp", getApplication().getExternalFilesDir(null));
+					witnessStatement = File.createTempFile("witnessStatement", ".mp4", getApplication().getExternalFilesDir(null));
 				}catch (IOException e) {
 					e.printStackTrace();
 					Intent newIntent = new Intent(StatementsActivity.this, MainActivity.class);

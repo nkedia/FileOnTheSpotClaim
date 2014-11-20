@@ -22,10 +22,7 @@ public class ClaimsBroadcastReceiver extends BroadcastReceiver {
 
 			
 			if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-				//get the different network states
-				if (networkInfo.getState() == NetworkInfo.State.CONNECTING 
-						|| networkInfo.getState() == NetworkInfo.State.CONNECTED) {
-				
+				if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
 					Log.d("wifi", "connected");
 					Toast.makeText(context, "hello wifi", Toast.LENGTH_LONG).show();
 				}

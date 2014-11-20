@@ -74,7 +74,6 @@ public class DocumentsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_documents);
-		getNetworkInfo();
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		claimId = getIntent().getStringExtra("claimId");
 
@@ -317,53 +316,86 @@ public class DocumentsActivity extends ActionBarActivity {
 
 	protected void uploadFiles(String claimId) {
 		Context context = DocumentsActivity.this.getApplicationContext();
-		//getNetworkInfo(context);
-		
-		try {
+		boolean isWifiNetworkAvailable = getNetworkInfo();
+		if(isWifiNetworkAvailable) {
+			try {
+				if(getExistingClaims) {
+					//save statements to S3
+					//save documents to S3
+					new S3UploadTask(context, claimId).execute(billPhoto == null ? "" : billPhoto.getAbsolutePath(), 
+							firPhoto == null ? "" : firPhoto.getAbsolutePath(),
+									getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+									getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
+				}
+				else {
+					//save insurance, rc, license copies
+					File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
+					File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
+					File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
+
+					//save statements to S3
+					//save documents to S3
+					//Go to Main Activity
+					new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), photoFileThirdParty == null ? "" : photoFileThirdParty.getAbsolutePath(),
+							insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath(), 
+							getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+							getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
+
+					Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
+					DocumentsActivity.this.startActivity(myIntent);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
+				DocumentsActivity.this.startActivity(newIntent);
+			}
+		} else {
+			Toast.makeText(context, "Wifi is not connected; files will be uploaded when Wifi is connected", Toast.LENGTH_LONG).show();
 			if(getExistingClaims) {
-				//save statements to S3
-				//save documents to S3
+				//rename statements
+				//rename documents
+				//TODO 
 				new S3UploadTask(context, claimId).execute(billPhoto == null ? "" : billPhoto.getAbsolutePath(), 
 						firPhoto == null ? "" : firPhoto.getAbsolutePath(),
-						getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
-						getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
+								getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+								getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
 			}
 			else {
 				//save insurance, rc, license copies
 				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
-
-				//save statements to S3
-				//save documents to S3
+				//TODO
+				//rename statements to S3
+				//rename documents to S3
 				//Go to Main Activity
+				//getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+				//getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement")
+				
+				File driverStatement = new File(getIntent().getStringExtra("driverStatement"));
+				getApplication().getExternalFilesDir(null);
+				File driverStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/" + claimId, "driverStatement.mp4");
+				driverStatement.renameTo(driverStatementRename);
+				
 				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), photoFileThirdParty == null ? "" : photoFileThirdParty.getAbsolutePath(),
-						insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath(), 
-						getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
-						getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
+						insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath());
 
-				Toast.makeText(DocumentsActivity.this, "File New Claim Successful", Toast.LENGTH_LONG).show();
 				DocumentsActivity.this.startActivity(myIntent);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
-			DocumentsActivity.this.startActivity(newIntent);
 		}
 
 	}
 
-	private void getNetworkInfo() {
-		// TODO Auto-generated method stub
+	private boolean getNetworkInfo() {
 		Context context = DocumentsActivity.this.getApplicationContext();
 		ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		if (mWifi.isConnected()) {
-		    // Do whatever
 			Log.d("wifi", "connected");
 			Toast.makeText(context, "hello wifi", Toast.LENGTH_LONG).show();
+			return true;
 		}
-		
+		return false;
 	}
 
 	@Override
