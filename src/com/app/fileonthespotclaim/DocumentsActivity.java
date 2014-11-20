@@ -11,7 +11,10 @@ import org.ksoap2.serialization.SoapPrimitive;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -71,7 +74,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_documents);
-
+		getNetworkInfo();
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		claimId = getIntent().getStringExtra("claimId");
 
@@ -314,6 +317,8 @@ public class DocumentsActivity extends ActionBarActivity {
 
 	protected void uploadFiles(String claimId) {
 		Context context = DocumentsActivity.this.getApplicationContext();
+		//getNetworkInfo(context);
+		
 		try {
 			if(getExistingClaims) {
 				//save statements to S3
@@ -346,6 +351,19 @@ public class DocumentsActivity extends ActionBarActivity {
 			DocumentsActivity.this.startActivity(newIntent);
 		}
 
+	}
+
+	private void getNetworkInfo() {
+		// TODO Auto-generated method stub
+		Context context = DocumentsActivity.this.getApplicationContext();
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		if (mWifi.isConnected()) {
+		    // Do whatever
+			Log.d("wifi", "connected");
+			Toast.makeText(context, "hello wifi", Toast.LENGTH_LONG).show();
+		}
+		
 	}
 
 	@Override
