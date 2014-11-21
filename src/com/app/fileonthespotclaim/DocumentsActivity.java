@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -23,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +58,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	private TextView insuranceText;
 	private TextView rcText;
 	private TextView licenseText;
-	private CheckBox towV;
+//	private CheckBox towV;
 
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME1 = "fileNewClaim";
@@ -239,7 +237,7 @@ public class DocumentsActivity extends ActionBarActivity {
 			lc = (TextView) findViewById(R.id.license);
 			dc = (TextView) findViewById(R.id.carImage);
 			dctp = (TextView) findViewById(R.id.carImageThirdParty);
-			towV = (CheckBox) findViewById(R.id.towV);
+			//towV = (CheckBox) findViewById(R.id.towV);
 			ic.setEnabled(false);
 			rc.setEnabled(false);
 			lc.setEnabled(false);
@@ -250,7 +248,7 @@ public class DocumentsActivity extends ActionBarActivity {
 			insuranceText.setEnabled(false);
 			rcText.setEnabled(false);
 			licenseText.setEnabled(false);
-			towV.setEnabled(false);
+			//towV.setEnabled(false);
 		}
 
 		//Cancel File new Insurance or Update Existing Claim
@@ -353,33 +351,75 @@ public class DocumentsActivity extends ActionBarActivity {
 			Toast.makeText(context, "Wifi is not connected; files will be uploaded when Wifi is connected", Toast.LENGTH_LONG).show();
 			if(getExistingClaims) {
 				//rename statements
-				//rename documents
-				//TODO 
+				//getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
+				//getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement")
+				new File(getApplication().getExternalFilesDir(null).getAbsolutePath(), "claimId_" + claimId).mkdir();
+				if(getIntent().getStringExtra("driverStatement") != null) {
+					File driverStatement = new File(getIntent().getStringExtra("driverStatement"));
+					File driverStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "driverStatement.mp4");
+					boolean renamed = driverStatement.renameTo(driverStatementRename);
+					Log.d("", "File renamed " + renamed);
+				}
+
+				if(getIntent().getStringExtra("passengerStatement") != null) {
+					File passengerStatement = new File(getIntent().getStringExtra("passengerStatement"));
+					File passengerStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "passengerStatement.mp4");
+					passengerStatement.renameTo(passengerStatementRename);
+				}
+
+				if(getIntent().getStringExtra("thirdPartyStatement") != null) {
+					File thirdPartyStatement = new File(getIntent().getStringExtra("thirdPartyStatement"));
+					File thirdPartyStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "thirdPartyStatement.mp4");
+					thirdPartyStatement.renameTo(thirdPartyStatementRename);
+				}
+
+				if(getIntent().getStringExtra("witnessStatement") != null) {
+					File witnessStatement = new File(getIntent().getStringExtra("witnessStatement"));
+					File witnessStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "witnessStatement.mp4");
+					witnessStatement.renameTo(witnessStatementRename);
+				}
+				
+				//Upload documents to S3
 				new S3UploadTask(context, claimId).execute(billPhoto == null ? "" : billPhoto.getAbsolutePath(), 
-						firPhoto == null ? "" : firPhoto.getAbsolutePath(),
-								getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
-								getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement"));
+						firPhoto == null ? "" : firPhoto.getAbsolutePath());
 			}
 			else {
 				//save insurance, rc, license copies
 				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
-				//TODO
-				//rename statements to S3
-				//rename documents to S3
-				//Go to Main Activity
-				//getIntent().getStringExtra("driverStatement"), getIntent().getStringExtra("passengerStatement"),
-				//getIntent().getStringExtra("thirdPartyStatement"), getIntent().getStringExtra("witnessStatement")
 				
-				File driverStatement = new File(getIntent().getStringExtra("driverStatement"));
-				getApplication().getExternalFilesDir(null);
-				File driverStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/" + claimId, "driverStatement.mp4");
-				driverStatement.renameTo(driverStatementRename);
-				
+				//rename statements to S3 to upload later when wifi is available
+				new File(getApplication().getExternalFilesDir(null).getAbsolutePath(), "claimId_" + claimId).mkdir();
+				if(getIntent().getStringExtra("driverStatement") != null) {
+					File driverStatement = new File(getIntent().getStringExtra("driverStatement"));
+					File driverStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "driverStatement.mp4");
+					boolean renamed = driverStatement.renameTo(driverStatementRename);
+					Log.d("", "File renamed " + renamed);
+				}
+
+				if(getIntent().getStringExtra("passengerStatement") != null) {
+					File passengerStatement = new File(getIntent().getStringExtra("passengerStatement"));
+					File passengerStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "passengerStatement.mp4");
+					passengerStatement.renameTo(passengerStatementRename);
+				}
+
+				if(getIntent().getStringExtra("thirdPartyStatement") != null) {
+					File thirdPartyStatement = new File(getIntent().getStringExtra("thirdPartyStatement"));
+					File thirdPartyStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "thirdPartyStatement.mp4");
+					thirdPartyStatement.renameTo(thirdPartyStatementRename);
+				}
+
+				if(getIntent().getStringExtra("witnessStatement") != null) {
+					File witnessStatement = new File(getIntent().getStringExtra("witnessStatement"));
+					File witnessStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "witnessStatement.mp4");
+					witnessStatement.renameTo(witnessStatementRename);
+				}
+
+				//save documents to S3
 				new S3UploadTask(context, claimId).execute(photoFile.getAbsolutePath(), photoFileThirdParty == null ? "" : photoFileThirdParty.getAbsolutePath(),
 						insurance.getAbsolutePath(), rc.getAbsolutePath(), license.getAbsolutePath());
-
+				//Go to Main Activity
 				DocumentsActivity.this.startActivity(myIntent);
 			}
 		}

@@ -109,8 +109,8 @@
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
       android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera1"
-      android:drawableStart="@drawable/camera1" />
+      android:drawableLeft="@drawable/camera_drawable"
+      android:drawableStart="@drawable/camera_drawable" />
   
   <Button
       android:id="@+id/clickImageCarThirdParty"
@@ -122,8 +122,8 @@
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
       android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera1"
-      android:drawableStart="@drawable/camera1" />
+      android:drawableLeft="@drawable/camera_drawable"
+      android:drawableStart="@drawable/camera_drawable" />
   
   <Button
       android:id="@+id/clickImageFIR"
@@ -135,8 +135,8 @@
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
       android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera1"
-      android:drawableStart="@drawable/camera1" />
+      android:drawableLeft="@drawable/camera_drawable"
+      android:drawableStart="@drawable/camera_drawable" />
   
   <Button
       android:id="@+id/clickImageGB"
@@ -148,8 +148,8 @@
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"
       android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera1"
-      android:drawableStart="@drawable/camera1" />
+      android:drawableLeft="@drawable/camera_drawable"
+      android:drawableStart="@drawable/camera_drawable" />
 
   <Button
       android:id="@+id/cancel"
@@ -188,7 +188,7 @@
       android:layout_alignEnd="@+id/submit_next"
       android:layout_alignRight="@+id/submit_next"/>
 
-  <CheckBox
+ <!--  <CheckBox
       android:id="@+id/towV"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -196,6 +196,6 @@
       android:layout_below="@+id/fir"
       android:layout_marginTop="25dp"
       android:text="@string/towVehicle"
-      android:checked="true" />
+      android:checked="true" />  -->
   
 </RelativeLayout>

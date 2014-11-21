@@ -25,6 +25,10 @@ public class StatementsActivity extends ActionBarActivity {
 	File thirdPartyStatement;
 	File witnessStatement;
 	Intent myIntent;
+	Button bt2;
+	Button bt3;
+	Button bt4;
+	Button bt5;
 	
 
 	@Override
@@ -49,7 +53,7 @@ public class StatementsActivity extends ActionBarActivity {
 		bt.setOnClickListener(myListener);
 
 		//driver Statement
-		Button bt2 = (Button) findViewById(R.id.driverStatement);
+		bt2 = (Button) findViewById(R.id.driverStatement);
 		Button.OnClickListener myListener2 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -74,7 +78,7 @@ public class StatementsActivity extends ActionBarActivity {
 		bt2.setOnClickListener(myListener2);
 
 		//passenger Statement
-		Button bt3 = (Button) findViewById(R.id.passengerStatement);
+		bt3 = (Button) findViewById(R.id.passengerStatement);
 		Button.OnClickListener myListener3 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -98,7 +102,7 @@ public class StatementsActivity extends ActionBarActivity {
 		bt3.setOnClickListener(myListener3);
 
 		//thirdParty Statement
-		Button bt4 = (Button) findViewById(R.id.thirdPartyStatement);
+		bt4 = (Button) findViewById(R.id.thirdPartyStatement);
 		Button.OnClickListener myListener4 = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -122,7 +126,7 @@ public class StatementsActivity extends ActionBarActivity {
 		bt4.setOnClickListener(myListener4);
 
 		//witness Statement
-		Button bt5 = (Button) findViewById(R.id.witnessStatement);
+		bt5 = (Button) findViewById(R.id.witnessStatement);
 		Button.OnClickListener myListener5 = new Button.OnClickListener(){
 
 			public void onClick(View v) {

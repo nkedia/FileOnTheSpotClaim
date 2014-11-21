@@ -78,9 +78,10 @@
         android:layout_alignBottom="@+id/driver"
         android:layout_alignEnd="@+id/stmt_next"
         android:layout_alignRight="@+id/stmt_next"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/camera1"
-        android:drawableStart="@drawable/camera1" />
+        android:background="@android:color/transparent" 
+        android:drawableLeft="@drawable/camera_drawable"
+        android:drawableStart="@drawable/camera_drawable" />
+        
 
     <Button
         android:id="@+id/passengerStatement"
@@ -92,8 +93,8 @@
         android:layout_alignEnd="@+id/stmt_next"
         android:layout_alignRight="@+id/stmt_next"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/camera1"
-        android:drawableStart="@drawable/camera1" />
+        android:drawableLeft="@drawable/camera_drawable"
+        android:drawableStart="@drawable/camera_drawable" />
 
     <Button
         android:id="@+id/thirdPartyStatement"
@@ -105,8 +106,8 @@
         android:layout_alignEnd="@+id/stmt_next"
         android:layout_alignRight="@+id/stmt_next"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/camera1"
-        android:drawableStart="@drawable/camera1" />
+        android:drawableLeft="@drawable/camera_drawable"
+        android:drawableStart="@drawable/camera_drawable" />
 
     <Button
         android:id="@+id/witnessStatement"
@@ -118,7 +119,7 @@
         android:layout_alignEnd="@+id/stmt_next"
         android:layout_alignRight="@+id/stmt_next"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/camera1"
-        android:drawableStart="@drawable/camera1" />
+        android:drawableLeft="@drawable/camera_drawable"
+        android:drawableStart="@drawable/camera_drawable" />
 
 </RelativeLayout>

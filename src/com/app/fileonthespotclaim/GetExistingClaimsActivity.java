@@ -136,7 +136,9 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 	        tr2.setOnClickListener(new OnClickListener() {
 	            public void onClick(View v) {
 	               //get the data you need
+	               v.setClickable(true);
 	               TableRow tablerow = (TableRow)v;
+	               tablerow.setBackgroundResource(resid);
 	               TextView tv1 = (TextView) tablerow.getChildAt(0);
 	               rowClickedClaimId = tv1.getText().toString();
 	               Toast.makeText(GetExistingClaimsActivity.this, "RowCLickedClaimID : " + rowClickedClaimId, Toast.LENGTH_LONG).show();

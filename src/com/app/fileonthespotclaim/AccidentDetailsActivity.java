@@ -40,13 +40,14 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 	Boolean getExistingClaims = false;
 	String latLong = "";
 	String psLatLong = "";
+	LocationManager locationManager = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accident_details);
 
-		LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+		locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
 		bt = (Button) findViewById(R.id.ad_next);
