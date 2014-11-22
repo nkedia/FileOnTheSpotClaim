@@ -1,8 +1,11 @@
 package com.app.fileonthespotclaim;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -16,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,7 +32,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 
 	Button bt;
 	Button map;
-	EditText date;
+	Button date;
 	EditText time;
 	EditText speed;
 	EditText place;
@@ -52,7 +56,7 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 
 		bt = (Button) findViewById(R.id.ad_next);
 		map = (Button) findViewById(R.id.psMap);
-		date = (EditText) findViewById(R.id.editText1);
+		date = (Button) findViewById(R.id.accidentDate);
 		time = (EditText) findViewById(R.id.editText2);
 		speed = (EditText) findViewById(R.id.editText3);
 		place = (EditText) findViewById(R.id.editText4);
@@ -96,6 +100,51 @@ public class AccidentDetailsActivity extends ActionBarActivity implements Locati
 		};
 
 		map.setOnClickListener(mapListener);
+		
+		//Set accident Date
+		Button.OnClickListener myListener2 = new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(date.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String dateArray[] = date.getText().toString().split("-");
+					myyear = Integer.parseInt(dateArray[0]);
+					mymonth = Integer.parseInt(dateArray[1])-1;
+					mydate = Integer.parseInt(dateArray[2]);
+				}
+
+
+				DatePickerDialog ddp = new DatePickerDialog(AccidentDetailsActivity.this, new OnDateSetListener() {
+
+					@Override
+					public void onDateSet(DatePicker view, int year,
+							int monthOfYear, int dayOfMonth) {
+						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
+						monthOfYear++;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						String transferDate = year + "-" + month + "-" + day;
+						date.setText(transferDate);
+					}
+
+				}, myyear, mymonth, mydate);
+
+				ddp.show();
+			}
+		};
+		date.setOnClickListener(myListener2);
 	}
 
 	private void setAccidentDetails(AccidentDetailsType accidentDetails,

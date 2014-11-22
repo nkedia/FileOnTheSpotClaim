@@ -1,334 +1,339 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView01"
+    android:id="@+id/ScrollView08"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.app.fileonthespotclaim.SettingsActivity1" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/enterDetail"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="@string/enterDetails1" />
+        android:layout_height="520dp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.app.fileonthespotclaim.SettingsActivity1" >
 
-    <TextView
-        android:id="@+id/regdNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/enterDetail"
-        android:layout_marginTop="7dp"
-        android:ems="10"
-        android:text="@string/regdNo" />
+        <TextView
+            android:id="@+id/enterDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/enterDetails1" />
 
-    <TextView
-        android:id="@+id/dateOfFirstReg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/make"
-        android:layout_alignStart="@+id/make"
-        android:layout_below="@+id/make"
-        android:layout_marginTop="7dp"
-        android:text="@string/dateOfFirstReg" />
+        <TextView
+            android:id="@+id/regdNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enterDetail"
+            android:layout_marginTop="7dp"
+            android:ems="10"
+            android:text="@string/regdNo" />
 
-    <TextView
-        android:id="@+id/make"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/regdNo"
-        android:layout_alignStart="@+id/regdNo"
-        android:layout_below="@+id/regdNo"
-        android:layout_marginTop="7dp"
-        android:text="@string/make" />
+        <TextView
+            android:id="@+id/dateOfFirstReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/make"
+            android:layout_alignStart="@+id/make"
+            android:layout_below="@+id/make"
+            android:layout_marginTop="7dp"
+            android:text="@string/dateOfFirstReg" />
 
-    <TextView
-        android:id="@+id/chassisNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/dateOfFirstReg"
-        android:layout_alignStart="@+id/dateOfFirstReg"
-        android:layout_below="@+id/dateOfFirstReg"
-        android:layout_marginTop="7dp"
-        android:text="@string/chassisNo" />
+        <TextView
+            android:id="@+id/make"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/regdNo"
+            android:layout_alignStart="@+id/regdNo"
+            android:layout_below="@+id/regdNo"
+            android:layout_marginTop="7dp"
+            android:text="@string/make" />
 
-    <TextView
-        android:id="@+id/engineNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/chassisNo"
-        android:layout_alignStart="@+id/chassisNo"
-        android:layout_below="@+id/chassisNo"
-        android:layout_marginTop="7dp"
-        android:text="@string/engineNo" />
+        <TextView
+            android:id="@+id/chassisNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dateOfFirstReg"
+            android:layout_alignStart="@+id/dateOfFirstReg"
+            android:layout_below="@+id/dateOfFirstReg"
+            android:layout_marginTop="7dp"
+            android:text="@string/chassisNo" />
 
-    <TextView
-        android:id="@+id/dateOfTx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/engineNo"
-        android:layout_alignStart="@+id/engineNo"
-        android:layout_below="@+id/engineNo"
-        android:layout_marginTop="7dp"
-        android:text="@string/dateOfTx" />
+        <TextView
+            android:id="@+id/engineNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/chassisNo"
+            android:layout_alignStart="@+id/chassisNo"
+            android:layout_below="@+id/chassisNo"
+            android:layout_marginTop="7dp"
+            android:text="@string/engineNo" />
 
-    <TextView
-        android:id="@+id/typeOfFuel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/dateOfTx"
-        android:layout_alignStart="@+id/dateOfTx"
-        android:layout_below="@+id/dateOfTx"
-        android:layout_marginTop="7dp"
-        android:text="@string/typeOfFuel" />
+        <TextView
+            android:id="@+id/dateOfTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/engineNo"
+            android:layout_alignStart="@+id/engineNo"
+            android:layout_below="@+id/engineNo"
+            android:layout_marginTop="7dp"
+            android:text="@string/dateOfTx" />
 
-    <TextView
-        android:id="@+id/colour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/typeOfFuel"
-        android:layout_alignStart="@+id/typeOfFuel"
-        android:layout_below="@+id/typeOfFuel"
-        android:layout_marginTop="7dp"
-        android:text="@string/colour" />
+        <TextView
+            android:id="@+id/typeOfFuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dateOfTx"
+            android:layout_alignStart="@+id/dateOfTx"
+            android:layout_below="@+id/dateOfTx"
+            android:layout_marginTop="7dp"
+            android:text="@string/typeOfFuel" />
 
-    <TextView
-        android:id="@+id/dlNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/colour"
-        android:layout_alignStart="@+id/colour"
-        android:layout_below="@+id/colour"
-        android:layout_marginTop="7dp"
-        android:text="@string/dlNo" />
+        <TextView
+            android:id="@+id/colour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/typeOfFuel"
+            android:layout_alignStart="@+id/typeOfFuel"
+            android:layout_below="@+id/typeOfFuel"
+            android:layout_marginTop="7dp"
+            android:text="@string/colour" />
 
-    <TextView
-        android:id="@+id/issuingRTO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/dlNo"
-        android:layout_alignStart="@+id/dlNo"
-        android:layout_below="@+id/dlNo"
-        android:layout_marginTop="7dp"
-        android:text="@string/issuingRTO" />
+        <TextView
+            android:id="@+id/dlNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/colour"
+            android:layout_alignStart="@+id/colour"
+            android:layout_below="@+id/colour"
+            android:layout_marginTop="7dp"
+            android:text="@string/dlNo" />
 
-    <TextView
-        android:id="@+id/effectiveFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/issuingRTO"
-        android:layout_alignStart="@+id/issuingRTO"
-        android:layout_below="@+id/issuingRTO"
-        android:layout_marginTop="7dp"
-        android:text="@string/effectiveFrom" />
+        <TextView
+            android:id="@+id/issuingRTO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dlNo"
+            android:layout_alignStart="@+id/dlNo"
+            android:layout_below="@+id/dlNo"
+            android:layout_marginTop="7dp"
+            android:text="@string/issuingRTO" />
 
-    <TextView
-        android:id="@+id/expiryDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/effectiveFrom"
-        android:layout_alignStart="@+id/effectiveFrom"
-        android:layout_below="@+id/effectiveFrom"
-        android:layout_marginTop="7dp"
-        android:text="@string/expiryDate" />
+        <TextView
+            android:id="@+id/effectiveFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/issuingRTO"
+            android:layout_alignStart="@+id/issuingRTO"
+            android:layout_below="@+id/issuingRTO"
+            android:layout_marginTop="7dp"
+            android:text="@string/effectiveFrom" />
 
-    <TextView
-        android:id="@+id/vehicleClass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/expiryDate"
-        android:layout_alignStart="@+id/expiryDate"
-        android:layout_below="@+id/expiryDate"
-        android:layout_marginTop="7dp"
-        android:text="@string/vehicleClass" />
+        <TextView
+            android:id="@+id/expiryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/effectiveFrom"
+            android:layout_alignStart="@+id/effectiveFrom"
+            android:layout_below="@+id/effectiveFrom"
+            android:layout_marginTop="7dp"
+            android:text="@string/expiryDate" />
 
-    <TextView
-        android:id="@+id/driverType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/vehicleClass"
-        android:layout_alignStart="@+id/vehicleClass"
-        android:layout_below="@+id/vehicleClass"
-        android:layout_marginTop="7dp"
-        android:text="@string/driverType" />
+        <TextView
+            android:id="@+id/vehicleClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/expiryDate"
+            android:layout_alignStart="@+id/expiryDate"
+            android:layout_below="@+id/expiryDate"
+            android:layout_marginTop="7dp"
+            android:text="@string/vehicleClass" />
 
-    <TextView
-        android:id="@+id/driverDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/driverType"
-        android:layout_alignStart="@+id/driverType"
-        android:layout_below="@+id/driverType"
-        android:layout_marginTop="7dp"
-        android:text="@string/driverDetails" />
+        <TextView
+            android:id="@+id/driverType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/vehicleClass"
+            android:layout_alignStart="@+id/vehicleClass"
+            android:layout_below="@+id/vehicleClass"
+            android:layout_marginTop="7dp"
+            android:text="@string/driverType" />
 
-    <EditText
-        android:id="@+id/editText14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/regdNo"
-        android:layout_alignBottom="@+id/regdNo"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <TextView
+            android:id="@+id/driverDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/driverType"
+            android:layout_alignStart="@+id/driverType"
+            android:layout_below="@+id/driverType"
+            android:layout_marginTop="7dp"
+            android:text="@string/driverDetails" />
 
-    <EditText
-        android:id="@+id/editText15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/make"
-        android:layout_alignBottom="@+id/make"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/regdNo"
+            android:layout_alignBottom="@+id/regdNo"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/firstRegDate"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:layout_alignBaseline="@+id/dateOfFirstReg"
-        android:layout_alignBottom="@+id/dateOfFirstReg"
-        android:layout_alignRight="@+id/next"
-        android:text="@string/selectDate"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/make"
+            android:layout_alignBottom="@+id/make"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/chassisNo"
-        android:layout_alignBottom="@+id/chassisNo"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <Button
+            android:id="@+id/firstRegDate"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_alignBaseline="@+id/dateOfFirstReg"
+            android:layout_alignBottom="@+id/dateOfFirstReg"
+            android:layout_alignRight="@+id/next"
+            android:text="@string/selectDate"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/engineNo"
-        android:layout_alignBottom="@+id/engineNo"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/chassisNo"
+            android:layout_alignBottom="@+id/chassisNo"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/transferDate"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:layout_alignBaseline="@+id/dateOfTx"
-        android:layout_alignBottom="@+id/dateOfTx"
-        android:layout_alignRight="@+id/next"
-        android:text="@string/selectDate"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/engineNo"
+            android:layout_alignBottom="@+id/engineNo"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/typeOfFuel"
-        android:layout_alignBottom="@+id/typeOfFuel"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <Button
+            android:id="@+id/transferDate"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_alignBaseline="@+id/dateOfTx"
+            android:layout_alignBottom="@+id/dateOfTx"
+            android:layout_alignRight="@+id/next"
+            android:text="@string/selectDate"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/colour"
-        android:layout_alignBottom="@+id/colour"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/typeOfFuel"
+            android:layout_alignBottom="@+id/typeOfFuel"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/dlNo"
-        android:layout_alignBottom="@+id/dlNo"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/colour"
+            android:layout_alignBottom="@+id/colour"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/issuingRTO"
-        android:layout_alignBottom="@+id/issuingRTO"
-        android:layout_alignRight="@+id/next"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/dlNo"
+            android:layout_alignBottom="@+id/dlNo"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/effectiveFromDate"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:layout_alignBaseline="@+id/effectiveFrom"
-        android:layout_alignBottom="@+id/effectiveFrom"
-        android:layout_alignRight="@+id/next"
-        android:text="@string/selectDate"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/issuingRTO"
+            android:layout_alignBottom="@+id/issuingRTO"
+            android:layout_alignRight="@+id/next"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <Button
-        android:id="@+id/expiryDateDt"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:layout_alignBaseline="@+id/expiryDate"
-        android:layout_alignBottom="@+id/expiryDate"
-        android:layout_alignRight="@+id/next"
-        android:text="@string/selectDate"
-        android:textSize="12dp" />
+        <Button
+            android:id="@+id/effectiveFromDate"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_alignBaseline="@+id/effectiveFrom"
+            android:layout_alignBottom="@+id/effectiveFrom"
+            android:layout_alignRight="@+id/next"
+            android:text="@string/selectDate"
+            android:textSize="12dp" />
 
-    <Spinner
-        android:id="@+id/vehicleClassSpinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/vehicleClass"
-        android:layout_alignBottom="@+id/vehicleClass"
-        android:layout_alignLeft="@+id/editText23"
-        android:layout_alignRight="@+id/next"
-        android:entries="@array/classArray"
-        android:prompt="@string/classPrompt" />
+        <Button
+            android:id="@+id/expiryDateDt"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_alignBaseline="@+id/expiryDate"
+            android:layout_alignBottom="@+id/expiryDate"
+            android:layout_alignRight="@+id/next"
+            android:text="@string/selectDate"
+            android:textSize="12dp" />
 
-    <Spinner
-        android:id="@+id/vehicleTypeSpinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/driverType"
-        android:layout_alignBottom="@+id/driverType"
-        android:layout_alignLeft="@+id/vehicleClassSpinner"
-        android:layout_alignRight="@+id/next"
-        android:entries="@array/typeArray" />
+        <Spinner
+            android:id="@+id/vehicleClassSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/vehicleClass"
+            android:layout_alignBottom="@+id/vehicleClass"
+            android:layout_alignLeft="@+id/editText23"
+            android:layout_alignRight="@+id/next"
+            android:entries="@array/classArray"
+            android:prompt="@string/classPrompt" />
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/driverDetails"
-        android:layout_alignBottom="@+id/driverDetails"
-        android:layout_alignLeft="@+id/vehicleTypeSpinner"
-        android:layout_alignRight="@+id/next"
-        android:checked="true"
-        android:enabled="false"
-        android:text="@string/self" />
+        <Spinner
+            android:id="@+id/vehicleTypeSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/driverType"
+            android:layout_alignBottom="@+id/driverType"
+            android:layout_alignLeft="@+id/vehicleClassSpinner"
+            android:layout_alignRight="@+id/next"
+            android:entries="@array/typeArray" />
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/next" />
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/driverDetails"
+            android:layout_alignBottom="@+id/driverDetails"
+            android:layout_alignLeft="@+id/vehicleTypeSpinner"
+            android:layout_alignRight="@+id/next"
+            android:checked="true"
+            android:enabled="false"
+            android:text="@string/self" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/next" />
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,13 +1,19 @@
 package com.app.fileonthespotclaim;
 
+import java.util.Calendar;
+
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -22,17 +28,17 @@ public class DriverDetailsActivity extends ActionBarActivity {
 	EditText relation;
 	EditText address;
 	EditText number;
-	EditText dob;
+	Button dob;
 	EditText licenseNo;
 	EditText issuingRTO;
-	EditText effectiveFrom;
-	EditText expiryDate;
+	Button effectiveFrom;
+	Button expiryDate;
 	Spinner vehicleClassSpinner;
 	Spinner vehicleTypeSpinner;
 	String vehicleClass;
 	String vehicleType;
 	Boolean getExistingClaims = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,34 +49,34 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		relation = (EditText) findViewById(R.id.editText2);
 		address = (EditText) findViewById(R.id.editText3);
 		number = (EditText) findViewById(R.id.editText4);
-		dob = (EditText) findViewById(R.id.editText5);
+		dob = (Button) findViewById(R.id.driverDOB);
 		licenseNo = (EditText) findViewById(R.id.editText6);
 		issuingRTO = (EditText) findViewById(R.id.editText7);
-		effectiveFrom = (EditText) findViewById(R.id.editText8);
-		expiryDate = (EditText) findViewById(R.id.editText9);
+		effectiveFrom = (Button) findViewById(R.id.effectiveFromDate);
+		expiryDate = (Button) findViewById(R.id.expiryDateDt);
 		vehicleClassSpinner = (Spinner) findViewById(R.id.vehicleClassSpinner);
 		vehicleTypeSpinner = (Spinner) findViewById(R.id.vehicleTypeSpinner);
-		
-        vehicleClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                vehicleClass = parent.getItemAtPosition(pos).toString();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        
-        vehicleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                vehicleType = parent.getItemAtPosition(pos).toString();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        
-        DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
+
+		vehicleClassSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				vehicleClass = parent.getItemAtPosition(pos).toString();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+
+		vehicleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				vehicleType = parent.getItemAtPosition(pos).toString();
+			}
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+
+		DriverDetailsType driverDetails = (DriverDetailsType) getIntent().getParcelableExtra("driverDetails");
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		setDriverDetails(driverDetails, getExistingClaims);
-		
+
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
 			public void onClick(View v) {
@@ -81,7 +87,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 				myIntent.putExtra("accidentDetails", getIntent().getParcelableExtra("accidentDetails"));
 				myIntent.putExtra("driverDetails", driverDetails);
 				if(getExistingClaims)
-    				myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
+					myIntent.putExtra("claimId", getIntent().getStringExtra("claimId"));
 				myIntent.putExtra("getExistingClaims", getExistingClaims);
 				myIntent.putExtra("driverStatement", getIntent().getStringExtra("driverStatement"));
 				myIntent.putExtra("passengerStatement", getIntent().getStringExtra("passengerStatement"));
@@ -92,9 +98,143 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		};
 
 		bt.setOnClickListener(myListener);
+
+		//get driver dob
+		Button.OnClickListener myListener1 = new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(dob.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = dob.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
+
+				DatePickerDialog ddp = new DatePickerDialog(DriverDetailsActivity.this, new OnDateSetListener() {
+
+					@Override
+					public void onDateSet(DatePicker view, int year,
+							int monthOfYear, int dayOfMonth) {
+						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
+						monthOfYear++;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						String dobString = year + "-" + month + "-" + day;
+						dob.setText(dobString);
+					}
+
+				}, myyear, mymonth, mydate);
+
+				ddp.show();
+			}
+		};
+		dob.setOnClickListener(myListener1);
+
+		//get Effective from date
+		Button.OnClickListener myListener3 = new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(effectiveFrom.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = effectiveFrom.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
+
+				DatePickerDialog ddp = new DatePickerDialog(DriverDetailsActivity.this, new OnDateSetListener() {
+
+					@Override
+					public void onDateSet(DatePicker view, int year,
+							int monthOfYear, int dayOfMonth) {
+						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
+						monthOfYear++;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						String effectiveFromString = year + "-" + month + "-" + day;
+						effectiveFrom.setText(effectiveFromString);
+					}
+
+				}, myyear, mymonth, mydate);
+
+				ddp.show();
+			}
+		};
+		effectiveFrom.setOnClickListener(myListener3);
+
+
+		//get Expiry date
+		Button.OnClickListener myListener4 = new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				int myyear;
+				int mymonth;
+				int mydate;
+				if(expiryDate.getText().toString().isEmpty()) {
+					Calendar c = Calendar.getInstance();
+					myyear = c.get(Calendar.YEAR);
+					mymonth = c.get(Calendar.MONTH);
+					mydate = c.get(Calendar.DATE);
+				} else {
+					String date[] = expiryDate.getText().toString().split("-");
+					myyear = Integer.parseInt(date[0]);
+					mymonth = Integer.parseInt(date[1])-1;
+					mydate = Integer.parseInt(date[2]);
+				}
+
+				DatePickerDialog ddp = new DatePickerDialog(DriverDetailsActivity.this, new OnDateSetListener() {
+
+					@Override
+					public void onDateSet(DatePicker view, int year,
+							int monthOfYear, int dayOfMonth) {
+						Log.d("date set", year + "/" +monthOfYear + "/" + dayOfMonth);
+						monthOfYear++;
+						String month = monthOfYear + "";
+						String day = dayOfMonth + "";
+						if(monthOfYear < 10)
+							month = "0" + monthOfYear;
+						if(dayOfMonth < 10)
+							day = "0" + dayOfMonth;
+						String expiryDateString = year + "-" + month + "-" + day;
+						expiryDate.setText(expiryDateString);
+					}
+
+				}, myyear, mymonth, mydate);
+
+				ddp.show();
+			}
+		};
+		expiryDate.setOnClickListener(myListener4);
+
 	}
-	
-	
+
+
 	private void setDriverDetails(DriverDetailsType driverDetails,
 			Boolean getExistingClaims) {
 		name.setText(driverDetails.getName());
@@ -118,13 +258,13 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		else
 			position = 4;
 		vehicleClassSpinner.setSelection(position);
-		
+
 		if(driverDetails.getLicenseType().getType().equals("Permanent"))
 			position = 0;
 		else
 			position = 1;
 		vehicleTypeSpinner.setSelection(position);
-		
+
 		if(getExistingClaims) {
 			name.setEnabled(false);
 			relation.setEnabled(false);
@@ -137,15 +277,15 @@ public class DriverDetailsActivity extends ActionBarActivity {
 			expiryDate.setEnabled(false);
 			vehicleClassSpinner.setEnabled(false);
 			vehicleTypeSpinner.setEnabled(false);
-			
+
 		}
-		
+
 	}
 
 
 	protected DriverDetailsType getDriverDetails() {
 		DriverDetailsType driverDetails = new DriverDetailsType();
-			
+
 		driverDetails.setName(name.getText().toString());
 		driverDetails.setRelationWithInsured(relation.getText().toString());
 		driverDetails.setAddress(address.getText().toString());
@@ -155,7 +295,7 @@ public class DriverDetailsActivity extends ActionBarActivity {
 				effectiveFrom.getText().toString(), expiryDate.getText().toString(), 
 				vehicleClass, vehicleType);
 		driverDetails.setLicenseType(licenseType);
-			
+
 		return driverDetails;
 	}
 

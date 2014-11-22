@@ -1,194 +1,200 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView06"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.app.fileonthespotclaim.DocumentsActivity" >
+    android:layout_height="match_parent" >
 
-  <Button
-        android:id="@+id/submit_next"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="@string/submit" />
+        android:layout_height="540dp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.app.fileonthespotclaim.DocumentsActivity" >
 
-  <TextView
-      android:id="@+id/attachDocuments"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginLeft="22dp"
-      android:layout_marginStart="22dp"
-      android:layout_marginTop="17dp"
-      android:text="@string/attachDocuments" />
+        <Button
+            android:id="@+id/submit_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/submit" />
 
-  <TextView
-      android:id="@+id/insuranceCopy"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/attachDocuments"
-      android:layout_alignStart="@+id/attachDocuments"
-      android:layout_below="@+id/attachDocuments"
-      android:layout_marginTop="20dp"
-      android:text="@string/insuranceCopy" />
+        <TextView
+            android:id="@+id/attachDocuments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="17dp"
+            android:text="@string/attachDocuments" />
 
-  <TextView
-      android:id="@+id/rc"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/insuranceCopy"
-      android:layout_alignStart="@+id/insuranceCopy"
-      android:layout_below="@+id/insuranceCopy"
-      android:layout_marginTop="20dp"
-      android:text="@string/rc" />
+        <TextView
+            android:id="@+id/insuranceCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/attachDocuments"
+            android:layout_alignStart="@+id/attachDocuments"
+            android:layout_below="@+id/attachDocuments"
+            android:layout_marginTop="20dp"
+            android:text="@string/insuranceCopy" />
 
-  <TextView
-      android:id="@+id/license"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/rc"
-      android:layout_alignStart="@+id/rc"
-      android:layout_below="@+id/rc"
-      android:layout_marginTop="20dp"
-      android:text="@string/license" />
+        <TextView
+            android:id="@+id/rc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/insuranceCopy"
+            android:layout_alignStart="@+id/insuranceCopy"
+            android:layout_below="@+id/insuranceCopy"
+            android:layout_marginTop="20dp"
+            android:text="@string/rc" />
 
-  <TextView
-      android:id="@+id/carImage"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/license"
-      android:layout_alignStart="@+id/license"
-      android:layout_below="@+id/license"
-      android:layout_marginTop="20dp"
-      android:text="@string/damagedCar" />
-  
-  <TextView
-      android:id="@+id/carImageThirdParty"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/carImage"
-      android:layout_alignStart="@+id/carImage"
-      android:layout_below="@+id/carImage"
-      android:layout_marginTop="20dp"
-      android:text="@string/damagedCarThirdParty" />
+        <TextView
+            android:id="@+id/license"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rc"
+            android:layout_alignStart="@+id/rc"
+            android:layout_below="@+id/rc"
+            android:layout_marginTop="20dp"
+            android:text="@string/license" />
 
-  <TextView
-      android:id="@+id/bills"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/carImageThirdParty"
-      android:layout_alignStart="@+id/carImageThirdParty"
-      android:layout_below="@+id/carImageThirdParty"
-      android:layout_marginTop="20dp"
-      android:text="@string/bills" />
-  
-   <TextView
-      android:id="@+id/fir"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignLeft="@+id/bills"
-      android:layout_alignStart="@+id/bills"
-      android:layout_below="@+id/bills"
-      android:layout_marginTop="20dp"
-      android:text="@string/fir" />
+        <TextView
+            android:id="@+id/carImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/license"
+            android:layout_alignStart="@+id/license"
+            android:layout_below="@+id/license"
+            android:layout_marginTop="20dp"
+            android:text="@string/damagedCar" />
 
-  <Button
-      android:id="@+id/clickImageCar"
-      style="?android:attr/buttonStyleSmall"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/carImage"
-      android:layout_alignBottom="@+id/carImage"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"
-      android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera_drawable"
-      android:drawableStart="@drawable/camera_drawable" />
-  
-  <Button
-      android:id="@+id/clickImageCarThirdParty"
-      style="?android:attr/buttonStyleSmall"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/carImageThirdParty"
-      android:layout_alignBottom="@+id/carImageThirdParty"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"
-      android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera_drawable"
-      android:drawableStart="@drawable/camera_drawable" />
-  
-  <Button
-      android:id="@+id/clickImageFIR"
-      style="?android:attr/buttonStyleSmall"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/fir"
-      android:layout_alignBottom="@+id/fir"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"
-      android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera_drawable"
-      android:drawableStart="@drawable/camera_drawable" />
-  
-  <Button
-      android:id="@+id/clickImageGB"
-      style="?android:attr/buttonStyleSmall"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/bills"
-      android:layout_alignBottom="@+id/bills"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"
-      android:background="@android:color/transparent"
-      android:drawableLeft="@drawable/camera_drawable"
-      android:drawableStart="@drawable/camera_drawable" />
+        <TextView
+            android:id="@+id/carImageThirdParty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/carImage"
+            android:layout_alignStart="@+id/carImage"
+            android:layout_below="@+id/carImage"
+            android:layout_marginTop="20dp"
+            android:text="@string/damagedCarThirdParty" />
 
-  <Button
-      android:id="@+id/cancel"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"
-      android:alpha="0.7"
-      android:text="@string/cancel"/>
+        <TextView
+            android:id="@+id/bills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/carImageThirdParty"
+            android:layout_alignStart="@+id/carImageThirdParty"
+            android:layout_below="@+id/carImageThirdParty"
+            android:layout_marginTop="20dp"
+            android:text="@string/bills" />
 
-  <TextView
-      android:id="@+id/insuranceText"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBottom="@+id/insuranceCopy"
-      android:layout_alignBaseline="@+id/insuranceCopy"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"/>
+        <TextView
+            android:id="@+id/fir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bills"
+            android:layout_alignStart="@+id/bills"
+            android:layout_below="@+id/bills"
+            android:layout_marginTop="20dp"
+            android:text="@string/fir" />
 
-  <TextView
-      android:id="@+id/rcText"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/rc"
-      android:layout_alignBottom="@+id/rc"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"/>
+        <Button
+            android:id="@+id/clickImageCar"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/carImage"
+            android:layout_alignBottom="@+id/carImage"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/camera_drawable"
+            android:drawableStart="@drawable/camera_drawable" />
 
-  <TextView
-      android:id="@+id/licenseText"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignBaseline="@+id/license"
-      android:layout_alignBottom="@+id/license"
-      android:layout_alignEnd="@+id/submit_next"
-      android:layout_alignRight="@+id/submit_next"/>
+        <Button
+            android:id="@+id/clickImageCarThirdParty"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/carImageThirdParty"
+            android:layout_alignBottom="@+id/carImageThirdParty"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/camera_drawable"
+            android:drawableStart="@drawable/camera_drawable" />
 
- <!--  <CheckBox
+        <Button
+            android:id="@+id/clickImageFIR"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/fir"
+            android:layout_alignBottom="@+id/fir"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/camera_drawable"
+            android:drawableStart="@drawable/camera_drawable" />
+
+        <Button
+            android:id="@+id/clickImageGB"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/bills"
+            android:layout_alignBottom="@+id/bills"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/camera_drawable"
+            android:drawableStart="@drawable/camera_drawable" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:alpha="0.7"
+            android:text="@string/cancel" />
+
+        <TextView
+            android:id="@+id/insuranceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/insuranceCopy"
+            android:layout_alignBottom="@+id/insuranceCopy"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next" />
+
+        <TextView
+            android:id="@+id/rcText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rc"
+            android:layout_alignBottom="@+id/rc"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next" />
+
+        <TextView
+            android:id="@+id/licenseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/license"
+            android:layout_alignBottom="@+id/license"
+            android:layout_alignEnd="@+id/submit_next"
+            android:layout_alignRight="@+id/submit_next" />
+
+        <!--
+       <CheckBox
       android:id="@+id/towV"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -196,6 +202,9 @@
       android:layout_below="@+id/fir"
       android:layout_marginTop="25dp"
       android:text="@string/towVehicle"
-      android:checked="true" />  -->
-  
-</RelativeLayout>
+      android:checked="true" />
+        -->
+
+    </RelativeLayout>
+
+</ScrollView>

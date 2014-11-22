@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView01"
+    android:id="@+id/ScrollView05"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.app.fileonthespotclaim.DriverDetailsActivity" >
@@ -174,14 +174,15 @@
             android:ems="10"
             android:textSize="12dp" />
 
-        <EditText
-            android:id="@+id/editText5"
+        <Button
+            android:id="@+id/driverDOB"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:layout_alignBaseline="@+id/dobLicense"
             android:layout_alignBottom="@+id/dobLicense"
             android:layout_alignRight="@+id/dd_next"
-            android:ems="10"
+            android:text="@string/selectDate"
             android:textSize="12dp" />
 
         <EditText
@@ -204,24 +205,26 @@
             android:ems="10"
             android:textSize="12dp" />
 
-        <EditText
-            android:id="@+id/editText8"
+        <Button
+            android:id="@+id/effectiveFromDate"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:layout_alignBaseline="@+id/effectiveFrom"
             android:layout_alignBottom="@+id/effectiveFrom"
             android:layout_alignRight="@+id/dd_next"
-            android:ems="10"
+            android:text="@string/selectDate"
             android:textSize="12dp" />
 
-        <EditText
-            android:id="@+id/editText9"
+        <Button
+            android:id="@+id/expiryDateDt"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30sp"
             android:layout_alignBaseline="@+id/expiryDate"
             android:layout_alignBottom="@+id/expiryDate"
             android:layout_alignRight="@+id/dd_next"
-            android:ems="10"
+            android:text="@string/selectDate"
             android:textSize="12dp" />
 
         <Spinner
@@ -230,8 +233,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/vehicleClass"
             android:layout_alignBottom="@+id/vehicleClass"
-            android:layout_alignLeft="@+id/editText9"
-            android:layout_alignRight="@+id/dd_next"
+            android:layout_alignLeft="@+id/expiryDateDt"
+            android:layout_alignRight="@+id/expiryDateDt"
             android:entries="@array/classArray"
             android:prompt="@string/classPrompt" />
 

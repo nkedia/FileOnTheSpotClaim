@@ -1,212 +1,215 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView03"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.app.fileonthespotclaim.AccidentDetailsActivity" >
+    android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/ad_next"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/next" />
+        android:layout_height="520dp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.app.fileonthespotclaim.AccidentDetailsActivity" >
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:text="@string/date" />
+        <Button
+            android:id="@+id/ad_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/next" />
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/date"
-        android:layout_alignStart="@+id/date"
-        android:layout_below="@+id/date"
-        android:layout_marginTop="20dp"
-        android:text="@string/time" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:text="@string/date" />
 
-    <TextView
-        android:id="@+id/speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/time"
-        android:layout_alignStart="@+id/time"
-        android:layout_below="@+id/time"
-        android:layout_marginTop="20dp"
-        android:text="@string/speed" />
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/date"
+            android:layout_alignStart="@+id/date"
+            android:layout_below="@+id/date"
+            android:layout_marginTop="20dp"
+            android:text="@string/time" />
 
-    <TextView
-        android:id="@+id/exactPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/speed"
-        android:layout_alignStart="@+id/speed"
-        android:layout_below="@+id/speed"
-        android:layout_marginTop="20dp"
-        android:text="@string/exactPlace" />
+        <TextView
+            android:id="@+id/speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/time"
+            android:layout_alignStart="@+id/time"
+            android:layout_below="@+id/time"
+            android:layout_marginTop="20dp"
+            android:text="@string/speed" />
 
-    <TextView
-        android:id="@+id/noOfPeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/exactPlace"
-        android:layout_alignStart="@+id/exactPlace"
-        android:layout_below="@+id/exactPlace"
-        android:layout_marginTop="20dp"
-        android:text="@string/noOfPeople" />
-    
-    <TextView
-        android:id="@+id/mileage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-       android:layout_alignLeft="@+id/noOfPeople"
-        android:layout_alignStart="@+id/noOfPeople"
-        android:layout_below="@+id/noOfPeople"
-        android:layout_marginTop="20dp"
-        android:text="@string/mileage" />
+        <TextView
+            android:id="@+id/exactPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/speed"
+            android:layout_alignStart="@+id/speed"
+            android:layout_below="@+id/speed"
+            android:layout_marginTop="20dp"
+            android:text="@string/exactPlace" />
 
-    <TextView
-        android:id="@+id/policeStation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mileage"
-        android:layout_alignStart="@+id/mileage"
-        android:layout_below="@+id/mileage"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/policeStation" />
+        <TextView
+            android:id="@+id/noOfPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/exactPlace"
+            android:layout_alignStart="@+id/exactPlace"
+            android:layout_below="@+id/exactPlace"
+            android:layout_marginTop="20dp"
+            android:text="@string/noOfPeople" />
 
-    <TextView
-        android:id="@+id/policeStationName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/policeStation"
-        android:layout_alignStart="@+id/policeStation"
-        android:layout_below="@+id/policeStation"
-        android:layout_marginTop="20dp"
-        android:text="@string/policeStationName" />
+        <TextView
+            android:id="@+id/mileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/noOfPeople"
+            android:layout_alignStart="@+id/noOfPeople"
+            android:layout_below="@+id/noOfPeople"
+            android:layout_marginTop="20dp"
+            android:text="@string/mileage" />
 
-    <TextView
-        android:id="@+id/firNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/policeStationName"
-        android:layout_alignStart="@+id/policeStationName"
-        android:layout_below="@+id/policeStationName"
-        android:layout_marginTop="20dp"
-        android:text="@string/firNo" />
+        <TextView
+            android:id="@+id/policeStation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mileage"
+            android:layout_alignStart="@+id/mileage"
+            android:layout_below="@+id/mileage"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/policeStation" />
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/date"
-        android:layout_alignBottom="@+id/date"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_toEndOf="@+id/firNo"
-        android:layout_toRightOf="@+id/firNo"
-        android:ems="10"
-        android:textSize="10sp" >
-    </EditText>
+        <TextView
+            android:id="@+id/policeStationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/policeStation"
+            android:layout_alignStart="@+id/policeStation"
+            android:layout_below="@+id/policeStation"
+            android:layout_marginTop="20dp"
+            android:text="@string/policeStationName" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/time"
-        android:layout_alignBottom="@+id/time"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignStart="@+id/editText1"
-        android:ems="10"
-        android:textSize="12dp" />
+        <TextView
+            android:id="@+id/firNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/policeStationName"
+            android:layout_alignStart="@+id/policeStationName"
+            android:layout_below="@+id/policeStationName"
+            android:layout_marginTop="20dp"
+            android:text="@string/firNo" />
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/speed"
-        android:layout_toEndOf="@+id/firNo"
-        android:layout_toRightOf="@+id/firNo"
-        android:ems="10"
-        android:textSize="12dp" />
+		<Button
+            android:id="@+id/accidentDate"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_alignBaseline="@+id/date"
+            android:layout_alignBottom="@+id/date"
+            android:layout_alignRight="@+id/ad_next"
+            android:text="@string/selectDate"
+            android:textSize="12dp" />
+		
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/time"
+            android:layout_alignBottom="@+id/time"
+            android:layout_alignLeft="@+id/accidentDate"
+            android:layout_alignStart="@+id/accidentDate"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/mileage"
-        android:layout_alignBottom="@+id/mileage"
-        android:layout_toEndOf="@+id/firNo"
-        android:layout_toRightOf="@+id/firNo"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/speed"
+            android:layout_toEndOf="@+id/firNo"
+            android:layout_toRightOf="@+id/firNo"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/noOfPeople"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:ems="10"
-        android:textSize="12dp" >
-    </EditText>
-    
-    <Button
-        android:id="@+id/psMap"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:layout_above="@+id/policeStationName"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
-        android:text="@string/map" 
-        android:textSize="12dp"/>
+        <EditText
+            android:id="@+id/editText9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/mileage"
+            android:layout_alignBottom="@+id/mileage"
+            android:layout_toEndOf="@+id/firNo"
+            android:layout_toRightOf="@+id/firNo"
+            android:ems="10"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText5"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/noOfPeople"
+            android:layout_alignLeft="@+id/editText4"
+            android:layout_alignStart="@+id/editText4"
+            android:ems="10"
+            android:textSize="12dp" >
+        </EditText>
 
-    <EditText
-        android:id="@+id/editText8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/firNo"
-        android:layout_alignBottom="@+id/firNo"
-        android:layout_alignLeft="@+id/editText9"
-        android:layout_alignStart="@+id/editText7"
-        android:ems="10"
-        android:textSize="12dp" />
+        <Button
+            android:id="@+id/psMap"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_above="@+id/policeStationName"
+            android:layout_alignLeft="@+id/editText5"
+            android:layout_alignStart="@+id/editText5"
+            android:text="@string/map"
+            android:textSize="12dp" />
 
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/policeStationName"
-        android:layout_alignBottom="@+id/policeStationName"
-        android:layout_alignEnd="@+id/editText6"
-        android:layout_alignLeft="@+id/editText9"
-        android:layout_alignRight="@+id/editText6"
-        android:ems="10"
-        android:textSize="12dp" />
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText5"
+            android:layout_alignLeft="@+id/editText3"
+            android:layout_alignStart="@+id/editText3"
+            android:ems="10"
+            android:textSize="12dp" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/editText8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/firNo"
+            android:layout_alignBottom="@+id/firNo"
+            android:layout_alignLeft="@+id/editText9"
+            android:layout_alignStart="@+id/editText7"
+            android:ems="10"
+            android:textSize="12dp" />
+
+        <EditText
+            android:id="@+id/editText7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/policeStationName"
+            android:layout_alignBottom="@+id/policeStationName"
+            android:layout_alignEnd="@+id/editText6"
+            android:layout_alignLeft="@+id/editText9"
+            android:layout_alignRight="@+id/editText6"
+            android:ems="10"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+</ScrollView>
