@@ -58,7 +58,7 @@ public class DocumentsActivity extends ActionBarActivity {
 	private TextView insuranceText;
 	private TextView rcText;
 	private TextView licenseText;
-//	private CheckBox towV;
+	//	private CheckBox towV;
 
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME1 = "fileNewClaim";
@@ -115,11 +115,15 @@ public class DocumentsActivity extends ActionBarActivity {
 							Intent newIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 							DocumentsActivity.this.startActivity(newIntent);
 						}
-						if(photoFile != null) {
-							//upload documents to S3
-							uploadFiles(result.toString());
+						if(result != null) {
+							if(photoFile != null) {
+								//upload documents to S3
+								uploadFiles(result.toString());
+							} else {
+								Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
+							}
 						} else {
-							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
+							Toast.makeText(DocumentsActivity.this, "Unable to connect to server; Please check your internet connection", Toast.LENGTH_LONG).show();
 						}
 					} else {
 						if(photoFile != null) {
@@ -378,7 +382,7 @@ public class DocumentsActivity extends ActionBarActivity {
 					File witnessStatementRename = new File(getApplication().getExternalFilesDir(null).getAbsolutePath() + "/claimId_" + claimId, "witnessStatement.mp4");
 					witnessStatement.renameTo(witnessStatementRename);
 				}
-				
+
 				//Upload documents to S3
 				new S3UploadTask(context, claimId).execute(billPhoto == null ? "" : billPhoto.getAbsolutePath(), 
 						firPhoto == null ? "" : firPhoto.getAbsolutePath());
@@ -388,7 +392,7 @@ public class DocumentsActivity extends ActionBarActivity {
 				File insurance = new File(getApplication().getExternalFilesDir(null), "insurance.jpg");
 				File rc = new File(getApplication().getExternalFilesDir(null), "rcImage.jpg");
 				File license = new File(getApplication().getExternalFilesDir(null), "license.jpg");
-				
+
 				//rename statements to S3 to upload later when wifi is available
 				new File(getApplication().getExternalFilesDir(null).getAbsolutePath(), "claimId_" + claimId).mkdir();
 				if(getIntent().getStringExtra("driverStatement") != null) {

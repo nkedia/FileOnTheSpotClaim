@@ -33,29 +33,29 @@ import com.app.task.ExistingClaimsServiceTask;
 import com.example.fileonthespotclaim.R;
 
 public class GetExistingClaimsActivity extends ActionBarActivity {
-	
+
 	Button bt;
 	TableLayout existingClaimsTable;
 	private String rowClickedClaimId = "";
 	private static final String NAMESPACE = "localhost:8080/ClaimsService/";
 	private static final String METHOD_NAME = "getExistingClaims";
 	public List<ClaimsType> claimsList = new ArrayList<ClaimsType>();
-	
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_get_existing_claims);
-		
+
 		String policyNo = getIntent().getStringExtra("policyNo");
-		
+
 		PropertyInfo policyId = new PropertyInfo();
 		policyId.name = "policyId";
 		policyId.type = String.class;
 		policyId.setValue(policyNo);
 		//policyId.setValue("Pol123");
-		
+
 		SoapObject request=new SoapObject(NAMESPACE,METHOD_NAME);
 		List<SoapObject> result = null;
 		request.addProperty(policyId);
@@ -67,99 +67,104 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 			Intent newIntent = new Intent(GetExistingClaimsActivity.this, MainActivity.class);
 			GetExistingClaimsActivity.this.startActivity(newIntent);
 		}
-		
-		for(SoapObject soapObj : result) {
-			Log.d("soapObj", soapObj.toString());
-			ClaimsType claim = new ClaimsType();
-			claim.setClaimId(soapObj.getPrimitivePropertyAsString("claimId"));
-			claim.setClaimStatus(soapObj.getPrimitivePropertyAsString("claimStatus"));
-			claim.setAmountSettled(soapObj.getPrimitivePropertyAsString("amountSettled"));
-			String date = soapObj.getPrimitivePropertyAsString("dateOfSettlement");
-			claim.setDateOfSettlement(date.substring(0, date.length()-1));
-			
-			PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(soapObj);
-			VehicleDetailsType vehicleDetails = getVehicleDetails(soapObj);
-			AccidentDetailsType accidentDetails = getAccidentDetails(soapObj);
-			DriverDetailsType driverDetails = getDriverDetails(soapObj);
 
-			claim.setPolicyHolderDetails(policyHolderDetails);
-			claim.setVehicleDetails(vehicleDetails);
-			claim.setAccidentDetails(accidentDetails);
-			claim.setDriverDetails(driverDetails);
-			claimsList.add(claim);
+		if(result != null && !result.isEmpty()) {
+
+			for(SoapObject soapObj : result) {
+				Log.d("soapObj", soapObj.toString());
+				ClaimsType claim = new ClaimsType();
+				claim.setClaimId(soapObj.getPrimitivePropertyAsString("claimId"));
+				claim.setClaimStatus(soapObj.getPrimitivePropertyAsString("claimStatus"));
+				claim.setAmountSettled(soapObj.getPrimitivePropertyAsString("amountSettled"));
+				String date = soapObj.getPrimitivePropertyAsString("dateOfSettlement");
+				claim.setDateOfSettlement(date.substring(0, date.length()-1));
+
+				PolicyHolderDetailsType policyHolderDetails = getPolicyHolderDetails(soapObj);
+				VehicleDetailsType vehicleDetails = getVehicleDetails(soapObj);
+				AccidentDetailsType accidentDetails = getAccidentDetails(soapObj);
+				DriverDetailsType driverDetails = getDriverDetails(soapObj);
+
+				claim.setPolicyHolderDetails(policyHolderDetails);
+				claim.setVehicleDetails(vehicleDetails);
+				claim.setAccidentDetails(accidentDetails);
+				claim.setDriverDetails(driverDetails);
+				claimsList.add(claim);
+			}
+
+			existingClaimsTable = (TableLayout) findViewById(R.id.existingClaimsTable);
+			existingClaimsTable.setStretchAllColumns(true);	
+			existingClaimsTable.bringToFront();
+
+			TableRow tr1 =  new TableRow(this);
+			TextView c1 = new TextView(this);
+			c1.setText("ID    ");
+			c1.setPadding(5, 0, 0, 0);
+			tr1.addView(c1);
+			TextView c2 = new TextView(this);
+			c2.setText("Status");
+			c2.setPadding(5, 0, 0, 0);
+			tr1.addView(c2);
+			TextView c3 = new TextView(this);
+			c3.setText("Amount");
+			c3.setPadding(5, 0, 0, 0);
+			tr1.addView(c3);
+			TextView c4 = new TextView(this);
+			c4.setText("Date");
+			c4.setPadding(5, 0, 0, 0);
+			tr1.addView(c4);
+			existingClaimsTable.addView(tr1);
+
+			for(ClaimsType claim : claimsList) {
+				TableRow tr2 =  new TableRow(this);
+
+				TextView c21 = new TextView(this);
+				c21.setText(claim.getClaimId());
+				c21.setPadding(5, 0, 0, 0);
+				tr2.addView(c21);
+				TextView c22 = new TextView(this);
+				c22.setText(claim.getClaimStatus());
+				c22.setPadding(5, 0, 0, 0);
+				tr2.addView(c22);
+				TextView c23 = new TextView(this);
+				c23.setText(claim.getAmountSettled());
+				c23.setPadding(5, 0, 0, 0);
+				tr2.addView(c23);
+				TextView c24 = new TextView(this);
+				c24.setText(claim.getDateOfSettlement());
+				c24.setPadding(5, 0, 0, 0);
+				tr2.addView(c24);
+
+				tr2.setClickable(true);
+				tr2.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						//get the data you need
+						v.setClickable(true);
+						TableRow tablerow = (TableRow)v;
+						tablerow.setBackgroundResource(R.drawable.table_drawable);
+						TextView tv1 = (TextView) tablerow.getChildAt(0);
+						rowClickedClaimId = tv1.getText().toString();
+						Toast.makeText(GetExistingClaimsActivity.this, "RowCLickedClaimID : " + rowClickedClaimId, Toast.LENGTH_LONG).show();
+						//Start Update Activity
+						for(ClaimsType claim : claimsList) {
+							if (claim.getClaimId().equals(rowClickedClaimId)) {
+								Intent myIntent = new Intent(GetExistingClaimsActivity.this, PolicyHolderDetailsActivity.class);
+								myIntent.putExtra("policyHolderDetails", claim.getPolicyHolderDetails());
+								myIntent.putExtra("vehicleDetails", claim.getVehicleDetails());
+								myIntent.putExtra("accidentDetails", claim.getAccidentDetails());
+								myIntent.putExtra("driverDetails", claim.getDriverDetails());
+								myIntent.putExtra("claimId", claim.getClaimId());
+								myIntent.putExtra("getExistingClaims", true);
+								GetExistingClaimsActivity.this.startActivity(myIntent);
+							}
+						}
+					}
+				});
+				existingClaimsTable.addView(tr2);
+			}
+		} else {
+			Toast.makeText(getApplicationContext(), "Unable to get Existing Claims, Try again later", Toast.LENGTH_LONG).show();
 		}
-		
-		existingClaimsTable = (TableLayout) findViewById(R.id.existingClaimsTable);
-		existingClaimsTable.setStretchAllColumns(true);	
-		existingClaimsTable.bringToFront();
-		
-		TableRow tr1 =  new TableRow(this);
-        TextView c1 = new TextView(this);
-        c1.setText("ID    ");
-        c1.setPadding(5, 0, 0, 0);
-        tr1.addView(c1);
-        TextView c2 = new TextView(this);
-        c2.setText("Status");
-        c2.setPadding(5, 0, 0, 0);
-        tr1.addView(c2);
-        TextView c3 = new TextView(this);
-        c3.setText("Amount");
-        c3.setPadding(5, 0, 0, 0);
-        tr1.addView(c3);
-        TextView c4 = new TextView(this);
-        c4.setText("Date");
-        c4.setPadding(5, 0, 0, 0);
-        tr1.addView(c4);
-        existingClaimsTable.addView(tr1);
-		
-		for(ClaimsType claim : claimsList) {
-			TableRow tr2 =  new TableRow(this);
-	        
-			TextView c21 = new TextView(this);
-	        c21.setText(claim.getClaimId());
-	        c21.setPadding(5, 0, 0, 0);
-	        tr2.addView(c21);
-	        TextView c22 = new TextView(this);
-	        c22.setText(claim.getClaimStatus());
-	        c22.setPadding(5, 0, 0, 0);
-	        tr2.addView(c22);
-	        TextView c23 = new TextView(this);
-	        c23.setText(claim.getAmountSettled());
-	        c23.setPadding(5, 0, 0, 0);
-	        tr2.addView(c23);
-	        TextView c24 = new TextView(this);
-	        c24.setText(claim.getDateOfSettlement());
-	        c24.setPadding(5, 0, 0, 0);
-	        tr2.addView(c24);
-	        
-	        tr2.setClickable(true);
-	        tr2.setOnClickListener(new OnClickListener() {
-	            public void onClick(View v) {
-	               //get the data you need
-	               v.setClickable(true);
-	               TableRow tablerow = (TableRow)v;
-	               tablerow.setBackgroundResource(R.drawable.table_drawable);
-	               TextView tv1 = (TextView) tablerow.getChildAt(0);
-	               rowClickedClaimId = tv1.getText().toString();
-	               Toast.makeText(GetExistingClaimsActivity.this, "RowCLickedClaimID : " + rowClickedClaimId, Toast.LENGTH_LONG).show();
-	               //Start Update Activity
-	               for(ClaimsType claim : claimsList) {
-	            	   if (claim.getClaimId().equals(rowClickedClaimId)) {
-	            		   Intent myIntent = new Intent(GetExistingClaimsActivity.this, PolicyHolderDetailsActivity.class);
-	            		   myIntent.putExtra("policyHolderDetails", claim.getPolicyHolderDetails());
-	            		   myIntent.putExtra("vehicleDetails", claim.getVehicleDetails());
-	       				   myIntent.putExtra("accidentDetails", claim.getAccidentDetails());
-	       				   myIntent.putExtra("driverDetails", claim.getDriverDetails());
-	       				   myIntent.putExtra("claimId", claim.getClaimId());
-	            		   myIntent.putExtra("getExistingClaims", true);
-	            		   GetExistingClaimsActivity.this.startActivity(myIntent);
-	            	   }
-	               }
-	            }
-	        });
-	        existingClaimsTable.addView(tr2);
-	    }
-	       
+
 		bt = (Button) findViewById(R.id.back);
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
@@ -199,7 +204,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 
 
 	private AccidentDetailsType getAccidentDetails(SoapObject soapObj) {
-		
+
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
 		SoapObject accidentDetailsObj = (SoapObject) soapObj.getProperty("accidentDetails");
 		String dateOfAccident = accidentDetailsObj.getPrimitivePropertyAsString("dateOfAccident");
@@ -216,7 +221,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 
 
 	private VehicleDetailsType getVehicleDetails(SoapObject soapObj) {
-		
+
 		VehicleDetailsType vehicleDetails = new VehicleDetailsType();
 		SoapObject vehicleDetailsObj = (SoapObject) soapObj.getProperty("vehicleDetails");
 		vehicleDetails.setRegdNo(vehicleDetailsObj.getPrimitivePropertyAsString("regdNo"));
@@ -234,7 +239,7 @@ public class GetExistingClaimsActivity extends ActionBarActivity {
 
 
 	private PolicyHolderDetailsType getPolicyHolderDetails(SoapObject soapObj) {
-		
+
 		PolicyHolderDetailsType policyHolderDetails = new PolicyHolderDetailsType();
 		SoapObject policyHolderDetailsObj = (SoapObject) soapObj.getProperty("policyHolderDetails");
 		policyHolderDetails.setPolicyNo(policyHolderDetailsObj.getPrimitivePropertyAsString("PolicyNo"));
