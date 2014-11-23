@@ -104,7 +104,9 @@ public class DocumentsActivity extends ActionBarActivity {
 					Toast.makeText(DocumentsActivity.this, "Update Existing Claim Successful", Toast.LENGTH_LONG).show();
 					DocumentsActivity.this.startActivity(myIntent);
 				} else {
-					if(result == null) {
+					if(photoFile == null) {
+						Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image; then click on submit", Toast.LENGTH_LONG).show();
+					} else {
 						myIntent = new Intent(DocumentsActivity.this, MainActivity.class);
 						SoapObject request = getRequestObject();
 						try {
@@ -116,25 +118,14 @@ public class DocumentsActivity extends ActionBarActivity {
 							DocumentsActivity.this.startActivity(newIntent);
 						}
 						if(result != null) {
-							if(photoFile != null) {
-								//upload documents to S3
-								uploadFiles(result.toString());
-							} else {
-								Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
-							}
-						} else {
-							Toast.makeText(DocumentsActivity.this, "Unable to connect to server; Please check your internet connection", Toast.LENGTH_LONG).show();
-						}
-					} else {
-						if(photoFile != null) {
+							//upload documents to S3
 							uploadFiles(result.toString());
 						} else {
-							Toast.makeText(DocumentsActivity.this, "Please click Damaged Car Image, then click on submit", Toast.LENGTH_LONG).show();
+							Toast.makeText(DocumentsActivity.this, "Unable to connect to server; Please check your internet connection", Toast.LENGTH_LONG).show();
 						}
 					}
 				}
 			}
-
 		};
 		bt1.setOnClickListener(myListener);
 
