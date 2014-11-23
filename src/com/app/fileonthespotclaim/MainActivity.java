@@ -175,7 +175,6 @@ public class MainActivity extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			Toast.makeText(MainActivity.this, "Settings option selected", Toast.LENGTH_LONG).show();
 			Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
 			MainActivity.this.startActivity(myIntent);
 			return true;

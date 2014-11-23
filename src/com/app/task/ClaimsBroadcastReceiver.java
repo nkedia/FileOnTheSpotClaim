@@ -27,7 +27,7 @@ public class ClaimsBroadcastReceiver extends BroadcastReceiver {
 			if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
 				if (networkInfo.getState() == NetworkInfo.State.CONNECTED) {
 					Log.d("wifi", "connected");
-					Toast.makeText(context, "hello wifi", Toast.LENGTH_LONG).show();
+					//Toast.makeText(context, "hello wifi", Toast.LENGTH_LONG).show();
 					File externalDir = context.getExternalFilesDir(null);
 					File[] fileList = externalDir.listFiles();
 					String uploadFiles[] = new String[4];

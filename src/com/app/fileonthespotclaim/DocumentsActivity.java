@@ -427,7 +427,6 @@ public class DocumentsActivity extends ActionBarActivity {
 		NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		if (mWifi.isConnected()) {
 			Log.d("wifi", "connected");
-			Toast.makeText(context, "hello wifi", Toast.LENGTH_LONG).show();
 			return true;
 		}
 		return false;
