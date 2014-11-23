@@ -5,6 +5,7 @@ import java.util.Calendar;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -41,6 +42,9 @@ public class PolicyHolderDetailsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_policy_holder_details);
 
+		Drawable d=getResources().getDrawable(R.drawable.background);  
+		getActionBar().setBackgroundDrawable(d);
+		
 		Button bt = (Button) findViewById(R.id.phd_next);
 		policyNo = (EditText) findViewById(R.id.editText4);
 		coverNoteNo = (EditText) findViewById(R.id.editText5);

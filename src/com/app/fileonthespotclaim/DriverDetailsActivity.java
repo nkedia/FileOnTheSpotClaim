@@ -5,6 +5,7 @@ import java.util.Calendar;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -44,6 +45,9 @@ public class DriverDetailsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_driver_details);
 
+		Drawable d=getResources().getDrawable(R.drawable.background);  
+		getActionBar().setBackgroundDrawable(d);
+		
 		bt = (Button) findViewById(R.id.dd_next);
 		name = (EditText) findViewById(R.id.editText1);
 		relation = (EditText) findViewById(R.id.editText2);

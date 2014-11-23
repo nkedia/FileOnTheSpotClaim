@@ -11,6 +11,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -72,6 +73,10 @@ public class DocumentsActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_documents);
+		
+		Drawable d=getResources().getDrawable(R.drawable.background);  
+		getActionBar().setBackgroundDrawable(d);
+		
 		getExistingClaims = getIntent().getBooleanExtra("getExistingClaims", false);
 		claimId = getIntent().getStringExtra("claimId");
 

@@ -1,19 +1,19 @@
 package com.app.fileonthespotclaim;
 
 import java.util.Calendar;
-
 import com.app.entity.PeriodOfInsuranceType;
 import com.app.entity.PhoneType;
 import com.app.entity.PolicyHolderDetailsType;
 import com.app.sqlite.ClaimDataSQLHelper;
 import com.example.fileonthespotclaim.R;
-
 import android.support.v7.app.ActionBarActivity;
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -46,10 +46,16 @@ public class SettingsActivity extends ActionBarActivity {
 	private static final String DATABASE_NAME = "ClaimData.db";
 	private static final int DATABASE_VERSION = 1;
 
+	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 
+		Drawable d = getResources().getDrawable(R.drawable.background);  
+		getActionBar().setBackgroundDrawable(d);
+		Drawable icon = getResources().getDrawable(R.drawable.settings_icon);
+		getActionBar().setIcon(icon);
+		
 		policyNo = (EditText) findViewById(R.id.editText4);
 		coverNoteNo = (EditText) findViewById(R.id.editText5);
 		name = (EditText) findViewById(R.id.editText2);

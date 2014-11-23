@@ -1,22 +1,19 @@
 package com.app.fileonthespotclaim;
 
 import java.io.File;
-import java.io.IOException;
-
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.app.entity.DriverDetailsType;
 import com.app.entity.PolicyHolderDetailsType;
 import com.app.entity.VehicleDetailsType;
@@ -38,11 +35,18 @@ public class SettingsActivity2 extends ActionBarActivity {
 	private static final String DATABASE_NAME = "ClaimData.db";
 	private static final int DATABASE_VERSION = 1;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings2);
 
+		Drawable d=getResources().getDrawable(R.drawable.background);  
+		getActionBar().setBackgroundDrawable(d);
+		Drawable icon = getResources().getDrawable(R.drawable.settings_icon);
+		getActionBar().setIcon(icon);
+		
+		
 		// save Insurance copy
 		bt1 = (Button) findViewById(R.id.clickImageIC);
 		Button.OnClickListener myListener1 = new Button.OnClickListener(){

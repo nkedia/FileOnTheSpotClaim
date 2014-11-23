@@ -7,13 +7,13 @@ import java.util.Date;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.app.entity.AccidentDetailsType;
 import com.app.entity.DriverDetailsType;
@@ -39,9 +39,11 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		nc = (Button) findViewById(R.id.btn_nc);
 		ec = (Button) findViewById(R.id.btn_ec);
+		
+		Drawable d=getResources().getDrawable(R.drawable.background);  
+		getActionBar().setBackgroundDrawable(d);
 
 		Button.OnClickListener myListener = new Button.OnClickListener(){
 
